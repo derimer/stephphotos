@@ -21,7 +21,7 @@ app.use(express.json());
 // Servir les fichiers statiques
 app.use(express.static(publicPath)); // Sert tous les fichiers dans le dossier public
 app.use('/uploads', express.static(uploadsPath)); // Sert les fichiers dans le dossier uploads
-
+console.log("Chemin des uploads :", uploadsPath);
 // Test de la connexion à la base de données
 app.get("/api/test-db", async (req, res) => {
   try {

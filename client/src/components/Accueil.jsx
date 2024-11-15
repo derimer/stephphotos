@@ -57,31 +57,38 @@ function Accueil() {
   ];
   const normalizeImageUrl = (filename) => {
     if (!filename) return '';
-    return `http://localhost:3310/uploads/assets/images/${filename}`; // Assurez-vous que c'est correct
+    return `http://localhost:3310/uploads/${filename}`; // Assurez-vous que c'est correct
   };
   // Fonction pour récupérer les images depuis l'API
   useEffect(() => {
     const fetchImages = async () => {
-      try {
-        const response = await fetch("http://localhost:3310/api/accueil");
-        if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
+        try {
+            const response = await fetch("http://localhost:3310/api/accueil");
+            if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
 
-        const data = await response.json();
-        // Normalisez les URLs des images récupérées
-        const normalizedImages = data.map(image => ({
-          ...image,
-          filename: normalizeImageUrl(image), // Normalisez ici
-        }));
-        setImages(localImages.concat(normalizedImages)); // Fusionne les images locales avec celles de la BDD
-      } catch (error) {
-        console.error("Erreur lors de la récupération des images :", error);
-        setImages(localImages); // Utiliser uniquement les images locales en cas d'erreur
-      }
+            const data = await response.json();
+            console.log("Données récupérées :", data); // Log des données reçues
+
+            // Normalisez les URLs des images récupérées
+            const normalizedImages = data.map(image => ({
+                ...image,
+                filename: normalizeImageUrl(image.filename), // Utilisez image.filename ici
+            }));
+            console.log("Images normalisées :", normalizedImages); // Log après normalisation
+
+            // Fusionne les images locales avec celles de la BDD
+            const allImages = localImages.concat(normalizedImages);
+            setImages(allImages); // Met à jour l'état avec toutes les images
+            console.log("Toutes les images après ajout :", allImages); // Log final
+
+        } catch (error) {
+            console.error("Erreur lors de la récupération des images :", error);
+            setImages(localImages); // Utiliser uniquement les images locales en cas d'erreur
+        }
     };
 
     fetchImages();
-  }, []);
-
+}, []);
   // Choisir une image aléatoire
   useEffect(() => {
     if (images.length > 0) {
