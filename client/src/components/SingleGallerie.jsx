@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import Pecheur from "../assets/images/image-2.jpg";
 import Gerbier from "../assets/images/image-6.jpg";
-import Festival from "../assets/images/image-58.jpg";
+import Festival from "../assets/images/image-10.jpg";
 import Paris from "../assets/images/image-14.jpg";
 import Concert from "../assets/images/image-50.jpg";
 import Horizon from "../assets/images/image-52.jpg";
@@ -14,7 +14,7 @@ import Mer from "../assets/images/image-71.jpg";
 import Chemin from "../assets/images/image-72.jpg";
 import Foret from "../assets/images/image-73.jpg";
 import Portugal from "../assets/images/image-1.jpg";
-import Plage from "../assets/images/image-10.jpg";
+import Plage from "../assets/images/image-3.jpg";
 import Piscine from "../assets/images/image-4.jpg";
 import Verres from "../assets/images/image-8.jpg";
 import Perspective from "../assets/images/image-9.jpg";
@@ -35,6 +35,7 @@ import Cloche from "../assets/images/image-29.jpg";
 import Printemps from "../assets/images/image-45.jpg";
 import Fontaine from "../assets/images/image-46.jpg";
 import Couloir from "../assets/images/image-47.jpg";
+import Spectacle from "../assets/images/image-58.jpg";
 import Lyon from "../assets/images/image-70.jpg";
 import Rue from "../assets/images/image-76.jpg";
 import Ruines from "../assets/images/image-77.jpg";
@@ -64,12 +65,8 @@ import Lily3 from "../assets/images/image-3.jpg";
 
 export default function SingleGallery() {
   const [gallery, setGallery] = useState(null);
-  const [images, setImages] = useState([]); // Ajout de l'état pour les images récupérées
   const [selectedImage, setSelectedImage] = useState(null);
-  const [searchParams] = useSearchParams();
-  const [error, setError] = useState("");
-
-  // Liste des galeries locales
+  const [searchParams] = useSearchParams(); // Utilisation de useSearchParams
   const galleries = {
     gal1: {
       title: "Paysages",
@@ -121,7 +118,8 @@ export default function SingleGallery() {
         Cloche,
         Printemps,
         Fontaine,
-        Couloir,       
+        Couloir,
+        Spectacle,
         Lyon,
         Rue,
         Ruines,
@@ -153,45 +151,16 @@ export default function SingleGallery() {
       ],
     },
   };
-
   useEffect(() => {
     const galId = searchParams.get("id");
-    if (galId) {
-      fetchGalleryDetails(galId);
-      fetchGalleryImages(galId);
+    // Récupérer l'ID de la galerie à partir des paramètres
+
+    if (galId && galleries[galId]) {
+      setGallery(galleries[galId]);
     } else {
-      window.location.pathname = "/gallerie";
+      window.location.pathname = "/gallerie"; // Redirige vers la page d'accueil si l'ID de la galerie n'est pas valide
     }
   }, [searchParams]);
-
-  const fetchGalleryDetails = async (id) => {
-    try {
-      const response = await fetch("http://localhost:3310/api/galeries/${id}");
-      if (!response.ok) throw new Error("Erreur lors de la récupération de la galerie");
-      const data = await response.json();
-      setGallery(data);
-    } catch (error) {
-      console.error("Erreur:", error);
-      setError("Impossible de charger les détails de la galerie");
-    }
-  };
-    const fetchGalleryImages = async () => {
-      const galleryId = searchParams.get("galleryId");
-      if (galleryId) {
-        try {
-          const response = await fetch("http://localhost:3310/api/galeries/${galleryId}/images");
-          if (!response.ok) throw new Error("Erreur lors de la récupération des images");
-          const data = await response.json();
-          setImages(data);
-        } catch (error) {
-          console.error("Erreur:", error);
-          setError("Impossible de charger les images de la galerie");
-        }
-      }
-    };
-
-    fetchGalleryImages()
-  [searchParams];
 
   const showSinglePict = (imageSrc) => {
     setSelectedImage(imageSrc);
@@ -201,26 +170,31 @@ export default function SingleGallery() {
     setSelectedImage(null);
   };
 
+  if (!gallery) return null; // Affiche rien si la galerie n'est pas chargée
+
   return (
     <>
       <main id="singleGallery">
-        <h1>{gallery?.title}</h1>
+        <h1>{gallery.title}</h1>
         <ul>
-          {images.map((image, index) => (
+          {gallery.images.map((image, index) => (
             <li key={index}>
               <img
                 src={image}
-                alt={`image ${index}`}
+                alt={`image ${index + 1}`}
                 onClick={() => showSinglePict(image)}
-                style={{ cursor: "pointer", maxWidth: "200px" }}
+                style={{ cursor: "pointer" }}
               />
             </li>
           ))}
         </ul>
       </main>
-
       {selectedImage && (
-        <div id="galleryContainer" className="visible" onClick={closeSinglePict}>
+        <div
+          id="galleryContainer"
+          className="visible"
+          onClick={closeSinglePict}
+        >
           <img src={selectedImage} alt="Selected" />
         </div>
       )}

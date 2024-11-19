@@ -40,9 +40,9 @@ img {
 #mainHeader {
   display: grid;
   grid-template-columns: 80px 1fr;
-
+color:white;
   align-items: center;
-  background-color: var(--red);
+  background-color:black;
   height: 80px;
   width: 100%;
   position: fixed;
@@ -61,7 +61,7 @@ img {
 }
 #mainNav {
   position: absolute;
-  background-color: var(--red);
+  background-color:black;
   width: 100%;
   top: 40px;
   padding-bottom: 10px;
@@ -76,7 +76,7 @@ img {
   margin-left: 90px;
 }
 #mainNav a {
-  color: var(--black);
+  color: white;
   text-decoration: none;
   font-family: Cantarell, Arial, sans-serif;
   font-size: 1.5em;
@@ -277,13 +277,13 @@ main#contact1 {
 }
 
 #mainFooter {
-  background-color: var(--red);
+  background-color:black;
   height: 40px;
   width: 100%;
   position: fixed;
   bottom: 0;
-  color: var(--black);
-  font-size: 0.5em;
+  color: white;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
