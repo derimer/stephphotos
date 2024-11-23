@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+
 
 import Pecheur from "../assets/images/image-2.jpg";
 import Gerbier from "../assets/images/image-6.jpg";
@@ -14,7 +15,6 @@ import Mer from "../assets/images/image-71.jpg";
 import Chemin from "../assets/images/image-72.jpg";
 import Foret from "../assets/images/image-73.jpg";
 import Portugal from "../assets/images/image-1.jpg";
-import Plage from "../assets/images/image-3.jpg";
 import Piscine from "../assets/images/image-4.jpg";
 import Verres from "../assets/images/image-8.jpg";
 import Perspective from "../assets/images/image-9.jpg";
@@ -64,10 +64,15 @@ import Audray3 from "../assets/images/image-33.jpg";
 import Lily3 from "../assets/images/image-3.jpg";
 
 export default function SingleGallery() {
-  const [gallery, setGallery] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [searchParams] = useSearchParams(); // Utilisation de useSearchParams
-  const galleries = {
+
+  
+    const [galery, setGalery] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [searchParams] = useSearchParams();
+    const [images, setImages] = useState([]);
+    const [error, setError] = useState(null);
+  // Utilisation de useSearchParams
+  const galeries = {
     gal1: {
       title: "Paysages",
       images: [
@@ -89,8 +94,7 @@ export default function SingleGallery() {
     gal2: {
       title: "N&B",
       images: [
-        Portugal,
-        Plage,
+        Portugal,     
         Piscine,
         Verres,
         Perspective,
@@ -151,53 +155,81 @@ export default function SingleGallery() {
       ],
     },
   };
+  const normalizeImageUrl = (filename) => {
+    if (!filename) return '';
+    return `http://localhost:3310/uploads/${filename}`; // Vérifiez que cette URL correspond bien à votre configuration
+  };
+  
   useEffect(() => {
-    const galId = searchParams.get("id");
-    // Récupérer l'ID de la galerie à partir des paramètres
+    const id = searchParams.get("id");
 
-    if (galId && galleries[galId]) {
-      setGallery(galleries[galId]);
+    const fetchGalleryAndImages = async () => {
+      try {
+        const galleryResponse = await fetch(`http://localhost:3310/api/galeries/${id}`);
+        if (!galleryResponse.ok) throw new Error(`Erreur HTTP : ${galleryResponse.status}`);
+        const galleryData = await galleryResponse.json();
+        setGalery(galleryData);
+
+        const imagesResponse = await fetch(`http://localhost:3310/api/galeries/${id}/images`);
+        if (!imagesResponse.ok) throw new Error(`Erreur HTTP : ${imagesResponse.status}`);
+        const imagesData = await imagesResponse.json();
+        const normalizedImages = imagesData.map(image => ({
+          ...image,
+          filename: normalizeImageUrl(image.filename),
+        }));
+        setImages(normalizedImages);
+      } catch (error) {
+        console.error("Erreur:", error);
+        setError(error.message);
+      }
+    };
+
+    if (id) {
+      fetchGalleryAndImages();
     } else {
-      window.location.pathname = "/gallerie"; // Redirige vers la page d'accueil si l'ID de la galerie n'est pas valide
+      window.location.pathname = "/galerie";
     }
   }, [searchParams]);
 
-  const showSinglePict = (imageSrc) => {
-    setSelectedImage(imageSrc);
-  };
-
-  const closeSinglePict = () => {
-    setSelectedImage(null);
-  };
-
-  if (!gallery) return null; // Affiche rien si la galerie n'est pas chargée
-
   return (
     <>
-      <main id="singleGallery">
-        <h1>{gallery.title}</h1>
-        <ul>
-          {gallery.images.map((image, index) => (
-            <li key={index}>
+      {galery ? (
+        <main id="singleGallery">
+          <h1>{galery.title}</h1>
+          {images.length > 0 ? (
+            <ul>
+              {images.map((image, index) => (
+                <li key={image.id || index}>
               <img
-                src={image}
-                alt={`image ${index + 1}`}
-                onClick={() => showSinglePict(image)}
-                style={{ cursor: "pointer" }}
-              />
-            </li>
-          ))}
-        </ul>
-      </main>
+                    src={image.filename}
+                    alt={image.name || `Image ${index + 1}`}
+                    onClick={() => setSelectedImage(image.filename)}
+                    style={{ cursor: "pointer" }}
+                   
+                  />
+                  
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>Aucune image disponible dans cette galerie.</p>
+          )}
+        </main>
+      ) : (
+        <p>Chargement de la galerie...</p>
+      )}
+  
       {selectedImage && (
         <div
           id="galleryContainer"
           className="visible"
-          onClick={closeSinglePict}
+          onClick={() => setSelectedImage(null)}
         >
           <img src={selectedImage} alt="Selected" />
         </div>
       )}
+  
+      {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
     </>
   );
 }

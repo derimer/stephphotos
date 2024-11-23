@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Steph from "./../assets/images/image-85.jpg";
-import Hamburger from "./../assets/images/hamburger.png";
+import Steph from "../assets/images/image-85.jpg";
+import Hamburger from "../assets/images/hamburger.png";
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,14 +30,24 @@ function NavBar() {
 
   return (
     <header id="mainHeader">
-      <h1>STEPHANOVALENTINOPHOTO</h1>
+       <h1>STEPHANOVALENTINOPHOTO</h1>
+     
+    
+      
 
       <nav id="mainNav" className={menuOpen ? "open" : ""}>
-        <img src={Steph} alt="photosteph" id="logoImg" />
+    
+      <img src={Steph} alt="photosteph" id="logoImg" />
+     
         <ul>
           <li>
             <Link to="/" onClick={toggleMenu}>
               Accueil
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" onClick={toggleMenu}>
+              À propos
             </Link>
           </li>
           <li>
@@ -50,11 +60,7 @@ function NavBar() {
               Contact
             </Link>
           </li>
-          <li>
-            <Link to="/about" onClick={toggleMenu}>
-              À propos
-            </Link>
-          </li>
+        
         </ul>
       </nav>
       <button id="menuToggle" className="hamburger" onClick={toggleMenu}>

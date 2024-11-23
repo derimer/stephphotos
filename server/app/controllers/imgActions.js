@@ -109,7 +109,9 @@ exports.addImage = async (req, res) => {
       message: "Erreur lors de l'ajout de l'image",
       error: error.message,
     });
+    
   }
+ 
 };
 exports.getAccueilImage = async (req, res) => {
   try {

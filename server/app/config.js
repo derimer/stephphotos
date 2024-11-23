@@ -6,7 +6,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-
+const path = require("path");
 
 
 
@@ -142,9 +142,9 @@ app.use(logErrors);
 // 1. Uncomment the lines related to serving static files and redirecting unhandled requests.
 // 2. Ensure that the `reactBuildPath` points to the correct directory where your client's build artifacts are located.
 
-/*
-const path = require("path");
 
+
+/*
 const reactBuildPath = path.join(__dirname, "/../../client/dist");
 const publicFolderPath = path.join(__dirname, "/../public");
 

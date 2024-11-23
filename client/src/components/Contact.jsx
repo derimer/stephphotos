@@ -1,6 +1,10 @@
-import  { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Contact() {
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -31,6 +35,10 @@ export default function Contact() {
         }
         setStatus("Message envoyé avec succès !");
         setFormData({ firstName: "", lastName: "", email: "", message: "" });
+        setTimeout(() => {
+          navigate("/Merci");
+        }, 1500); // Attendre 1.5 secondes avant la redirection
+      
       })
       .catch((error) => {
         console.error("Erreur:", error);
@@ -92,8 +100,9 @@ export default function Contact() {
               required
            />
           </div>
+         
         </div>
-        <button type="submit">Envoyer</button>
+        <button  className="envoyer"type="submit">Envoyer</button>
         {status && <p>{status}</p>}
       </form>
     </main>

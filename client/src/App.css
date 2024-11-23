@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Cantarell|Raleway&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Engagement&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Engagement&display=swap');
+
 :root {
   --black: #333;
   --blue: #7186ff;
@@ -27,10 +30,12 @@ body {
   min-height: 100%;
 }
 h1 {
+  font-family: wfont_d0599a_0ca1c94f35c547868d933030d180fede, wf_0ca1c94f35c547868d933030d, orig_vogue_regular;
   display: inline !important;
   font-size: 1.2em !important;
-  margin: 0 !important;
+ 
   font-weight: bold !important;
+  margin-left:20px;
 }
 
 img {
@@ -48,7 +53,24 @@ color:white;
   position: fixed;
   top: 0;
 }
-
+#fName{
+  background-color: #f26160;
+  border: 1px solid white;
+}
+#lName{
+  background-color: #f26160;
+  border: 1px solid white;
+  
+}
+#email{
+  background-color: #f26160;
+  border: 1px solid white;
+}
+#message{
+  background-color: #f26160;
+  border: 1px solid white;
+  width: 400px;
+}
 #logoImg {
   padding: 5px;
   position: relative;
@@ -82,6 +104,7 @@ color:white;
   font-size: 1.5em;
   display: block;
   margin: 10px;
+  padding-top: 10px;
 }
 #mainNav a:hover {
   color: var(--shaded-red);
@@ -107,13 +130,19 @@ color:white;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
+  border:1px solid white;
+  
+  ;
 }
 #pageContent.home {
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
-
+#galeries p{
+  font-size: 16px;
+  font-weight: lighter;
+}
 #pictInfo {
   background-color: rgba(155, 155, 155, 0.8);
   padding: 40px;
@@ -135,10 +164,8 @@ color:white;
   margin: 10px 0;
   font-size: 0.8em;
 }
-main {
-  background-color: rgba(155, 155, 155, 0.8);
-
-  color: var(--white);
+.uldajout li{
+  flex-direction: column;
 }
 main form {
   display: grid;
@@ -162,12 +189,10 @@ main form textarea {
   height: 150px;
   resize: none;
 }
-main form button {
-  padding: 10px;
-  background-color: var(--red);
-  color: var(--white);
-  border: none;
-  margin-top: 30px;
+.envoyer{
+  background-color:black;
+  color: #f26160;
+  border:1px solid white;
 }
 main form button:hover {
   background-color: var(--shaded-red);
@@ -197,14 +222,14 @@ main form textarea.invalid {
 main ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding:0;
   display: grid;
-  align-items: start;
+  align-items:start;
   grid-auto-flow: row;
   grid-gap: 20px;
 }
 main ul li {
-  background-color: var(--white);
+  background-color:black;
   padding: 20px;
   text-align: center;
 }
@@ -212,29 +237,121 @@ main ul li:hover {
   background-color: var(--shaded-red);
 }
 main ul li a {
-  color: var(--black);
+  color: white;
   font-weight: bold;
   text-decoration: none;
 }
 main ul li img {
   object-fit: initial;
+  border:1px solid white;
 }
 main#gallerie1 {
-  margin-top: 150px;
+  margin-top: 80px;
+}
+main#gallerie1 h1 {
+ color:black;
 }
 main#contact1 {
-  margin-top: 150px;
+  margin-top: 80px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+background-color:#f26160;
+color:white;
+height: 800px;
+gap:50px;
+text-align: center;
+  
+}
+.login{
+  
+  font-family: 'Arial', sans-serif;
+  background-color:#333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  
+  margin-top: 80px;
+  padding:50px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  text-align: center;
+}
+
+.login h2 {
+  margin-bottom: 20px;
   color: #333;
+}
+
+.login .error {
+  color: #d9534f;
+  margin-bottom: 15px;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.login input:focus {
+  outline: none;
+  border-color: #5cb85c;
+}
+
+.login button {
+  padding: 10px;
+  background-color:#f26160;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login button:hover {
+  background-color: #4cae4c;
 }
 #About {
   margin-top:80px;
   color:white;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  background-color:#333;
+  display: grid;
+  font-family: "Dancing Script", serif;
+  font-optical-sizing: auto;
+  
+  font-style: normal;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding:40px;
   text-align: center;
+  gap: 20px;
+  font-size: 25px;
+  .dancing-script-uniquifier {
+    font-family: "Dancing Script", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+   
+  }
+  
+  
+   
+  }
+  
+
+#About h1{
+ padding-top: 100px;
 }
 #About img {
   border-radius: 50%;
@@ -265,6 +382,7 @@ main#contact1 {
   transition:
     opacity 1s,
     visibility 1s;
+    
 }
 #galleryContainer img {
   border: solid 5px var(--white);
@@ -288,20 +406,142 @@ main#contact1 {
   align-items: center;
   justify-content: center;
 }
+#mainFooter a {
+  color: #fff;
+  text-decoration: none; /* Supprime le soulignement */
+  margin-left: 20px;
+ 
+}
+
 #mainNav.open {
   display: flex;
 }
+main form input, main form textarea {
+  padding: 5px;
+  border-radius: 5px;
+  color:white;
+ 
+}
+
 .gestion{
-  display:grid;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap:100px;
+ 
+  font-family: 'Arial', sans-serif;
+  
+  color: #333;
+  line-height: 1.6;
+  
+  margin: 20px auto;
+  padding: 20px;
+  background-color:#f26160;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  
+}
+.gestion h1{
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+.gestion h2{
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: #444;
+}
+.error {
+  color: #d9534f;
+  margin-bottom: 20px;
+}
+.ajoutImage, .exist {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color:#f26160;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  
+}
+.ajoutImage input[type="file"],
+.ajoutImage input[type="text"],
+.ajoutImage select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  background-color: #f26160;
+}
+.ajoutImage button,
+.exist button {
+  padding: 10px 20px;
+  background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+ajoutImage button:hover,
+.exist button:hover {
+  background-color: #4cae4c;
+}
+
+/* Image and message list styles */
+.uldajout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  
+}
+
+.uldajout li {
+  background-color:#333;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: calc(33.333% - 20px);
+  box-sizing: border-box;
+ 
+}
+.uldajout img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  .uldajout li {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 600px) {
+  .uldajout li {
+    width: 100%;
+  }
+  #mainFooter{
+    font-size: 10px;
+  }
+  #About{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:30px
+  }
 }
 @media(max-width:445px){
   #pictInfo{
     display: none;
   }
+  #message{
+    width: 200px;
+    gap:20px;
+  }
+  
 }
 @media screen and (min-width: 768px) {
   #mainNav {
@@ -345,17 +585,10 @@ main#contact1 {
     height: 280px;
   }
 }
-main#contact1{
-  margin-top: 80px;
-}
-.gestion {
-  padding-top :20px;
-  text-align: center;
-  margin-top: 80px;
-  background-color: rgb(58, 53, 53);
-  color: white;
-}
+
+
 .exist  li{
+ 
  list-style-type: none;
  gap:20px;
 }
@@ -368,13 +601,8 @@ main#contact1{
 .mess li{
   list-style-type: none;
 }
-.ajoutImage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
-}
+
+
 
 
 .ajoutImage input {
@@ -411,11 +639,21 @@ button ::placeholder {
 .galleriesExists li{
   flex-direction: column;
 }
+.merci{
+  display: flex;
+  justify-content: center;
+  margin-top:80px; 
+  align-items: center;
+  flex-direction: column;
+  background-color:#f26160 ;
+  color: black;
+  gap:40px;
+  padding: 50px;
+  text-align: center;
+
+}
 @media screen and (min-width: 1024px) {
-  main form {
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-  }
+ 
   main form button {
     padding: 10px;
     background-color: var(--red);
@@ -430,10 +668,5 @@ button ::placeholder {
 @media screen and (min-width: 1280px) {
   main ul {
     grid-template-columns: repeat(4, 1fr);
-  }
-}
-@media screen and (min-width: 1600px) {
-  main ul {
-    grid-template-columns: repeat(5, 1fr);
   }
 }

@@ -8,6 +8,7 @@ import Merci from "./components/Merci";
 import About from "./components/About";
 import App from "./App";
 import Admin from "./components/Admin";
+import Login from "./components/Login";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/merci", element: <Merci /> },
       { path: "/about", element: <About /> },
       { path: "admin", element: <Admin /> },
+      { path: "/login", element: <Login /> },
     ],
   },
 ]);

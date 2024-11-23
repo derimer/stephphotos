@@ -8,7 +8,9 @@ const router = express.Router();
 const imgActions = require("../../controllers/imgActions");
 const ContactRepository = require("../../../database/models/ContactRepository");
 const AdminRepository = require("../../../database/models/AdminRepository");
+const GalleryRepository = require("../../../database/models/GalleryRepository");
 
+const galleryRepository = new GalleryRepository(db);
 // Initialisation des repositories
 const contactRepository = new ContactRepository();
 const adminRepository = new AdminRepository(db);
@@ -191,6 +193,116 @@ router.delete("/accueil/:id", async (req, res) => {
   } catch (err) {
     console.error("Erreur de suppression de l'image:", err);
     res.status(500).json({ message: "Erreur de suppression de l'image" });
+  }
+});
+// Ajoutez ces imports si nécessaire
+
+
+// Routes pour les galeries
+
+// Obtenir toutes les galeries
+router.get("/api/galeries", async (req, res) => {
+  try {
+    const galeries = await galleryRepository.getAllGalleries();
+    res.json(galeries);
+  } catch (error) {
+    console.error("Erreur lors de la récupération des galeries:", error);
+    res.status(500).json({ message: "Erreur lors de la récupération des galeries" });
+  }
+});
+
+// Obtenir une galerie spécifique avec ses images
+router.get("/api/galeries/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const galery = await galleryRepository.getGalleryWithImages(id);
+    if (!galery) {
+      return res.status(404).json({ message: "Galerie non trouvée" });
+    }
+    res.json(galery);
+  } catch (error) {
+    console.error("Erreur lors de la récupération de la galerie:", error);
+    res.status(500).json({ message: "Erreur lors de la récupération de la galerie" });
+  }
+});
+
+// Créer une nouvelle galerie
+router.post("/api/galeries", async (req, res) => {
+  const { title } = req.body;
+  if( !title) {
+    return res.status(400).json({ message: "Le titre est requis" });
+  }
+  try {
+    const newGallery = await galleryRepository.createGallery(title);
+    res.status(201).json(newGallery);
+  } catch (error) {
+    console.error("Erreur lors de la création de la galerie:", error);
+    res.status(500).json({ message: "Erreur lors de la création de la galerie" });
+  }
+});
+
+// Ajouter une image à une galerie
+router.post("/galeries/:id/images", upload.single("file"), async (req, res) => {
+
+  const { name, galerieId  } = req.body;
+  const filename = req.file ? req.file.filename : null;
+
+  if (!filename || !galerieId ) {
+    return res.status(400).json({ message: "L'image et l'identifiant de la galerie sont requis" });
+  }
+
+  try {
+    const newImage = await galleryRepository.addImageToGalery(galerieId, filename, name);
+    
+    res.status(201).json({
+      message: "Image ajoutée à la galerie avec succès",
+      image: { 
+        id: newImage.id, 
+        filename: getImageUrl(filename), 
+        title: ''
+      },
+    });
+  } catch (error) {
+    console.error("Erreur lors de l'ajout de l'image à la galerie:", error);
+    res.status(500).json({ message: "Erreur lors de l'ajout de l'image à la galerie" });
+  }
+});
+router.get("/api/galeries/:id/images", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const images = await galleryRepository.getImagesFromGallery(id);
+    if (!images || images.length === 0) {
+      return res.status(404).json({ message: "Aucune image trouvée pour cette galerie" });
+    }
+    res.json(images);
+  } catch (error) {
+    console.error("Erreur lors de la récupération des images de la galerie:", error);
+    res.status(500).json({ message: "Erreur lors de la récupération des images de la galerie" });
+  }
+});
+// Supprimer une image d'une galerie
+router.delete("/api/galeries/:galleryId/images/:imageId", async (req, res) => {
+  const { galleryId, imageId } = req.params;
+
+  try {
+    await galleryRepository.removeImageFromGallery(galleryId, imageId);
+    res.status(200).json({ message: "Image supprimée de la galerie avec succès" });
+  } catch (error) {
+    console.error("Erreur lors de la suppression de l'image de la galerie:", error);
+    res.status(500).json({ message: "Erreur lors de la suppression de l'image de la galerie" });
+  }
+});
+
+// Supprimer une galerie
+router.delete("/api/galeries/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await galleryRepository.deleteGallery(id);
+    res.status(200).json({ message: "Galerie supprimée avec succès" });
+  } catch (error) {
+    console.error("Erreur lors de la suppression de la galerie:", error);
+    res.status(500).json({ message: "Erreur lors de la suppression de la galerie" });
   }
 });
 module.exports=router
