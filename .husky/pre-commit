@@ -1,5 +1,6 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+npm run lint
+
 
 fileList=$(git diff --staged --name-only :^package-lock.json :^README.md :^client :^server)
 

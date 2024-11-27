@@ -270,14 +270,11 @@ text-align: center;
   background-color:#333;
   display: flex;
   justify-content: center;
-  align-items: center;
- 
-  
-  margin-top: 80px;
-  padding:50px;
+  align-items: center; 
+  margin-top: 50px;
+  height: 300px;  
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
   text-align: center;
 }
 
@@ -350,10 +347,9 @@ text-align: center;
   }
   
 
-#About h1{
- padding-top: 100px;
-}
+
 #About img {
+  margin-left:70px;
   border-radius: 50%;
   width: 250px;
   height: 250px;
@@ -363,7 +359,7 @@ text-align: center;
   font-weight: bold;
 }
 #singleGallery ul {
-  margin-top: 50px;
+  margin-top: 80px;
 }
 #galleryContainer {
   position: fixed;
@@ -516,6 +512,12 @@ ajoutImage button:hover,
   .uldajout li {
     width: calc(50% - 20px);
   }
+  main #About{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 600px) {
@@ -532,6 +534,9 @@ ajoutImage button:hover,
     flex-direction: column;
     gap:30px
   }
+  #About img {
+    margin-left:0;
+}
 }
 @media(max-width:445px){
   #pictInfo{
@@ -550,6 +555,10 @@ ajoutImage button:hover,
   #menuToggle {
     display: none;
   }
+  #singleGallery ul{
+    margin-top:80px;
+  }
+ 
   #mainNav {
     position: static;
     background: transparent;
@@ -661,6 +670,12 @@ button ::placeholder {
     border: none;
     grid-column: 1 / -1;
   }
+  #About h1{
+    padding-top: 100px;
+   }
+  #singleGallery ul{
+    margin-top: 80px;
+  }
   main ul {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -668,5 +683,13 @@ button ::placeholder {
 @media screen and (min-width: 1280px) {
   main ul {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media(max-width:1500px){
+  #About{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }

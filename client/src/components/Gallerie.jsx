@@ -30,14 +30,14 @@ export default function Gallerie() {
             <Link to="/gallerie/singleGallery?id=3">
               
               <img src={Bouteilles} alt="bouteilles" />
-              <h2>Couleurs</h2>
+              <h2>COULEURS</h2>
             </Link>
           </li>
           <li>
             <Link to="/gallerie/singleGallery?id=4">
               
               <img src={Acteur} alt="Acteur" />
-              <h2>Portrait&charme</h2>
+              <h2>PORTRAIT&CHARME</h2>
             </Link>
           </li>
         </ul>
