@@ -1,8 +1,4 @@
-#!/bin/sh
-npm run lint
 
-
-fileList=$(git diff --staged --name-only :^package-lock.json :^README.md :^client :^server)
 
 echo '----- Checking Root...'
 
