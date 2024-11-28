@@ -1,7 +1,11 @@
 services:
   - type: web
     name: stephphotos-server
+     runtime: docker
+
     env: node
+     repo: https://github.com/derimer/stephphotos
+  plan: free
     plan: free
     branch: master
     buildCommand: npm install && npm run build
@@ -27,7 +31,7 @@ services:
         value: https://stephphotos-client.onrender.com
       - key: PROJECT_NAME_SPECIFIC_NAME
         value: my_specific_value
-
+ 
   - type: web
     name: stephphotos-client
     env: static
@@ -38,3 +42,7 @@ services:
     envVars:
       - key: VITE_API_URL
         value: https://stephphotos-server.onrender.com
+        region: frankfurt
+  dockerContext: .
+  dockerfilePath: ./Dockerfile
+version: "1"
