@@ -12,9 +12,9 @@ services:
       - key: APP_PORT
         value: 3310
       - key: APP_SECRET
-        value: YOUR_APP_SECRET_KEY
+        value: my_secret_key
       - key: DB_HOST
-        value: localhost
+        value: my-database.onrender.com
       - key: DB_PORT
         value: 3306
       - key: DB_USER
@@ -22,11 +22,11 @@ services:
       - key: DB_PASSWORD
         value: camille
       - key: DB_NAME
-        value: photostpeh
+        value: photosteph
       - key: CLIENT_URL
-        value: http://localhost:3000
+        value: https://stephphotos-client.onrender.com
       - key: PROJECT_NAME_SPECIFIC_NAME
-        value: YOUR_SPECIFIC_VALUE
+        value: my_specific_value
 
   - type: web
     name: stephphotos-client

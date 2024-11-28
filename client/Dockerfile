@@ -1,16 +1,19 @@
-# Utilisation d'une image de base (par exemple Node.js pour une application Node)
+# Utiliser une image de base Node.js
 FROM node:14
 
-# Définition du répertoire de travail
+# Définir le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Copie des fichiers de l'application dans le conteneur
-COPY . .
+# Copier les fichiers package.json et package-lock.json
+COPY client/package*.json ./
 
-# Installation des dépendances
+# Installer les dépendances
 RUN npm install
 
-# Exposition du port
+# Copier le reste des fichiers de l'application
+COPY client/ .
+
+# Exposer le port sur lequel l'application écoute
 EXPOSE 3000
 
 # Commande pour démarrer l'application
