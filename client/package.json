@@ -27,7 +27,7 @@
     "vite": "^5.2.11"
   },
  "lint-staged": {
-    "*.{html,scss,css}": "prettier --check",
-    "*.{jsx,js}": "eslint --report-unused-disable-directives"
+  "*.js": "eslint --fix",
+  "*.css": "stylelint --fix"
   }
 }
