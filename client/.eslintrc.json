@@ -5,6 +5,7 @@
   },
   "extends": [
     "airbnb",
+    "airbnb/hooks",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
@@ -25,6 +26,8 @@
       {
         "assert": "either"
       }
-    ]
+    ],
+    // Ajout de la règle pour les dépendances extraneous
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   }
 }

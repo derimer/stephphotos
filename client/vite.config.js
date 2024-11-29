@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from 'path';
@@ -11,7 +11,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html')
+        main: resolve(__dirname, 'other-page/index.html')
       }
     }
   }
