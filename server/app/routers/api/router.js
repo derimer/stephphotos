@@ -1,10 +1,11 @@
 const express = require("express");
+
+const apiRouter = express.Router();
 const multer = require("multer");
 const path = require("path");
 const pool = require("../../../index");
 
 const db = pool;
-const router = express.Router();
 const imgActions = require("../../controllers/imgActions");
 const ContactRepository = require("../../../database/models/ContactRepository");
 const AdminRepository = require("../../../database/models/AdminRepository");
@@ -33,7 +34,7 @@ const getImageUrl = (filename) => `/uploads/${filename}`;
 
 
 // Routes pour ajouter une image dans la galerie
-router.post("/api/add-image", upload.single("file"), async (req, res) => {
+apiRouter.post("/api/add-image", upload.single("file"), async (req, res) => {
   const { name, author, exposure } = req.body;
   
   const filename = req.file ? req.file.filename : null;
@@ -65,10 +66,10 @@ router.post("/api/add-image", upload.single("file"), async (req, res) => {
 });
 // Routes pour les images
 // router.get("/images", imgActions.getAllImages);
-router.delete("/images/:id", imgActions.deleteImage);
+apiRouter.delete("/images/:id", imgActions.deleteImage);
 
 // Routes pour gérer les messages de contact
-router.post("/api/Contact", async (req, res) => {
+apiRouter.post("/Contact", async (req, res) => {
   const { firstName, lastName, email, message } = req.body;
 
   // Validation des champs requis
@@ -92,7 +93,7 @@ router.post("/api/Contact", async (req, res) => {
 });
 
 // Récupérer tous les messages
-router.get("/admin/messages", async (req, res) => {
+apiRouter.get("/admin/messages", async (req, res) => {
   try {
     const messages = await contactRepository.readAll();
     res.json(messages);
@@ -103,7 +104,7 @@ router.get("/admin/messages", async (req, res) => {
 });
 
 // Supprimer un message par ID
-router.delete("/admin/messages/:id", async (req, res) => {
+apiRouter.delete("/admin/messages/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -122,7 +123,7 @@ router.delete("/admin/messages/:id", async (req, res) => {
 });
 
 // Routes pour la galerie d'images
-router.get("/accueil", async (req, res) => {
+apiRouter.get("/accueil", async (req, res) => {
   try {
     const [rows] = await adminRepository.getAllImages();
     const imagesWithUrls = rows.map(image => ({
@@ -139,7 +140,7 @@ router.get("/accueil", async (req, res) => {
 // Ajouter une image à la galerie
 
 // Route pour ajouter une image à la galerie
-router.post("/accueil", upload.single("file"), async (req, res) => {
+apiRouter.post("/accueil", upload.single("file"), async (req, res) => {
   const { name, author, exposure } = req.body;
   const filename = req.file ? req.file.filename : null;
 
@@ -166,7 +167,7 @@ router.post("/accueil", upload.single("file"), async (req, res) => {
 });
 
 // Modifier une image dans la galerie
-router.put("/accueil/:id", async (req, res) => {
+apiRouter.put("/accueil/:id", async (req, res) => {
   const { filename, name, author, exposure } = req.body;
   const { id } = req.params;
 
@@ -184,7 +185,7 @@ router.put("/accueil/:id", async (req, res) => {
 });
 
 // Supprimer une image de la galerie
-router.delete("/accueil/:id", async (req, res) => {
+apiRouter.delete("/accueil/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -201,7 +202,7 @@ router.delete("/accueil/:id", async (req, res) => {
 // Routes pour les galeries
 
 // Obtenir toutes les galeries
-router.get("/api/galeries", async (req, res) => {
+apiRouter.get("/api/galeries", async (req, res) => {
   try {
     const galeries = await galleryRepository.getAllGalleries();
     res.json(galeries);
@@ -212,7 +213,7 @@ router.get("/api/galeries", async (req, res) => {
 });
 
 // Obtenir une galerie spécifique avec ses images
-router.get("/api/galeries/:id", async (req, res) => {
+apiRouter.get("/api/galeries/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const galery = await galleryRepository.getGalleryWithImages(id);
@@ -227,7 +228,7 @@ router.get("/api/galeries/:id", async (req, res) => {
 });
 
 // Créer une nouvelle galerie
-router.post("/api/galeries", async (req, res) => {
+apiRouter.post("/api/galeries", async (req, res) => {
   const { title } = req.body;
   if( !title) {
     return res.status(400).json({ message: "Le titre est requis" });
@@ -242,7 +243,7 @@ router.post("/api/galeries", async (req, res) => {
 });
 
 // Ajouter une image à une galerie
-router.post("/galeries/:id/images", upload.single("file"), async (req, res) => {
+apiRouter.post("/galeries/:id/images", upload.single("file"), async (req, res) => {
 
   const { name, galerieId  } = req.body;
   const filename = req.file ? req.file.filename : null;
@@ -267,7 +268,7 @@ router.post("/galeries/:id/images", upload.single("file"), async (req, res) => {
     res.status(500).json({ message: "Erreur lors de l'ajout de l'image à la galerie" });
   }
 });
-router.get("/api/galeries/:id/images", async (req, res) => {
+apiRouter.get("/api/galeries/:id/images", async (req, res) => {
   const { id } = req.params;
   try {
     const images = await galleryRepository.getImagesFromGallery(id);
@@ -281,7 +282,7 @@ router.get("/api/galeries/:id/images", async (req, res) => {
   }
 });
 // Supprimer une image d'une galerie
-router.delete("/api/galeries/:galleryId/images/:imageId", async (req, res) => {
+apiRouter.delete("/api/galeries/:galleryId/images/:imageId", async (req, res) => {
   const { galleryId, imageId } = req.params;
 
   try {
@@ -294,7 +295,7 @@ router.delete("/api/galeries/:galleryId/images/:imageId", async (req, res) => {
 });
 
 // Supprimer une galerie
-router.delete("/api/galeries/:id", async (req, res) => {
+apiRouter.delete("/api/galeries/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -305,4 +306,4 @@ router.delete("/api/galeries/:id", async (req, res) => {
     res.status(500).json({ message: "Erreur lors de la suppression de la galerie" });
   }
 });
-module.exports=router
+module.exports=apiRouter

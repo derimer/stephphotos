@@ -3,8 +3,8 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
-
 const apiRouter = require("./app/routers/api/router");
+
 const tables = require("./database/tables");
 
 const db = require("./database/client");
@@ -19,10 +19,12 @@ const port = process.env.APP_PORT || 3310;
 const publicPath = path.join(__dirname, 'public');
 const uploadsPath = path.join(publicPath, 'uploads');
 
+
+
 // Middleware
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
-
+app.use("/api", apiRouter);
 // Servir les fichiers statiques
 app.use(express.static(publicPath));
 app.use('/uploads', express.static(uploadsPath));
@@ -142,8 +144,8 @@ app.get("/api/random-image", async (req, res) => {
 });
 
 
-// Utiliser le router API
-app.use("/api", apiRouter);
+
+
 
 // Démarrage du serveur
 app.listen(port, () => {

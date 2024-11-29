@@ -1,0 +1,9 @@
+{
+    "regions": ["cdg1"],
+        "functions": {
+      "api/**/*.js": {
+        "runtime": "nodejs14.x",
+        "regions": ["cdg1"]  
+        }
+    }
+  }
