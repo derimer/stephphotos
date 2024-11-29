@@ -1,8 +1,9 @@
 // Load environment variables from .env file
 require("dotenv").config();
-const path = require("path");
+
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const apiRouter = require("./app/routers/api/router");
 
 const tables = require("./database/tables");
