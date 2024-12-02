@@ -72,89 +72,7 @@ export default function SingleGallery() {
     const [images, setImages] = useState([]);
     const [error, setError] = useState(null);
   // Utilisation de useSearchParams
-  const galeries = {
-    gal1: {
-      title: "Paysages",
-      images: [
-        Pecheur,
-        Gerbier,
-        Festival,
-        Paris,
-        Concert,
-        Horizon,
-        Plateau,
-        Ombre,
-        Billard,
-        Mer,
-        Chemin,
-        Foret,
-        Centrale,
-      ],
-    },
-    gal2: {
-      title: "N&B",
-      images: [
-        Portugal,     
-        Piscine,
-        Verres,
-        Perspective,
-        Salon,
-        Bouteilles,
-        News,
-        Gallerienb,
-        Miroire,
-        Sevillane,
-        Pallier,
-        Fleurs,
-        Auto,
-        Bar,
-        Christal,
-        Vintage,
-        Gare,
-      ],
-    },
-    gal3: {
-      title: "Couleurs",
-      images: [
-        Bouteilles,
-        Mariage,
-        Urban,
-        Cloche,
-        Printemps,
-        Fontaine,
-        Couloir,
-        Spectacle,
-        Lyon,
-        Rue,
-        Ruines,
-        Coiffeurs,
-        Sortie,
-        Miss,
-        Tasses,
-        Violons,
-      ],
-    },
-    gal4: {
-      title: "Portrait&charme",
-      images: [
-        Audray,
-        Pilote,
-        Lily,
-        Masque,
-        Regards,
-        Fanny,
-        Audray2,
-        Julie,
-        Aude,
-        Lingerie1,
-        Lingerie2,
-        Cannes,
-        Aurore,
-        Audray3,
-        Lily3,
-      ],
-    },
-  };
+  
   const normalizeImageUrl = (filename) => {
     if (!filename) return '';
     return `http://localhost:3310/uploads/${filename}`; // Vérifiez que cette URL correspond bien à votre configuration
@@ -169,7 +87,7 @@ export default function SingleGallery() {
         if (!galleryResponse.ok) throw new Error(`Erreur HTTP : ${galleryResponse.status}`);
         const galleryData = await galleryResponse.json();
         setGalery(galleryData);
-
+        
         const imagesResponse = await fetch(`http://localhost:3310/api/galeries/${id}/images`);
         if (!imagesResponse.ok) throw new Error(`Erreur HTTP : ${imagesResponse.status}`);
         const imagesData = await imagesResponse.json();
@@ -178,8 +96,8 @@ export default function SingleGallery() {
           filename: normalizeImageUrl(image.filename),
         }));
         setImages(normalizedImages);
-      } catch (error) {
-        console.error("Erreur:", error);
+      } catch (erreur) {
+        console.error("Erreur:", erreur);
         setError(error.message);
       }
     };

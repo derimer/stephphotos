@@ -29,7 +29,7 @@ app.use("/api", apiRouter);
 // Servir les fichiers statiques
 app.use(express.static(publicPath));
 app.use('/uploads', express.static(uploadsPath));
-console.log("Chemin des uploads :", uploadsPath);
+
 
 // Routes pour les galeries
 app.get("/api/galeries", async (req, res) => {
@@ -48,7 +48,7 @@ app.get("/api/galeries/:id", async (req, res) => {
     if (!galery||galery.length===0) {
       return res.status(404).json({ error: "Galerie non trouvée" });
     }
-    res.json(galery);
+   return res.json(galery);
   } catch (error) {
     console.error("Erreur lors de la récupération de la galerie:", error);
     return res.status(500).json({ error: "Erreur lors de la récupération de la galerie" });
@@ -61,10 +61,10 @@ app.get("/api/galeries/:id/images", async (req, res) => {
     if (!images || images.length === 0) {
       return res.status(404).json({ error: "Aucune image trouvée pour cette galerie" });
     }
-    res.json(images);
+   return res.json(images);
   } catch (error) {
     console.error("Erreur lors de la récupération des images de la galerie:", error);
-    res.status(500).json({ error: "Erreur lors de la récupération des images de la galerie" });
+   return res.status(500).json({ error: "Erreur lors de la récupération des images de la galerie" });
   }
 });
 app.post("/api/galeries", async (req, res) => {

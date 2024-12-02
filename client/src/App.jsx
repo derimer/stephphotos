@@ -13,7 +13,7 @@ function App() {
       <Outlet />
       <Accueil />
       <Footer />
-    
+     
     </>
   );
 }

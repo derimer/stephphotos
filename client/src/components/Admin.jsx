@@ -1,6 +1,6 @@
 // Admin.jsx
 import  { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 export default function Admin() {
  
@@ -17,21 +17,16 @@ export default function Admin() {
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
+  
 
   // Fonction pour normaliser l'URL des images
   const normalizeImageUrl = (filename) => {
     if (!filename) return '';
     if (filename.startsWith('http')) return filename;
-    const cleanFilename = filename.replace(/^\/uploads\//, '');
-    return `http://localhost:3310/uploads/${cleanFilename}`;
+    const newFilename = filename.replace(/^\/uploads\//, '');
+    return `http://localhost:3310/uploads/${newFilename}`;
   };
-  useEffect(() => {
-    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
-    if (!isAuthenticated) {
-      navigate("/login");
-    }
-  }, [navigate]);
+ 
 
   // Fetch Messages
   const fetchMessages = async () => {
@@ -40,8 +35,8 @@ export default function Admin() {
       if (!response.ok) throw new Error("Erreur lors de la récupération des messages");
       const data = await response.json();
       setMessages(data);
-    } catch (error) {
-      console.error("Erreur:", error);
+    } catch (erreur) {
+      console.error("Erreur:", erreur);
       setError("Impossible de charger les messages");
     }
   };
@@ -57,8 +52,8 @@ export default function Admin() {
         ...image,
         filename: normalizeImageUrl(image.filename)
       })));
-    } catch (error) {
-      console.error("Erreur:", error);
+    } catch (erreur) {
+      console.error("Erreur:", erreur);
       setError("Impossible de charger les images");
     }
   };
@@ -70,8 +65,8 @@ export default function Admin() {
       if (!response.ok) throw new Error("Erreur lors de la récupération des galeries");
       const data = await response.json();
       setGalleries(data);
-    } catch (error) {
-      console.error("Erreur:", error);
+    } catch (erreur) {
+      console.error("Erreur:", erreur);
       setError("Impossible de charger les galeries");
     }
   };
@@ -86,8 +81,8 @@ export default function Admin() {
         ...image,
         filename: normalizeImageUrl(image.filename)
       }));
-    } catch (error) {
-      console.error("Erreur:", error);
+    } catch (erreur) {
+      console.error("Erreur:", erreur);
       setError("Impossible de charger les images de la galerie");
       return [];
     }
@@ -139,8 +134,8 @@ export default function Admin() {
       setNewImage({ name: "", author: "", exposure: "" });
       setFile(null);
       setPreview("");
-    } catch (error) {
-      console.error("Erreur lors de l'ajout de l'image:", error);
+    } catch (erreur) {
+      console.error("Erreur lors de l'ajout de l'image:", erreur);
       setError("Erreur lors de l'ajout de l'image");
     }
   };
@@ -184,8 +179,8 @@ export default function Admin() {
       setFile(null);
       setPreview("");
       setSelectedGallery("");
-    } catch (error) {
-      console.error("Erreur lors de l'ajout de l'image:", error);
+    } catch (erreur) {
+      console.error("Erreur lors de l'ajout de l'image:", erreur);
       setError("Erreur lors de l'ajout de l'image");
     }
   };
@@ -204,8 +199,8 @@ export default function Admin() {
         }
         return gallery;
       }));
-    } catch (error) {
-      console.error("Erreur:", error);
+    } catch (erreur) {
+      console.error("Erreur:", erreur);
       setError("Erreur lors de la suppression de l'image");
     }
   };
@@ -216,8 +211,8 @@ export default function Admin() {
       const response = await fetch(`http://localhost:3310/api/admin/messages/${id}`, { method: "DELETE" });
       if (!response.ok) throw new Error("Erreur lors de la suppression du message");
       setMessages(messages.filter((message) => message.id !== id));
-    } catch (error) {
-      console.error("Erreur:", error);
+    } catch (erreur) {
+      console.error("Erreur:", errr);
       setError("Erreur lors de la suppression du message");
     }
   };
@@ -234,7 +229,7 @@ export default function Admin() {
   useEffect(() => {
     const fetchImagesForGalleries = async () => {
       const updatedGalleries = await Promise.all(galleries.map(async (gallery) => {
-        const images = await fetchGalleryImages(gallery.id);
+         await fetchGalleryImages(gallery.id);
         return {
           ...gallery,
           images
@@ -246,7 +241,7 @@ export default function Admin() {
     if (galleries.length > 0) {
       fetchImagesForGalleries();
     }
-  }, [galleries]);
+  }, [fetchGalleryImages]);
 
  
   return (
