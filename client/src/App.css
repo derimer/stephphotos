@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Cantarell|Raleway&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Engagement&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Engagement&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Engagement&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Engagement&display=swap");
 
 :root {
   --black: #333;
@@ -30,12 +30,13 @@ body {
   min-height: 100%;
 }
 h1 {
-  font-family: wfont_d0599a_0ca1c94f35c547868d933030d180fede, wf_0ca1c94f35c547868d933030d, orig_vogue_regular;
+  font-family: wfont_d0599a_0ca1c94f35c547868d933030d180fede,
+    wf_0ca1c94f35c547868d933030d, orig_vogue_regular;
   display: inline !important;
   font-size: 1.2em !important;
- 
+
   font-weight: bold !important;
-  margin-left:20px;
+  margin-left: 20px;
 }
 
 img {
@@ -45,28 +46,27 @@ img {
 #mainHeader {
   display: grid;
   grid-template-columns: 80px 1fr;
-color:white;
+  color: white;
   align-items: center;
-  background-color:black;
+  background-color: black;
   height: 80px;
   width: 100%;
   position: fixed;
   top: 0;
 }
-#fName{
+#fName {
   background-color: #f26160;
   border: 1px solid white;
 }
-#lName{
-  background-color: #f26160;
-  border: 1px solid white;
-  
-}
-#email{
+#lName {
   background-color: #f26160;
   border: 1px solid white;
 }
-#message{
+#email {
+  background-color: #f26160;
+  border: 1px solid white;
+}
+#message {
   background-color: #f26160;
   border: 1px solid white;
   width: 400px;
@@ -83,7 +83,7 @@ color:white;
 }
 #mainNav {
   position: absolute;
-  background-color:black;
+  background-color: black;
   width: 100%;
   top: 40px;
   padding-bottom: 10px;
@@ -130,16 +130,14 @@ color:white;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  border:1px solid white;
-  
-  ;
+  border: 1px solid white;
 }
 #pageContent.home {
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
-#galeries p{
+#galeries p {
   font-size: 16px;
   font-weight: lighter;
 }
@@ -164,7 +162,7 @@ color:white;
   margin: 10px 0;
   font-size: 0.8em;
 }
-.uldajout li{
+.uldajout li {
   flex-direction: column;
 }
 main form {
@@ -189,10 +187,10 @@ main form textarea {
   height: 150px;
   resize: none;
 }
-.envoyer{
-  background-color:black;
+.envoyer {
+  background-color: black;
   color: #f26160;
-  border:1px solid white;
+  border: 1px solid white;
 }
 main form button:hover {
   background-color: var(--shaded-red);
@@ -222,14 +220,14 @@ main form textarea.invalid {
 main ul {
   list-style-type: none;
   margin: 0;
-  padding:0;
+  padding: 0;
   display: grid;
-  align-items:start;
+  align-items: start;
   grid-auto-flow: row;
   grid-gap: 20px;
 }
 main ul li {
-  background-color:black;
+  background-color: black;
   padding: 20px;
   text-align: center;
 }
@@ -243,41 +241,38 @@ main ul li a {
 }
 main ul li img {
   object-fit: initial;
-  border:1px solid white;
+  border: 1px solid white;
 }
 main#gallerie1 {
   margin-top: 80px;
 }
 main#gallerie1 h1 {
- color:black;
+  color: black;
 }
 main#contact1 {
   margin-top: 80px;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-background-color:#f26160;
-color:white;
-height: 800px;
-gap:50px;
-text-align: center;
-  
-}
-.login{
-  
-  font-family: 'Arial', sans-serif;
-  background-color:#333;
   display: flex;
   justify-content: center;
   align-items: center;
- 
-  
+  flex-direction: column;
+  background-color: #f26160;
+  color: white;
+  height: 800px;
+  gap: 50px;
+  text-align: center;
+}
+.login {
+  font-family: "Arial", sans-serif;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   margin-top: 80px;
-  padding:50px;
+  padding: 50px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
+
   text-align: center;
 }
 
@@ -311,7 +306,7 @@ text-align: center;
 
 .login button {
   padding: 10px;
-  background-color:#f26160;
+  background-color: #f26160;
   border: none;
   border-radius: 4px;
   color: #fff;
@@ -324,16 +319,16 @@ text-align: center;
   background-color: #4cae4c;
 }
 #About {
-  margin-top:80px;
-  color:white;
-  background-color:#333;
+  margin-top: 80px;
+  color: white;
+  background-color: #333;
   display: grid;
   font-family: "Dancing Script", serif;
   font-optical-sizing: auto;
-  
+
   font-style: normal;
   grid-template-columns: 1fr 1fr 1fr;
-  padding:40px;
+  padding: 40px;
   text-align: center;
   gap: 20px;
   font-size: 25px;
@@ -342,16 +337,11 @@ text-align: center;
     font-optical-sizing: auto;
     font-weight: weight;
     font-style: normal;
-   
   }
-  
-  
-   
-  }
-  
+}
 
-#About h1{
- padding-top: 100px;
+#About h1 {
+  padding-top: 100px;
 }
 #About img {
   border-radius: 50%;
@@ -382,7 +372,6 @@ text-align: center;
   transition:
     opacity 1s,
     visibility 1s;
-    
 }
 #galleryContainer img {
   border: solid 5px var(--white);
@@ -395,7 +384,7 @@ text-align: center;
 }
 
 #mainFooter {
-  background-color:black;
+  background-color: black;
   height: 40px;
   width: 100%;
   position: fixed;
@@ -410,40 +399,37 @@ text-align: center;
   color: #fff;
   text-decoration: none; /* Supprime le soulignement */
   margin-left: 20px;
- 
 }
 
 #mainNav.open {
   display: flex;
 }
-main form input, main form textarea {
+main form input,
+main form textarea {
   padding: 5px;
   border-radius: 5px;
-  color:white;
- 
+  color: white;
 }
 
-.gestion{
- 
-  font-family: 'Arial', sans-serif;
-  
+.gestion {
+  font-family: "Arial", sans-serif;
+
   color: #333;
   line-height: 1.6;
-  
+
   margin: 20px auto;
   padding: 20px;
-  background-color:#f26160;
+  background-color: #f26160;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  
 }
-.gestion h1{
+.gestion h1 {
   font-size: 2.5em;
   margin-bottom: 20px;
   color: #333;
   text-align: center;
 }
-.gestion h2{
+.gestion h2 {
   font-size: 1.8em;
   margin-bottom: 15px;
   color: #444;
@@ -452,13 +438,13 @@ main form input, main form textarea {
   color: #d9534f;
   margin-bottom: 20px;
 }
-.ajoutImage, .exist {
+.ajoutImage,
+.exist {
   margin-bottom: 30px;
   padding: 20px;
-  background-color:#f26160;
+  background-color: #f26160;
   border: 1px solid #ddd;
   border-radius: 8px;
-  
 }
 .ajoutImage input[type="file"],
 .ajoutImage input[type="text"],
@@ -492,18 +478,16 @@ ajoutImage button:hover,
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  
 }
 
 .uldajout li {
-  background-color:#333;
+  background-color: #333;
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   width: calc(33.333% - 20px);
   box-sizing: border-box;
- 
 }
 .uldajout img {
   max-width: 100%;
@@ -516,32 +500,37 @@ ajoutImage button:hover,
   .uldajout li {
     width: calc(50% - 20px);
   }
+  #About {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 600px) {
   .uldajout li {
     width: 100%;
   }
-  #mainFooter{
+  #mainFooter {
     font-size: 10px;
   }
-  #About{
-    display:flex;
+  #About {
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap:30px
+    gap: 30px;
   }
 }
-@media(max-width:445px){
-  #pictInfo{
+@media (max-width: 445px) {
+  #pictInfo {
     display: none;
   }
-  #message{
+  #message {
     width: 200px;
-    gap:20px;
+    gap: 20px;
   }
-  
 }
 @media screen and (min-width: 768px) {
   #mainNav {
@@ -586,30 +575,25 @@ ajoutImage button:hover,
   }
 }
 
-
-.exist  li{
- 
- list-style-type: none;
- gap:20px;
+.exist li {
+  list-style-type: none;
+  gap: 20px;
 }
-.exist button{
-  padding:5px;
-  border-radius:10px;
+.exist button {
+  padding: 5px;
+  border-radius: 10px;
   background-color: orange;
-  color:white;
+  color: white;
 }
-.mess li{
+.mess li {
   list-style-type: none;
 }
-
-
-
 
 .ajoutImage input {
   padding: 5px;
   border-radius: 10px;
   background-color: orange;
-  color:white;
+  color: white;
 }
 .ajoutImage button {
   padding: 5px;
@@ -619,41 +603,37 @@ ajoutImage button:hover,
 button ::placeholder {
   color: white;
 }
-#ajouterImg{
+#ajouterImg {
   padding: 20px;
   background-color: orange;
   font-weight: bold;
-  color:white;
+  color: white;
 }
-.galleriesExists{
+.galleriesExists {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 .mapGalleries {
- 
   list-style-type: none;
- 
 }
-.galleriesExists li{
+.galleriesExists li {
   flex-direction: column;
 }
-.merci{
+.merci {
   display: flex;
   justify-content: center;
-  margin-top:80px; 
+  margin-top: 80px;
   align-items: center;
   flex-direction: column;
-  background-color:#f26160 ;
+  background-color: #f26160;
   color: black;
-  gap:40px;
+  gap: 40px;
   padding: 50px;
   text-align: center;
-
 }
 @media screen and (min-width: 1024px) {
- 
   main form button {
     padding: 10px;
     background-color: var(--red);

@@ -2,13 +2,10 @@
 
 const express = require("express");
 
-
 const app = express();
 const cors = require("cors");
 
 const path = require("path");
-
-
 
 app.use(express.json());
 app.use(
@@ -31,21 +28,14 @@ app.use(
   express.static(path.join(publicFolderPath, "assets"), { maxAge: "1y" })
 );
 // Configure it
-app.post("/send-email", (req, res) => {
-  const { firstName, lastName, email, message } = req.body;
 
+  
+ 
   // Logique pour gérer l'envoi d'email, par exemple avec Nodemailer
   // ou une autre méthode de traitement des données du formulaire
 
-  app.get('/api/accueil', (req, res) => {
-    const images = [/* tableau d'images */];
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(images);
-  });
+  
 
-  // Pour l'instant, nous renvoyons une réponse de succès
-  res.status(200).send("OK");
-});
 app.get("*", (_, res) => {
   res.sendFile(path.join(reactBuildPath, "index.html"));
 });
@@ -91,7 +81,7 @@ app.use(logErrors);
 
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
- // app.use(express.json());
+// app.use(express.json());
 // app.use(express.urlencoded());
 // app.use(express.text());
 // app.use(express.raw());
@@ -141,8 +131,6 @@ app.use(logErrors);
 // To enable production configuration:
 // 1. Uncomment the lines related to serving static files and redirecting unhandled requests.
 // 2. Ensure that the `reactBuildPath` points to the correct directory where your client's build artifacts are located.
-
-
 
 /*
 const reactBuildPath = path.join(__dirname, "/../../client/dist");

@@ -10,52 +10,48 @@ function Accueil() {
   const [images, setImages] = useState([]);
   const [randomImage, setRandomImage] = useState(null);
 
-  // Images locales définies
-  const localImages = [
-   
-    { filename: Nenuphars, name: "Les nénuphars", author: "Stéphane Valentin", exposure: "100 ISO - 18 mm - f/22 - 302 Sec" }
-  ];
+  // Fonction pour normaliser l'URL des images
   const normalizeImageUrl = (filename) => {
-    if (!filename) return '';
+    if (!filename) return "";
     return `http://localhost:3310/uploads/${filename}`; // Assurez-vous que c'est correct
   };
-  // Fonction pour récupérer les images depuis l'API
+
+  // useEffect pour récupérer les images depuis l'API
   useEffect(() => {
+    // Images locales définies
+    const localImages = [
+      {
+        filename: Nenuphars, // Utilisez une chaîne de caractères ici
+        name: "Les nénuphars",
+        author: "Stéphane Valentin",
+        exposure: "100 ISO - 18 mm - f/22 - 302 Sec",
+      },
+    ];
+
     const fetchImages = async () => {
-        try {
-            const response = await fetch("http://localhost:3310/api/accueil");
-            if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
+      try {
+        const response = await fetch("http://localhost:3310/api/accueil");
+        if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
 
-            const data = await response.json();
-            console.log("Données récupérées :", data); // Log des données reçues
+        const data = await response.json();
 
-            // Normalisez les URLs des images récupérées
-            const normalizedImages = data.map(image => ({
-                ...image,
-                filename: normalizeImageUrl(image.filename), // Utilisez image.filename ici
-            }));
-            console.log("Images normalisées :", normalizedImages); // Log après normalisation
+        // Normalisez les URLs des images récupérées
+        const normalizedImages = data.map((image) => ({
+          ...image,
+          filename: normalizeImageUrl(image.filename), // Utilisez image.filename ici
+        }));
 
-            // Fusionne les images locales avec celles de la BDD
-            const allImages = localImages.concat(normalizedImages);
-            setImages(allImages); // Met à jour l'état avec toutes les images
-            console.log("Toutes les images après ajout :", allImages); // Log final
-
-        } catch (error) {
-            console.error("Erreur lors de la récupération des images :", error);
-            setImages(localImages); // Utiliser uniquement les images locales en cas d'erreur
-        }
+        // Fusionne les images locales avec celles de la BDD
+        const allImages = localImages.concat(normalizedImages);
+        setImages(allImages); // Met à jour l'état avec toutes les images
+      } catch (error) {
+        console.error("Erreur lors de la récupération des images :", error);
+        setImages(localImages); // Utiliser uniquement les images locales en cas d'erreur
+      }
     };
 
     fetchImages();
-}, []);
-  // Choisir une image aléatoire
-  useEffect(() => {
-    if (images.length > 0) {
-      const chosenImage = images[Math.floor(Math.random() * images.length)];
-      setRandomImage(chosenImage);
-    }
-  }, [images]);
+  }, []); // Ce useEffect ne s'exécute qu'une fois au montage du composant
 
   // Choisir une image aléatoire
   useEffect(() => {
@@ -63,7 +59,8 @@ function Accueil() {
       const chosenImage = images[Math.floor(Math.random() * images.length)];
       setRandomImage(chosenImage);
     }
-  }, [images]);
+  }, [images]); // Ce useEffect s'exécute chaque fois que le tableau `images` change
+
 
   return (
     <section

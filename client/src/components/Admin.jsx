@@ -19,9 +19,9 @@ export default function Admin() {
   const navigate = useNavigate();
 
   const normalizeImageUrl = (filename) => {
-    if (!filename) return '';
-    if (filename.startsWith('http')) return filename;
-    const cleanFilename = filename.replace(/^\/uploads\//, '');
+    if (!filename) return "";
+    if (filename.startsWith("http")) return filename;
+    const cleanFilename = filename.replace(/^\/uploads\//, "");
     return `http://localhost:3310/uploads/${cleanFilename}`;
   };
 
@@ -32,49 +32,54 @@ export default function Admin() {
     }
   }, [navigate]);
 
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     try {
       const response = await fetch("http://localhost:3310/api/admin/messages");
-      if (!response.ok) throw new Error("Erreur lors de la récupération des messages");
+      if (!response.ok)
+        throw new Error("Erreur lors de la récupération des messages");
       const data = await response.json();
       setMessages(data);
     } catch (erreur) {
-      console.error("Erreur:", erreur);
+      console.error("Erreur lors de la récupération des messages:", erreur);
       setError("Impossible de charger les messages");
     }
-  };
+  }, []);
+
   useEffect(() => {
     fetchMessages();
-   
-    
-  }, []);
+  }, [fetchMessages]);
+
   const fetchImages = useCallback(async () => {
     try {
       const response = await fetch("http://localhost:3310/api/accueil");
-      if (!response.ok) throw new Error("Erreur lors de la récupération des images");
+      if (!response.ok)
+        throw new Error("Erreur lors de la récupération des images");
       const data = await response.json();
-      setImages(data.map(image => ({
-        ...image,
-        filename: normalizeImageUrl(image.filename)
-      })));
+      setImages(
+        data.map((image) => ({
+          ...image,
+          filename: normalizeImageUrl(image.filename),
+        }))
+      );
     } catch (erreur) {
-      console.error("Erreur:", erreur);
+      console.error("Erreur lors de la récupération des images:", erreur);
       setError("Impossible de charger les images");
     }
   }, []);
-  
+
   useEffect(() => {
     fetchImages();
   }, [fetchImages]);
-  
+
   const fetchGalleries = useCallback(async () => {
     try {
       const response = await fetch("http://localhost:3310/api/galeries");
-      if (!response.ok) throw new Error("Erreur lors de la récupération des galeries");
+      if (!response.ok)
+        throw new Error("Erreur lors de la récupération des galeries");
       const data = await response.json();
-      const galleriesWithImages = data.map(gallery => ({
+      const galleriesWithImages = data.map((gallery) => ({
         ...gallery,
-        images: Array.isArray(gallery.images) ? gallery.images : []
+        images: Array.isArray(gallery.images) ? gallery.images : [],
       }));
       setGalleries(galleriesWithImages);
     } catch (erreur) {
@@ -83,49 +88,49 @@ export default function Admin() {
     }
   }, []);
 
-  // Fonction pour récupérer les images d'une galerie
   const fetchGalleryImages = useCallback(async (galleryId) => {
     try {
-      const response = await fetch(`http://localhost:3310/api/galeries/${galleryId}/images`);
-      if (!response.ok) throw new Error("Erreur lors de la récupération des images");
+      const response = await fetch(
+        `http://localhost:3310/api/galeries/${galleryId}/images`
+      );
+      if (!response.ok)
+        throw new Error("Erreur lors de la récupération des images");
       const data = await response.json();
-      return data.map(image => ({
+      return data.map((image) => ({
         ...image,
-        filename: normalizeImageUrl(image.filename)
+        filename: normalizeImageUrl(image.filename),
       }));
     } catch (erreur) {
-      console.error("Erreur:", erreur);
+      console.error("Erreur lors de la récupération des images:", erreur);
       setError("ID de galerie invalide ou manquant.");
       return [];
     }
   }, []);
 
-  // Fonction pour récupérer les images de toutes les galeries
   const fetchImagesForGalleries = useCallback(async () => {
     const updatedGalleries = await Promise.all(
       galleries.map(async (gallery) => {
-        const galleryImages = await fetchGalleryImages(gallery.id); // Récupérer les images pour chaque galerie
+        const galleryImages = await fetchGalleryImages(gallery.id);
         return {
           ...gallery,
-        images:galleryImages, // Ajouter les images à la galerie
+          images: galleryImages,
         };
       })
     );
-    setGalleries(updatedGalleries); // Mettre à jour les galeries avec les images
-    setImagesFetched(true); // Marquer que les images ont été récupérées
+    setGalleries(updatedGalleries);
+    setImagesFetched(true);
   }, [galleries, fetchGalleryImages]);
 
-  // useEffect pour déclencher la récupération des galeries
   useEffect(() => {
     fetchGalleries();
   }, [fetchGalleries]);
 
-  // useEffect pour déclencher la récupération des images
   useEffect(() => {
     if (galleries.length > 0 && !imagesFetched) {
       fetchImagesForGalleries();
     }
   }, [galleries, imagesFetched, fetchImagesForGalleries]);
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
@@ -160,10 +165,13 @@ export default function Admin() {
       if (!response.ok) throw new Error("Erreur lors de l'ajout de l'image");
 
       const data = await response.json();
-      setImages(prevImages => [...prevImages, {
-        ...data.image,
-        filename: normalizeImageUrl(data.image.filename)
-      }]);
+      setImages((prevImages) => [
+        ...prevImages,
+        {
+          ...data.image,
+          filename: normalizeImageUrl(data.image.filename),
+        },
+      ]);
 
       setNewImage({ name: "", author: "", exposure: "" });
       setFile(null);
@@ -177,39 +185,41 @@ export default function Admin() {
   const handleAddImageToGallery = async () => {
     if (!file || !newImage.name || !selectedGallery) {
       setError("Veuillez remplir tous les champs et sélectionner une galerie");
-      return; // Correction de "retour" à "return"
+      return;
     }
-  
+
     const formData = new FormData();
-    formData.append("file", file); // Assurez-vous d'utiliser "file" ici
-    formData.append("name", newImage.name); // Assurez-vous d'utiliser "name" ici
-    formData.append("galleryId", selectedGallery); // Assurez-vous d'utiliser "galleryId" ici
-  
+    formData.append("file", file);
+    formData.append("name", newImage.name);
+    formData.append("galleryId", selectedGallery);
+
     try {
       const url = `http://localhost:3310/api/galeries/${selectedGallery}/images`;
       const response = await fetch(url, {
         method: "POST",
         body: formData,
       });
-  
-      if (!response.ok) throw new Error("Erreur lors de l'ajout de l'image à la galerie");
-  
+
+      if (!response.ok)
+        throw new Error("Erreur lors de l'ajout de l'image à la galerie");
+
       const data = await response.json();
-  
-      // Mettre à jour les galeries avec la nouvelle image
-      setGalleries(prevGalleries => prevGalleries.map(gallery => {
-        if (gallery.id === parseInt(selectedGallery,10)) {
-          return {
-            ...gallery,
-            images: [
-              ...gallery.images,
-              { ...data, url: normalizeImageUrl(data.filename) }, // Assurez-vous que data contient filename
-            ],
-          };
-        }
-        return gallery;
-      }));
-  
+
+      setGalleries((prevGalleries) =>
+        prevGalleries.map((gallery) => {
+          if (gallery.id === parseInt(selectedGallery, 10)) {
+            return {
+              ...gallery,
+              images: [
+                ...gallery.images,
+                { ...data, url: normalizeImageUrl(data.filename) },
+              ],
+            };
+          }
+          return gallery;
+        })
+      );
+
       setNewImage({ name: "" });
       setFile(null);
       setSelectedGallery("");
@@ -218,42 +228,46 @@ export default function Admin() {
       setError("Erreur lors de l'ajout de l'image");
     }
   };
+
   const handleDeleteMessage = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3310/api/admin/messages/${id}`, { method: "DELETE" });
-      if (!response.ok) throw new Error("Erreur lors de la suppression du message");
+      const response = await fetch(
+        `http://localhost:3310/api/admin/messages/${id}`,
+        { method: "DELETE" }
+      );
+      if (!response.ok)
+        throw new Error("Erreur lors de la suppression du message");
       setMessages(messages.filter((message) => message.id !== id));
     } catch (erreur) {
-      console.error("Erreur:", error);
+      console.error("Erreur lors de la suppression du message:", erreur);
       setError("Erreur lors de la suppression du message");
     }
   };
-  
- 
-
- 
 
   const handleDeleteImage = async (id, galleryId) => {
     try {
-      const response = await fetch(`http://localhost:3310/api/images/${id}`, { method: "DELETE" });
-      if (!response.ok) throw new Error("Erreur lors de la suppression de l'image");
-      
-      // Update the state to remove the deleted image
+      const response = await fetch(`http://localhost:3310/api/images/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok)
+        throw new Error("Erreur lors de la suppression de l'image");
+
       if (galleryId) {
-        // If a gallery ID is provided, update the specific gallery
         setGalleries((prevGalleries) =>
           prevGalleries.map((gallery) =>
             gallery.id === galleryId
-              ? { ...gallery, images: gallery.images.filter((image) => image.id !== id) }
+              ? {
+                  ...gallery,
+                  images: gallery.images.filter((image) => image.id !== id),
+                }
               : gallery
           )
         );
       } else {
-        // Otherwise, update the main images list
         setImages(images.filter((image) => image.id !== id));
       }
     } catch (erreur) {
-      console.error("Erreur:", erreur);
+      console.error("Erreur lors de la suppression de l'image:", erreur);
       setError("Erreur lors de la suppression de l'image");
     }
   };
@@ -265,17 +279,51 @@ export default function Admin() {
 
       <div className="ajoutImage">
         <h2>Ajouter une nouvelle image</h2>
-        <input type="file" accept="image/*" onChange={handleFileChange} required />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          required
+        />
         {preview && (
           <div>
             <h2>Prévisualisation:</h2>
-            <img src={preview} alt="Prévisualisation" style={{ maxWidth: "300px" }} />
+            <img
+              src={preview}
+              alt="Prévisualisation"
+              style={{ maxWidth: "300px" }}
+            />
           </div>
         )}
-        <input type="text" placeholder="Nom" name="name" value={newImage.name} onChange={(e) => setNewImage({ ...newImage, name: e.target.value })} required />
-        <input type="text" placeholder="Auteur" name="author" value={newImage.author} onChange={(e) => setNewImage({ ...newImage, author: e.target.value })} required />
-        <input type="text" placeholder="Exposition" name="exposure" value={newImage.exposure} onChange={(e) => setNewImage({ ...newImage, exposure: e.target.value })} required />
-        <button type="button" id="ajouterImg" onClick={handleAddImage}>Ajouter l'image</button>
+        <input
+          type="text"
+          placeholder="Nom"
+          name="name"
+          value={newImage.name}
+          onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Auteur"
+          name="author"
+          value={newImage.author}
+          onChange={(e) => setNewImage({ ...newImage, author: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Exposition"
+          name="exposure"
+          value={newImage.exposure}
+          onChange={(e) =>
+            setNewImage({ ...newImage, exposure: e.target.value })
+          }
+          required
+        />
+        <button type="button" id="ajouterImg" onClick={handleAddImage}>
+          Ajouter l'image
+        </button>
       </div>
 
       <div className="exist">
@@ -284,11 +332,22 @@ export default function Admin() {
           {Array.isArray(images) && images.length > 0 ? (
             images.map((image) => (
               <li key={image.id}>
-                <div>{image.name} - {image.author} - {image.exposure}</div>
+                <div>
+                  {image.name} - {image.author} - {image.exposure}
+                </div>
                 {image.filename && (
-                  <img src={normalizeImageUrl(image.filename)} alt={image.name} style={{ maxWidth: "150px", marginTop: "10px" }} />
+                  <img
+                    src={normalizeImageUrl(image.filename)}
+                    alt={image.name}
+                    style={{ maxWidth: "150px", marginTop: "10px" }}
+                  />
                 )}
-                <button type="button" onClick={() => handleDeleteImage(image.id)}>Supprimer</button>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteImage(image.id)}
+                >
+                  Supprimer
+                </button>
               </li>
             ))
           ) : (
@@ -303,9 +362,17 @@ export default function Admin() {
           <ul>
             {messages.map((message) => (
               <li key={message.id}>
-                <strong>{message.firstName} {message.lastName}</strong> ({message.email}):
+                <strong>
+                  {message.firstName} {message.lastName}
+                </strong>{" "}
+                ({message.email}):
                 <p>{message.message}</p>
-                <button type="button" onClick={() => handleDeleteMessage(message.id)}>supprimer</button>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteMessage(message.id)}
+                >
+                  supprimer
+                </button>
               </li>
             ))}
           </ul>
@@ -316,8 +383,20 @@ export default function Admin() {
 
       <div className="ajoutImage">
         <h2>Ajouter une image à une galerie</h2>
-        <input type="file" accept="image/*" onChange={handleFileChange} required />
-        <input type="text" placeholder="Nom" name="name" value={newImage.name} onChange={(e) => setNewImage({ ...newImage, name: e.target.value })} required />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Nom"
+          name="name"
+          value={newImage.name}
+          onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
+          required
+        />
         <select
           value={selectedGallery}
           onChange={(e) => setSelectedGallery(e.target.value)}
@@ -330,21 +409,38 @@ export default function Admin() {
             </option>
           ))}
         </select>
-        <button className="exist" type="button" onClick={handleAddImageToGallery}>Ajouter l'image à la galerie</button>
+        <button
+          className="exist"
+          type="button"
+          onClick={handleAddImageToGallery}
+        >
+          Ajouter l'image à la galerie
+        </button>
       </div>
 
-      {galleries.map(gallery => (
+      {galleries.map((gallery) => (
         <div key={gallery.id} className="exist">
           <h2>{gallery.title}</h2>
           <ul className="uldajout">
             {gallery.images && gallery.images.length > 0 ? (
               gallery.images.map((image) => (
                 <li key={image.id}>
-                  <div>{image.name} - {image.author} - {image.exposure}</div>
+                  <div>
+                    {image.name} - {image.author} - {image.exposure}
+                  </div>
                   {image.filename && (
-                    <img src={normalizeImageUrl(image.filename)} alt={image.name} style={{ maxWidth: "150px", marginTop: "10px" }} />
+                    <img
+                      src={normalizeImageUrl(image.filename)}
+                      alt={image.name}
+                      style={{ maxWidth: "150px", marginTop: "10px" }}
+                    />
                   )}
-                  <button type="button" onClick={() => handleDeleteImage(image.id, gallery.id)}>Supprimer</button>
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteImage(image.id, gallery.id)}
+                  >
+                    Supprimer
+                  </button>
                 </li>
               ))
             ) : (
@@ -353,7 +449,6 @@ export default function Admin() {
           </ul>
         </div>
       ))}
-       
     </div>
   );
 }

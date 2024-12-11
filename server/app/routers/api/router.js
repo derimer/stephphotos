@@ -10,7 +10,6 @@ const ContactRepository = require("../../../database/models/ContactRepository");
 const AdminRepository = require("../../../database/models/AdminRepository");
 const galleryActions = require("../../controllers/galleryActions");
 
-
 // Initialisation des repositories
 const contactRepository = new ContactRepository();
 const adminRepository = new AdminRepository(db);
@@ -18,49 +17,48 @@ const adminRepository = new AdminRepository(db);
 // Configuration de multer pour le téléchargement des images
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadPath = path.join(__dirname, '../../../public/uploads');
+    const uploadPath = path.join(__dirname, "../../../public/uploads");
     cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
     cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
+  },
 });
 const upload = multer({ storage });
 
 // Route pour télécharger l'image et l'ajouter dans la base de données
 const getImageUrl = (filename) => `/uploads/${filename}`;
 
-
 // Routes pour ajouter une image dans la galerie
 router.post("/api/add-image", upload.single("file"), async (req, res) => {
   const { name, author, exposure } = req.body;
-  
+
   const filename = req.file ? req.file.filename : null;
 
   if (!filename || !name || !author || !exposure) {
     return res.status(400).json({ message: "Tous les champs sont requis" });
   }
-  
+
   try {
     const result = await adminRepository.query(
       "INSERT INTO accueil (filename, name, author, exposure) VALUES (?, ?, ?, ?)",
       [filename, name, author, exposure]
     );
 
-   return res.status(201).json({
+    return res.status(201).json({
       message: "Image ajoutée avec succès",
-      image: { 
-        id: result.insertId, 
-        filename: getImageUrl(filename), 
-        name, 
-        author, 
-        exposure 
+      image: {
+        id: result.insertId,
+        filename: getImageUrl(filename),
+        name,
+        author,
+        exposure,
       },
     });
   } catch (err) {
     console.error("Erreur lors de l'ajout de l'image:", err);
-  return  res.status(500).json({ message: "Erreur d'ajout de l'image" });
+    return res.status(500).json({ message: "Erreur d'ajout de l'image" });
   }
 });
 router.get("/api/random-image", async (req, res) => {
@@ -69,21 +67,18 @@ router.get("/api/random-image", async (req, res) => {
     if (!randomImage) {
       return res.status(404).json({ error: "Aucune image trouvée" });
     }
-    
+
     const imageWithUrl = {
       ...randomImage,
       imageUrl: `/uploads/${randomImage.filename}`,
     };
-    
+
     return res.json(imageWithUrl);
-   
   } catch (error) {
     console.error("Erreur lors de la récupération des images:", error);
     return res.status(500).json({ error: "Erreur serveur" });
   }
 });
-
-
 
 router.delete("/images/:id", imgActions.deleteImage);
 
@@ -104,10 +99,14 @@ router.post("/Contact", async (req, res) => {
       message,
     });
 
-    return res.status(201).json({ message: "Message enregistré avec succès", id });
+    return res
+      .status(201)
+      .json({ message: "Message enregistré avec succès", id });
   } catch (error) {
     console.error("Erreur lors de l'enregistrement du message:", error);
-    return res.status(500).json({ message: "Erreur lors de l'enregistrement du message" });
+    return res
+      .status(500)
+      .json({ message: "Erreur lors de l'enregistrement du message" });
   }
 });
 
@@ -118,7 +117,9 @@ router.get("/admin/messages", async (req, res) => {
     res.json(messages);
   } catch (error) {
     console.error("Erreur lors de la récupération des messages:", error);
-    res.status(500).json({ message: "Erreur lors de la récupération des messages" });
+    res
+      .status(500)
+      .json({ message: "Erreur lors de la récupération des messages" });
   }
 });
 
@@ -137,7 +138,9 @@ router.delete("/admin/messages/:id", async (req, res) => {
     return res.status(200).json({ message: "Message supprimé avec succès" });
   } catch (error) {
     console.error("Erreur lors de la suppression du message:", error);
-    return res.status(500).json({ error: "Erreur lors de la suppression du message" });
+    return res
+      .status(500)
+      .json({ error: "Erreur lors de la suppression du message" });
   }
 });
 
@@ -145,9 +148,9 @@ router.delete("/admin/messages/:id", async (req, res) => {
 router.get("/accueil", async (req, res) => {
   try {
     const [rows] = await adminRepository.getAllImages();
-    const imagesWithUrls = rows.map(image => ({
+    const imagesWithUrls = rows.map((image) => ({
       ...image,
-      filename:(image.filename) // Assurez-vous que cette fonction renvoie le bon chemin
+      filename: image.filename, // Assurez-vous que cette fonction renvoie le bon chemin
     }));
     res.json(imagesWithUrls);
   } catch (err) {
@@ -168,20 +171,25 @@ router.post("/accueil", upload.single("file"), async (req, res) => {
   }
 
   try {
-    const result = await adminRepository.addImage(filename, name, author, exposure);
-  return  res.status(201).json({
+    const result = await adminRepository.addImage(
+      filename,
+      name,
+      author,
+      exposure
+    );
+    return res.status(201).json({
       message: "Image ajoutée avec succès",
-      image: { 
-        id: result.insertId, 
-        filename: getImageUrl(filename), 
-        name, 
-        author, 
-        exposure 
+      image: {
+        id: result.insertId,
+        filename: getImageUrl(filename),
+        name,
+        author,
+        exposure,
       },
     });
   } catch (err) {
     console.error("Erreur d'ajout de l'image:", err);
-  return  res.status(500).json({ message: "Erreur d'ajout de l'image" });
+    return res.status(500).json({ message: "Erreur d'ajout de l'image" });
   }
 });
 
@@ -196,10 +204,12 @@ router.put("/accueil/:id", async (req, res) => {
 
   try {
     await adminRepository.updateImage(id, filename, name, author, exposure);
-  return  res.status(200).json({ message: "Image modifiée avec succès" });
+    return res.status(200).json({ message: "Image modifiée avec succès" });
   } catch (err) {
     console.error("Erreur de modification de l'image:", err);
-   return res.status(500).json({ message: "Erreur de modification de l'image" });
+    return res
+      .status(500)
+      .json({ message: "Erreur de modification de l'image" });
   }
 });
 
@@ -217,12 +227,9 @@ router.delete("/accueil/:id", async (req, res) => {
 });
 // Ajoutez ces imports si nécessaire
 
-
 router.get("/galeries", galleryActions.getAllGalleries);
 router.get("/galeries/:id/images", async (req, res) => {
   try {
-    
-
     // Récupérer les données de l'image depuis galleryActions
     const images = await galleryActions.getGalleryImages(req, res);
 
@@ -230,11 +237,9 @@ router.get("/galeries/:id/images", async (req, res) => {
     if (!images) {
       return res.status(404).json({ error: "Aucune image trouvée" });
     }
-    return images
-    
-    
+    return images;
+
     // Renvoyer la réponse avec les données de l'image
-    
   } catch (error) {
     console.error("Erreur lors de la récupération des images:", error);
     return res.status(500).json({ error: "Erreur serveur" });
@@ -243,9 +248,15 @@ router.get("/galeries/:id/images", async (req, res) => {
 
 router.get("/galeries/:id/images", galleryActions.getGalleryImages);
 router.post("/galeries", galleryActions.createGallery);
-router.post("/galeries/:id/images", upload.single("file"), galleryActions.addImageToGallery);
+router.post(
+  "/galeries/:id/images",
+  upload.single("file"),
+  galleryActions.addImageToGallery
+);
 router.delete("/galeries/:id", galleryActions.deleteGallery);
-router.delete("/galeries/:galleryId/images/:imageId", galleryActions.deleteImageFromGallery);
+router.delete(
+  "/galeries/:galleryId/images/:imageId",
+  galleryActions.deleteImageFromGallery
+);
 
 module.exports = router;
-

@@ -5,11 +5,11 @@ const multer = require("multer");
 const ImageRepository = require("../../database/models/ImageRepository");
 
 const imageRepository = new ImageRepository();
- 
+
 // Configuration Multer pour le stockage des fichiers
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, 'public', 'assets', 'images'));
+    cb(null, path.join(__dirname, "public", "assets", "images"));
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
@@ -31,17 +31,14 @@ exports.getAllImages = async (req, res) => {
   }
 };
 
-
 exports.addImage = async (req, res) => {
   const { name, author, exposure } = req.body;
- ;
-
   // Vérifiez si un fichier a été téléchargé
   if (!req.file) {
     return res.status(400).json({ message: "Aucun fichier téléchargé" });
   }
 
-  const {filename }= req.file; // Multer fournit le nom du fichier
+  const { filename } = req.file; // Multer fournit le nom du fichier
 
   // Vérifiez si tous les champs nécessaires sont remplis
   if (!filename || !name || !author || !exposure) {
@@ -66,13 +63,11 @@ exports.addImage = async (req, res) => {
       .json({ message: "Image ajoutée avec succès", image: newImage });
   } catch (error) {
     console.error("Erreur lors de l'ajout de l'image:", error.message);
-   return res.status(500).json({
+    return res.status(500).json({
       message: "Erreur lors de l'ajout de l'image",
       error: error.message,
     });
-    
   }
- 
 };
 exports.getAccueilImage = async (req, res) => {
   try {

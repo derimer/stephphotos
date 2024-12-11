@@ -22,37 +22,35 @@ const browse = async (req, res) => {
   }
 };
 
-const sendContactEmail = (req, res) => {
+function sendContactEmail (req, res)  {
   const { firstName, lastName, email, message } = req.body;
 
+  // Vérification des données requises
   if (!firstName || !lastName || !email || !message) {
-    return res
-      .status(400)
+    res .status(400)
       .send("Toutes les données requises ne sont pas fournies");
   }
 
+  // Configuration de l'e-mail
   const mailOptions = {
-    from: email, // replace with your sender email
-    to: 'recipient@example.com', // replace with recipient email
+    from: email, // Remplacez par votre adresse e-mail d'expéditeur
+    to: "recipient@example.com", // Remplacez par l'adresse e-mail du destinataire
     subject: `Nouveau message de ${firstName} ${lastName}`,
     text: message,
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
+  // Envoi de l'e-mail
+  transporter.sendMail(mailOptions, (error) => {
     if (error) {
       console.error("Erreur lors de l'envoi de l'email:", error);
       return res.status(500).send("Erreur lors de l'envoi du message");
     }
 
-    console.log("Email envoyé avec succès:", info.response);
+    // Retourner une réponse en cas de succès
     return res.status(200).send("Message envoyé avec succès");
-  });
-
-  // Return a placeholder response or undefined to satisfy the function's return requirement
    
+  });
+  
 };
 
-
- 
-  
 module.exports = { sendContactEmail, browse };

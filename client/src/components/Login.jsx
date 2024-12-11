@@ -1,29 +1,27 @@
 // Login.jsx
-import  { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  export default function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-  
-      const validEmail = "admin@example.com";
-      const validPassword = "admin@example.com";
-  
-      if (email === validEmail && password === validPassword) {
-        // Simuler une authentification réussie
-        localStorage.setItem("isAuthenticated", "true");
-        navigate("/admin"); // Rediriger vers la page d'administration
-      } else {
-        setError("Email ou mot de passe incorrect");
-      }
-    };
+    const validEmail = "admin@example.com";
+    const validPassword = "admin@example.com";
+
+    if (email === validEmail && password === validPassword) {
+      // Simuler une authentification réussie
+      localStorage.setItem("isAuthenticated", "true");
+      navigate("/admin"); // Rediriger vers la page d'administration
+    } else {
+      setError("Email ou mot de passe incorrect");
+    }
+  };
 
   return (
     <div className="login">
@@ -48,5 +46,4 @@ import { useNavigate } from "react-router-dom";
       </form>
     </div>
   );
-};
-
+}

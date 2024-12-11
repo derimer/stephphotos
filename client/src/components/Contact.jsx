@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Contact() {
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -23,7 +22,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     fetch("http://localhost:3310/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -38,14 +37,13 @@ export default function Contact() {
         setTimeout(() => {
           navigate("/Merci");
         }, 1500); // Attendre 1.5 secondes avant la redirection
-      
       })
       .catch((error) => {
         console.error("Erreur:", error);
         setStatus("Erreur lors de l'envoi du message");
       });
   };
-  
+
   return (
     <main id="contact1">
       <h1>Contactez-moi</h1>
@@ -98,11 +96,12 @@ export default function Contact() {
               value={formData.message}
               onChange={handleChange}
               required
-           />
+            />
           </div>
-         
         </div>
-        <button  className="envoyer"type="submit">Envoyer</button>
+        <button className="envoyer" type="submit">
+          Envoyer
+        </button>
         {status && <p>{status}</p>}
       </form>
     </main>

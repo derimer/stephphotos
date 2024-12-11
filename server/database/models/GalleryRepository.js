@@ -15,8 +15,6 @@ class GalleryRepository extends AbstractRepository {
     }
   }
 
- 
-
   async createGallery(title, description) {
     try {
       const [result] = await this.database.query(
@@ -30,10 +28,12 @@ class GalleryRepository extends AbstractRepository {
     }
   }
 
- 
   async findGalleryById(id) {
     try {
-      const [rows] = await this.database.query("SELECT * FROM galeries WHERE id = ?", [id]);
+      const [rows] = await this.database.query(
+        "SELECT * FROM galeries WHERE id = ?",
+        [id]
+      );
       return rows[0];
     } catch (error) {
       console.error("Erreur lors de la récupération de la galerie:", error);
@@ -54,11 +54,7 @@ class GalleryRepository extends AbstractRepository {
     }
   }
 
-
-
-
-
-  async getImageByGalleryId  (galleryId)  {
+  async getImageByGalleryId(galleryId) {
     try {
       const query = `
         SELECT images.id, images.name, images.filename
@@ -67,11 +63,11 @@ class GalleryRepository extends AbstractRepository {
         WHERE galleries.id = ?
       `;
       const [rows] = await this.database.query(query, [galleryId]);
-  
+
       if (rows.length === 0) {
         return null; // Aucune image trouvée
       }
-  
+
       // Retourner les informations de la première image trouvée
       return {
         id: rows[0].id,
@@ -82,8 +78,7 @@ class GalleryRepository extends AbstractRepository {
       console.error("Erreur lors de la récupération des images:", error);
       throw error;
     }
-  };
-
+  }
 
   async getImagesFromGallery(galleryId) {
     try {
@@ -93,11 +88,13 @@ class GalleryRepository extends AbstractRepository {
       );
       return rows;
     } catch (error) {
-      console.error("Erreur lors de la récupération des images de la galerie:", error);
+      console.error(
+        "Erreur lors de la récupération des images de la galerie:",
+        error
+      );
       throw error;
     }
   }
-
 
   async removeImageFromGallery(galleryId, imageId) {
     try {
@@ -106,7 +103,10 @@ class GalleryRepository extends AbstractRepository {
         [imageId, galleryId]
       );
     } catch (error) {
-      console.error("Erreur lors de la suppression de l'image de la galerie:", error);
+      console.error(
+        "Erreur lors de la suppression de l'image de la galerie:",
+        error
+      );
       throw error;
     }
   }

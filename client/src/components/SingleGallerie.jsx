@@ -69,89 +69,92 @@ export default function SingleGallery() {
   const [images, setImages] = useState([]);
   const galId = searchParams.get("id");
 
-  const staticGalleries = useMemo(() => ({
-    gal1: {
-      title: "Paysages",
-      images: [
-        Pecheur,
-        Gerbier,
-        Festival,
-        Paris,
-        Concert,
-        Horizon,
-        Plateau,
-        Ombre,
-        Billard,
-        Mer,
-        Chemin,
-        Foret,
-        Centrale,
-      ],
-    },
-    gal2: {
-      title: "N&B",
-      images: [
-        Portugal,
-        Piscine,
-        Verres,
-        Perspective,
-        Salon,
-        Bouteilles,
-        News,
-        Gallerienb,
-        Miroire,
-        Sevillane,
-        Pallier,
-        Fleurs,
-        Auto,
-        Bar,
-        Christal,
-        Vintage,
-        Gare,
-      ],
-    },
-    gal3: {
-      title: "Couleurs",
-      images: [
-        Bouteilles,
-        Mariage,
-        Urban,
-        Cloche,
-        Printemps,
-        Fontaine,
-        Couloir,
-        Spectacle,
-        Lyon,
-        Rue,
-        Ruines,
-        Coiffeurs,
-        Sortie,
-        Miss,
-        Tasses,
-        Violons,
-      ],
-    },
-    gal4: {
-      title: "Portrait&charme",
-      images: [
-        Audray,
-        Pilote,
-        Lily,
-        Masque,
-        Regards,
-        Fanny,
-        Audray2,
-        Julie,
-        Aude,
-        Lingerie1,
-        Lingerie2,
-        Cannes,
-        Aurore,
-        Audray3,
-        Lily3,
-      ],
-    },
-  }), []); // Aucune dépendance, car ces données sont statiques
+  const staticGalleries = useMemo(
+    () => ({
+      gal1: {
+        title: "Paysages",
+        images: [
+          Pecheur,
+          Gerbier,
+          Festival,
+          Paris,
+          Concert,
+          Horizon,
+          Plateau,
+          Ombre,
+          Billard,
+          Mer,
+          Chemin,
+          Foret,
+          Centrale,
+        ],
+      },
+      gal2: {
+        title: "N&B",
+        images: [
+          Portugal,
+          Piscine,
+          Verres,
+          Perspective,
+          Salon,
+          Bouteilles,
+          News,
+          Gallerienb,
+          Miroire,
+          Sevillane,
+          Pallier,
+          Fleurs,
+          Auto,
+          Bar,
+          Christal,
+          Vintage,
+          Gare,
+        ],
+      },
+      gal3: {
+        title: "Couleurs",
+        images: [
+          Bouteilles,
+          Mariage,
+          Urban,
+          Cloche,
+          Printemps,
+          Fontaine,
+          Couloir,
+          Spectacle,
+          Lyon,
+          Rue,
+          Ruines,
+          Coiffeurs,
+          Sortie,
+          Miss,
+          Tasses,
+          Violons,
+        ],
+      },
+      gal4: {
+        title: "Portrait&charme",
+        images: [
+          Audray,
+          Pilote,
+          Lily,
+          Masque,
+          Regards,
+          Fanny,
+          Audray2,
+          Julie,
+          Aude,
+          Lingerie1,
+          Lingerie2,
+          Cannes,
+          Aurore,
+          Audray3,
+          Lily3,
+        ],
+      },
+    }),
+    []
+  ); // Aucune dépendance, car ces données sont statiques
 
   useEffect(() => {
     if (galId && staticGalleries[`gal${galId}`]) {
@@ -167,41 +170,44 @@ export default function SingleGallery() {
     return `http://localhost:3310/uploads/${filename}`;
   };
 
-  const fetchImages = async () => {
+  const fetchImages = useCallback(async () => {
     try {
-      const response = await fetch(`http://localhost:3310/api/galeries/${galId}/images`);
+      const response = await fetch(
+        `http://localhost:3310/api/galeries/${galId}/images`
+      );
       if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
-      
-      const data = await response.json();
-      
 
-     // throw (data)
+      const data = await response.json();
+
       const normalizedImages = Array.isArray(data)
-  ? data.map((image) => ({
-      ...image,
-      filename: normalizeImageUrl(image.filename),
-        }))
-  : [];
+        ? data.map((image) => ({
+            ...image,
+            filename: normalizeImageUrl(image.filename),
+          }))
+        : [];
+
       const allImages = [
         ...(staticGalleries[`gal${galId}`]?.images || []),
         ...normalizedImages,
       ];
-     
+
       setImages(allImages);
-    
-  
     } catch (error) {
       console.error("Erreur lors de la récupération des images :", error);
       setImages(staticGalleries[`gal${galId}`]?.images || []);
     }
-  };
-  useEffect(() => {
-    if(galId)
-    fetchImages();
-   
-  }, [galId]);
+  }, [staticGalleries, galId]);
 
-  const showSinglePict = useCallback((imageSrc) => setSelectedImage(imageSrc), []);
+  useEffect(() => {
+    if (galId) {
+      fetchImages();
+    }
+  }, [galId, fetchImages]);
+
+  const showSinglePict = useCallback(
+    (imageSrc) => setSelectedImage(imageSrc),
+    []
+  );
   const closeSinglePict = useCallback(() => setSelectedImage(null), []);
 
   useEffect(() => {
@@ -228,7 +234,7 @@ export default function SingleGallery() {
       document.removeEventListener("click", handleImageClick);
     };
   }, [selectedImage, showSinglePict, closeSinglePict]);
-  
+
   if (!gallery) return <p>Chargement de la galerie...</p>;
 
   return (
@@ -236,10 +242,8 @@ export default function SingleGallery() {
       <main id="singleGallery">
         <h1>{gallery.title}</h1>
         <ul>
-       
           {images.map((image, index) => (
             <li key={image.id || `image-${index}`}>
-              
               <img
                 src={typeof image === "string" ? image : image.filename}
                 alt={`${gallery.title} ${index + 1}`}
