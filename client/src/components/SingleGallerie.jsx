@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-
 
 import Pecheur from "../assets/images/image-2.jpg";
 import Gerbier from "../assets/images/image-6.jpg";
@@ -64,15 +63,13 @@ import Audray3 from "../assets/images/image-33.jpg";
 import Lily3 from "../assets/images/image-3.jpg";
 
 export default function SingleGallery() {
+  const [gallery, setGallery] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [searchParams] = useSearchParams();
+  const [images, setImages] = useState([]);
+  const galId = searchParams.get("id");
 
-  
-    const [galery, setGalery] = useState(null);
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [searchParams] = useSearchParams();
-    const [images, setImages] = useState([]);
-    const [error, setError] = useState(null);
-  // Utilisation de useSearchParams
-  const galeries = {
+  const staticGalleries = useMemo(() => ({
     gal1: {
       title: "Paysages",
       images: [
@@ -94,7 +91,7 @@ export default function SingleGallery() {
     gal2: {
       title: "N&B",
       images: [
-        Portugal,     
+        Portugal,
         Piscine,
         Verres,
         Perspective,
@@ -154,82 +151,114 @@ export default function SingleGallery() {
         Lily3,
       ],
     },
-  };
-  const normalizeImageUrl = (filename) => {
-    if (!filename) return '';
-    return `http://localhost:3310/uploads/${filename}`; // Vérifiez que cette URL correspond bien à votre configuration
-  };
-  
+  }), []); // Aucune dépendance, car ces données sont statiques
+
   useEffect(() => {
-    const id = searchParams.get("id");
+    if (galId && staticGalleries[`gal${galId}`]) {
+      setGallery(staticGalleries[`gal${galId}`]);
+    } else {
+      console.error("Invalid gallery ID or gallery not found");
+      window.location.pathname = "/gallerie";
+    }
+  }, [galId, staticGalleries]);
 
-    const fetchGalleryAndImages = async () => {
-      try {
-        const galleryResponse = await fetch(`http://localhost:3310/api/galeries/${id}`);
-        if (!galleryResponse.ok) throw new Error(`Erreur HTTP : ${galleryResponse.status}`);
-        const galleryData = await galleryResponse.json();
-        setGalery(galleryData);
+  const normalizeImageUrl = (filename) => {
+    if (!filename) return "";
+    return `http://localhost:3310/uploads/${filename}`;
+  };
 
-        const imagesResponse = await fetch(`http://localhost:3310/api/galeries/${id}/images`);
-        if (!imagesResponse.ok) throw new Error(`Erreur HTTP : ${imagesResponse.status}`);
-        const imagesData = await imagesResponse.json();
-        const normalizedImages = imagesData.map(image => ({
-          ...image,
-          filename: normalizeImageUrl(image.filename),
-        }));
-        setImages(normalizedImages);
-      } catch (error) {
-        console.error("Erreur:", error);
-        setError(error.message);
+  const fetchImages = async () => {
+    try {
+      const response = await fetch(`http://localhost:3310/api/galeries/${galId}/images`);
+      if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
+      
+      const data = await response.json();
+      
+
+     // throw (data)
+      const normalizedImages = Array.isArray(data)
+  ? data.map((image) => ({
+      ...image,
+      filename: normalizeImageUrl(image.filename),
+        }))
+  : [];
+      const allImages = [
+        ...(staticGalleries[`gal${galId}`]?.images || []),
+        ...normalizedImages,
+      ];
+     
+      setImages(allImages);
+    
+  
+    } catch (error) {
+      console.error("Erreur lors de la récupération des images :", error);
+      setImages(staticGalleries[`gal${galId}`]?.images || []);
+    }
+  };
+  useEffect(() => {
+    if(galId)
+    fetchImages();
+   
+  }, [galId]);
+
+  const showSinglePict = useCallback((imageSrc) => setSelectedImage(imageSrc), []);
+  const closeSinglePict = useCallback(() => setSelectedImage(null), []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && selectedImage) {
+        closeSinglePict();
       }
     };
 
-    if (id) {
-      fetchGalleryAndImages();
-    } else {
-      window.location.pathname = "/galerie";
-    }
-  }, [searchParams]);
+    const handleImageClick = (e) => {
+      const clickedImage = e.target.closest("img");
+      if (clickedImage && clickedImage.classList.contains("clickable-image")) {
+        showSinglePict(clickedImage.src);
+      } else if (selectedImage) {
+        closeSinglePict();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("click", handleImageClick);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("click", handleImageClick);
+    };
+  }, [selectedImage, showSinglePict, closeSinglePict]);
+  
+  if (!gallery) return <p>Chargement de la galerie...</p>;
 
   return (
     <>
-      {galery ? (
-        <main id="singleGallery">
-          <h1>{galery.title}</h1>
-          {images.length > 0 ? (
-            <ul>
-              {images.map((image, index) => (
-                <li key={image.id || index}>
+      <main id="singleGallery">
+        <h1>{gallery.title}</h1>
+        <ul>
+       
+          {images.map((image, index) => (
+            <li key={image.id || `image-${index}`}>
+              
               <img
-                    src={image.filename}
-                    alt={image.name || `Image ${index + 1}`}
-                    onClick={() => setSelectedImage(image.filename)}
-                    style={{ cursor: "pointer" }}
-                   
-                  />
-                  
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>Aucune image disponible dans cette galerie.</p>
-          )}
-        </main>
-      ) : (
-        <p>Chargement de la galerie...</p>
-      )}
-  
+                src={typeof image === "string" ? image : image.filename}
+                alt={`${gallery.title} ${index + 1}`}
+                className="clickable-image"
+              />
+            </li>
+          ))}
+        </ul>
+      </main>
       {selectedImage && (
         <div
           id="galleryContainer"
           className="visible"
-          onClick={() => setSelectedImage(null)}
+          role="dialog"
+          aria-modal="true"
         >
-          <img src={selectedImage} alt="Selected" />
+          <img src={selectedImage} alt="" />
         </div>
       )}
-  
-      {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
     </>
   );
 }

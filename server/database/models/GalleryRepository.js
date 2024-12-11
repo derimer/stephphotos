@@ -2,101 +2,89 @@ const AbstractRepository = require("./AbstractRepository");
 
 class GalleryRepository extends AbstractRepository {
   constructor() {
-    super({ table: "galeries" }); // Assurez-vous que cela pointe vers la bonne table
+    super({ table: "galeries" });
   }
 
-  // Récupérer toutes les galeries
-  async getAllGaleries() {
+  async getAllGalleries() {
     try {
       const [rows] = await this.database.query("SELECT * FROM galeries");
-      return rows;  // Retourne directement les lignes
+      return rows;
     } catch (error) {
       console.error("Erreur lors de la récupération des galeries:", error);
       throw error;
     }
   }
 
-  // Ajouter une nouvelle galerie
-  async addGalery(galleryId, title) {
+ 
+
+  async createGallery(title, description) {
     try {
       const [result] = await this.database.query(
-        "INSERT INTO galeries (gallery_id, title) VALUES (?, ?)",
-        [galleryId, title]
+        "INSERT INTO galeries (title, description) VALUES (?, ?)",
+        [title, description]
       );
-      return result;
-    } catch (error) {
-      console.error("Erreur lors de l'ajout de la galerie:", error);
-      throw error;
-    }
-  }
-
-  async getGaleryWithImages(id) {
-    try {
-      const query = `
-        SELECT g.*, i.*
-        FROM galeries g
-        LEFT JOIN images i ON g.id = i.gallery_id
-        WHERE g.id = ?;
-      `;
-      const [results] = await this.database.execute(query, [id]);
-      return results; // Ajustez selon votre structure de données
-    } catch (error) {
-      console.error('Erreur lors de la récupération de la galerie avec images:', error);
-      throw error;
-    }
-  }
-
-  async createGalery(id, title) {
-    try {
-      const [result] = await this.database.query(
-        "INSERT INTO galeries (id,title) VALUES (?, ?)",
-        [id, title]
-      );
-      return { id: result.insertId, title };
+      return { id: result.insertId, title, description };
     } catch (error) {
       console.error("Erreur lors de la création de la galerie:", error);
       throw error;
     }
   }
 
-  // Modifier une galerie existante
-  async updateGalery(id, title) {
+ 
+  async findGalleryById(id) {
     try {
-      await this.database.query(
-        "UPDATE galeries SET title = ?, title = ? WHERE id = ?",
-        [id,title]
-      );
+      const [rows] = await this.database.query("SELECT * FROM galeries WHERE id = ?", [id]);
+      return rows[0];
     } catch (error) {
-      console.error("Erreur lors de la mise à jour de la galerie:", error);
+      console.error("Erreur lors de la récupération de la galerie:", error);
       throw error;
     }
   }
 
-
-
-  async addImageToGalery(galleryId, filename, name) {
+  async addImageToGallery(galleryId, filename, name) {
     try {
-      // Validation des entrées
-      if (!galleryId || !filename || !name) {
-        throw new Error("Les champs galleryId, filename, ou name ne peuvent pas être vides.");
-      }
-  
-      // Requête préparée avec les bonnes valeurs
       const [result] = await this.database.query(
         "INSERT INTO images (gallery_id, filename, name) VALUES (?, ?, ?)",
-        [galleryId, filename, name] // Les valeurs à insérer
+        [galleryId, filename, name]
       );
-  
-      console.log("Résultat de l'insertion :", result);
-  
-      // Retourne le résultat de la requête si besoin
-      return result;
+      return { id: result.insertId, galleryId, filename, name };
     } catch (error) {
-      console.error("Erreur lors de l'ajout de l'image à la galerie:", error.message);
+      console.error("Erreur lors de l'ajout de l'image à la galerie:", error);
       throw error;
     }
   }
+
+
+
+
+
+  async getImageByGalleryId  (galleryId)  {
+    try {
+      const query = `
+        SELECT images.id, images.name, images.filename
+        FROM images
+        JOIN galleries ON images.gallery_id = galleries.id
+        WHERE galleries.id = ?
+      `;
+      const [rows] = await this.database.query(query, [galleryId]);
   
+      if (rows.length === 0) {
+        return null; // Aucune image trouvée
+      }
+  
+      // Retourner les informations de la première image trouvée
+      return {
+        id: rows[0].id,
+        name: rows[0].name,
+        filename: rows[0].filename,
+      };
+    } catch (error) {
+      console.error("Erreur lors de la récupération des images:", error);
+      throw error;
+    }
+  };
+
+
   async getImagesFromGallery(galleryId) {
     try {
       const [rows] = await this.database.query(
@@ -109,9 +97,9 @@ class GalleryRepository extends AbstractRepository {
       throw error;
     }
   }
-  
-  // Supprimer une image d'une galerie
-  async removeImageFromGalery(galleryId, imageId) {
+
+
+  async removeImageFromGallery(galleryId, imageId) {
     try {
       await this.database.query(
         "DELETE FROM images WHERE id = ? AND gallery_id = ?",
@@ -123,15 +111,9 @@ class GalleryRepository extends AbstractRepository {
     }
   }
 
-  
-
-  // Supprimer une image d'une galerie
- 
-  // Supprimer une galerie
-  async deleteGalery(id) {
+  async deleteGallery(id) {
     try {
-      const [result] = await this.database.query("DELETE FROM galeries WHERE id = ?", [id]);
-      return result;
+      await this.database.query("DELETE FROM galeries WHERE id = ?", [id]);
     } catch (error) {
       console.error("Erreur lors de la suppression de la galerie:", error);
       throw error;
@@ -139,4 +121,4 @@ class GalleryRepository extends AbstractRepository {
   }
 }
 
-module.exports = GalleryRepository; // Mettez à jour l'exportation
+module.exports = new GalleryRepository();

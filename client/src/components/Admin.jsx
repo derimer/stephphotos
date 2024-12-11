@@ -1,9 +1,8 @@
 // Admin.jsx
-import  { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Admin() {
- 
   const [images, setImages] = useState([]);
   const [newImage, setNewImage] = useState({
     name: "",
@@ -16,16 +15,16 @@ export default function Admin() {
   const [preview, setPreview] = useState("");
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState("");
-
+  const [imagesFetched, setImagesFetched] = useState(false);
   const navigate = useNavigate();
 
-  // Fonction pour normaliser l'URL des images
   const normalizeImageUrl = (filename) => {
     if (!filename) return '';
     if (filename.startsWith('http')) return filename;
     const cleanFilename = filename.replace(/^\/uploads\//, '');
     return `http://localhost:3310/uploads/${cleanFilename}`;
   };
+
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
     if (!isAuthenticated) {
@@ -33,67 +32,100 @@ export default function Admin() {
     }
   }, [navigate]);
 
-  // Fetch Messages
   const fetchMessages = async () => {
     try {
       const response = await fetch("http://localhost:3310/api/admin/messages");
       if (!response.ok) throw new Error("Erreur lors de la récupération des messages");
       const data = await response.json();
       setMessages(data);
-    } catch (error) {
-      console.error("Erreur:", error);
+    } catch (erreur) {
+      console.error("Erreur:", erreur);
       setError("Impossible de charger les messages");
     }
   };
-
-  // Fetch Images
-  const fetchImages = async () => {
+  useEffect(() => {
+    fetchMessages();
+   
+    
+  }, []);
+  const fetchImages = useCallback(async () => {
     try {
       const response = await fetch("http://localhost:3310/api/accueil");
       if (!response.ok) throw new Error("Erreur lors de la récupération des images");
       const data = await response.json();
-      console.log("Images reçues:", data);
       setImages(data.map(image => ({
         ...image,
         filename: normalizeImageUrl(image.filename)
       })));
-    } catch (error) {
-      console.error("Erreur:", error);
+    } catch (erreur) {
+      console.error("Erreur:", erreur);
       setError("Impossible de charger les images");
     }
-  };
-
-  // Fetch Galleries
-  const fetchGalleries = async () => {
+  }, []);
+  
+  useEffect(() => {
+    fetchImages();
+  }, [fetchImages]);
+  
+  const fetchGalleries = useCallback(async () => {
     try {
       const response = await fetch("http://localhost:3310/api/galeries");
       if (!response.ok) throw new Error("Erreur lors de la récupération des galeries");
       const data = await response.json();
-      setGalleries(data);
-    } catch (error) {
-      console.error("Erreur:", error);
+      const galleriesWithImages = data.map(gallery => ({
+        ...gallery,
+        images: Array.isArray(gallery.images) ? gallery.images : []
+      }));
+      setGalleries(galleriesWithImages);
+    } catch (erreur) {
+      console.error("Erreur lors de la récupération des galeries:", erreur);
       setError("Impossible de charger les galeries");
     }
-  };
+  }, []);
 
-  // Fetch Images for a Gallery
-  const fetchGalleryImages = async (galleryId) => {
+  // Fonction pour récupérer les images d'une galerie
+  const fetchGalleryImages = useCallback(async (galleryId) => {
     try {
       const response = await fetch(`http://localhost:3310/api/galeries/${galleryId}/images`);
-      if (!response.ok) throw new Error("Erreur lors de la récupération des images de la galerie");
+      if (!response.ok) throw new Error("Erreur lors de la récupération des images");
       const data = await response.json();
       return data.map(image => ({
         ...image,
         filename: normalizeImageUrl(image.filename)
       }));
-    } catch (error) {
-      console.error("Erreur:", error);
-      setError("Impossible de charger les images de la galerie");
+    } catch (erreur) {
+      console.error("Erreur:", erreur);
+      setError("ID de galerie invalide ou manquant.");
       return [];
     }
-  };
+  }, []);
 
-  // Handle File Change
+  // Fonction pour récupérer les images de toutes les galeries
+  const fetchImagesForGalleries = useCallback(async () => {
+    const updatedGalleries = await Promise.all(
+      galleries.map(async (gallery) => {
+        const galleryImages = await fetchGalleryImages(gallery.id); // Récupérer les images pour chaque galerie
+        return {
+          ...gallery,
+        images:galleryImages, // Ajouter les images à la galerie
+        };
+      })
+    );
+    setGalleries(updatedGalleries); // Mettre à jour les galeries avec les images
+    setImagesFetched(true); // Marquer que les images ont été récupérées
+  }, [galleries, fetchGalleryImages]);
+
+  // useEffect pour déclencher la récupération des galeries
+  useEffect(() => {
+    fetchGalleries();
+  }, [fetchGalleries]);
+
+  // useEffect pour déclencher la récupération des images
+  useEffect(() => {
+    if (galleries.length > 0 && !imagesFetched) {
+      fetchImagesForGalleries();
+    }
+  }, [galleries, imagesFetched, fetchImagesForGalleries]);
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
@@ -107,7 +139,6 @@ export default function Admin() {
     }
   };
 
-  // Handle Add Image
   const handleAddImage = async () => {
     if (!file || !newImage.name || !newImage.author || !newImage.exposure) {
       setError("Veuillez remplir tous les champs et sélectionner une image");
@@ -129,8 +160,6 @@ export default function Admin() {
       if (!response.ok) throw new Error("Erreur lors de l'ajout de l'image");
 
       const data = await response.json();
-      console.log("Réponse du serveur après ajout d'image:", data);
-
       setImages(prevImages => [...prevImages, {
         ...data.image,
         filename: normalizeImageUrl(data.image.filename)
@@ -139,116 +168,96 @@ export default function Admin() {
       setNewImage({ name: "", author: "", exposure: "" });
       setFile(null);
       setPreview("");
-    } catch (error) {
-      console.error("Erreur lors de l'ajout de l'image:", error);
+    } catch (erreur) {
+      console.error("Erreur lors de l'ajout de l'image:", erreur);
       setError("Erreur lors de l'ajout de l'image");
     }
   };
 
-  // Handle Add Image to Gallery
   const handleAddImageToGallery = async () => {
     if (!file || !newImage.name || !selectedGallery) {
       setError("Veuillez remplir tous les champs et sélectionner une galerie");
-      return;
+      return; // Correction de "retour" à "return"
     }
-
+  
     const formData = new FormData();
-    formData.append("file", file);
-    formData.append("name", newImage.name);
-    formData.append("galerieId", selectedGallery);
-
+    formData.append("file", file); // Assurez-vous d'utiliser "file" ici
+    formData.append("name", newImage.name); // Assurez-vous d'utiliser "name" ici
+    formData.append("galleryId", selectedGallery); // Assurez-vous d'utiliser "galleryId" ici
+  
     try {
       const url = `http://localhost:3310/api/galeries/${selectedGallery}/images`;
       const response = await fetch(url, {
         method: "POST",
         body: formData,
       });
-
+  
       if (!response.ok) throw new Error("Erreur lors de l'ajout de l'image à la galerie");
-
+  
       const data = await response.json();
+  
+      // Mettre à jour les galeries avec la nouvelle image
       setGalleries(prevGalleries => prevGalleries.map(gallery => {
-        if (gallery.id === selectedGallery) {
+        if (gallery.id === parseInt(selectedGallery,10)) {
           return {
             ...gallery,
-            images: [...gallery.images, {
-              ...data.image,
-              filename: normalizeImageUrl(data.image.filename)
-            }]
+            images: [
+              ...gallery.images,
+              { ...data, url: normalizeImageUrl(data.filename) }, // Assurez-vous que data contient filename
+            ],
           };
         }
         return gallery;
       }));
-
+  
       setNewImage({ name: "" });
       setFile(null);
-      setPreview("");
       setSelectedGallery("");
-    } catch (error) {
-      console.error("Erreur lors de l'ajout de l'image:", error);
+    } catch (erreur) {
+      console.error("Erreur lors de l'ajout de l'image:", erreur);
       setError("Erreur lors de l'ajout de l'image");
     }
   };
-
-  // Handle Delete Image
-  const handleDeleteImage = async (id, galleryId) => {
-    try {
-      const response = await fetch(`http://localhost:3310/api/images/${id}`, { method: "DELETE" });
-      if (!response.ok) throw new Error("Erreur lors de la suppression de l'image");
-      setGalleries(prevGalleries => prevGalleries.map(gallery => {
-        if (gallery.id === galleryId) {
-          return {
-            ...gallery,
-            images: gallery.images.filter(image => image.id !== id)
-          };
-        }
-        return gallery;
-      }));
-    } catch (error) {
-      console.error("Erreur:", error);
-      setError("Erreur lors de la suppression de l'image");
-    }
-  };
-
-  // Handle Delete Message
   const handleDeleteMessage = async (id) => {
     try {
       const response = await fetch(`http://localhost:3310/api/admin/messages/${id}`, { method: "DELETE" });
       if (!response.ok) throw new Error("Erreur lors de la suppression du message");
       setMessages(messages.filter((message) => message.id !== id));
-    } catch (error) {
+    } catch (erreur) {
       console.error("Erreur:", error);
       setError("Erreur lors de la suppression du message");
     }
   };
-
-  useEffect(() => {
-    
-      fetchMessages();
-      fetchImages();
-      fetchGalleries();
-     // Redirige vers la page de connexion si non authentifié
-   
-  }, [ ]);
-
-  useEffect(() => {
-    const fetchImagesForGalleries = async () => {
-      const updatedGalleries = await Promise.all(galleries.map(async (gallery) => {
-        const images = await fetchGalleryImages(gallery.id);
-        return {
-          ...gallery,
-          images
-        };
-      }));
-      setGalleries(updatedGalleries);
-    };
-
-    if (galleries.length > 0) {
-      fetchImagesForGalleries();
-    }
-  }, [galleries]);
+  
+ 
 
  
+
+  const handleDeleteImage = async (id, galleryId) => {
+    try {
+      const response = await fetch(`http://localhost:3310/api/images/${id}`, { method: "DELETE" });
+      if (!response.ok) throw new Error("Erreur lors de la suppression de l'image");
+      
+      // Update the state to remove the deleted image
+      if (galleryId) {
+        // If a gallery ID is provided, update the specific gallery
+        setGalleries((prevGalleries) =>
+          prevGalleries.map((gallery) =>
+            gallery.id === galleryId
+              ? { ...gallery, images: gallery.images.filter((image) => image.id !== id) }
+              : gallery
+          )
+        );
+      } else {
+        // Otherwise, update the main images list
+        setImages(images.filter((image) => image.id !== id));
+      }
+    } catch (erreur) {
+      console.error("Erreur:", erreur);
+      setError("Erreur lors de la suppression de l'image");
+    }
+  };
+
   return (
     <div className="gestion">
       <h1>Gestion des Images</h1>
@@ -344,6 +353,7 @@ export default function Admin() {
           </ul>
         </div>
       ))}
+       
     </div>
   );
 }
