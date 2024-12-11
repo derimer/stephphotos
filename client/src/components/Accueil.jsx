@@ -10,18 +10,18 @@ function Accueil() {
   const [images, setImages] = useState([]);
   const [randomImage, setRandomImage] = useState(null);
 
-  // Fonction pour normaliser l'URL des images
+  // Images locales définies
+  
   const normalizeImageUrl = (filename) => {
     if (!filename) return "";
     return `http://localhost:3310/uploads/${filename}`; // Assurez-vous que c'est correct
   };
-
-  // useEffect pour récupérer les images depuis l'API
+  // Fonction pour récupérer les images depuis l'API
   useEffect(() => {
-    // Images locales définies
+    // Déclaration des images locales à l'intérieur du useEffect
     const localImages = [
       {
-        filename: Nenuphars, // Utilisez une chaîne de caractères ici
+        filename: Nenuphars,
         name: "Les nénuphars",
         author: "Stéphane Valentin",
         exposure: "100 ISO - 18 mm - f/22 - 302 Sec",
@@ -38,12 +38,12 @@ function Accueil() {
         // Normalisez les URLs des images récupérées
         const normalizedImages = data.map((image) => ({
           ...image,
-          filename: normalizeImageUrl(image.filename), // Utilisez image.filename ici
+          filename: normalizeImageUrl(image.filename),
         }));
 
         // Fusionne les images locales avec celles de la BDD
         const allImages = localImages.concat(normalizedImages);
-        setImages(allImages); // Met à jour l'état avec toutes les images
+        setImages(allImages);
       } catch (error) {
         console.error("Erreur lors de la récupération des images :", error);
         setImages(localImages); // Utiliser uniquement les images locales en cas d'erreur
@@ -51,7 +51,7 @@ function Accueil() {
     };
 
     fetchImages();
-  }, []); // Ce useEffect ne s'exécute qu'une fois au montage du composant
+  }, []); // Aucune dépendance inutile ici
 
   // Choisir une image aléatoire
   useEffect(() => {
@@ -59,9 +59,7 @@ function Accueil() {
       const chosenImage = images[Math.floor(Math.random() * images.length)];
       setRandomImage(chosenImage);
     }
-  }, [images]); // Ce useEffect s'exécute chaque fois que le tableau `images` change
-
-
+  }, [images]);
   return (
     <section
       id="pageContent"
