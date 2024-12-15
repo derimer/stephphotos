@@ -92,7 +92,7 @@ router.post("/Contact", async (req, res) => {
   }
 
   try {
-    const id = await contactRepository.create({
+    const {id }= await contactRepository.create({
       firstName,
       lastName,
       email,
@@ -125,10 +125,10 @@ router.get("/admin/messages", async (req, res) => {
 
 // Supprimer un message par ID
 router.delete("/admin/messages/:id", async (req, res) => {
-  const { id } = req.params;
+  const  {id}  = req.params;
 
   try {
-    const message = await contactRepository.readById(id);
+    const message = await contactRepository.readById({id});
 
     if (!message) {
       return res.status(404).json({ error: "Message non trouvé" });
@@ -196,7 +196,7 @@ router.post("/accueil", upload.single("file"), async (req, res) => {
 // Modifier une image dans la galerie
 router.put("/accueil/:id", async (req, res) => {
   const { filename, name, author, exposure } = req.body;
-  const { id } = req.params;
+  const  {id}  = req.params;
 
   if (!filename || !name || !author || !exposure) {
     return res.status(400).json({ message: "Tous les champs sont requis" });
@@ -218,7 +218,7 @@ router.delete("/accueil/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    await adminRepository.deleteImage(id);
+    await adminRepository.deleteImage({id});
     res.status(200).json({ message: "Image supprimée avec succès" });
   } catch (err) {
     console.error("Erreur de suppression de l'image:", err);

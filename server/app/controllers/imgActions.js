@@ -3,6 +3,8 @@ const path = require("path");
 const multer = require("multer");
 // Importer Multer
 const ImageRepository = require("../../database/models/ImageRepository");
+const tables=require("../../database/tables");
+
 
 const imageRepository = new ImageRepository();
 
@@ -16,7 +18,63 @@ const storage = multer.diskStorage({
     cb(null, `${uniqueSuffix}${path.extname(file.originalname)}`); // Utilisation d'un template literal
   },
 });
+const browse = async (req, res, next) => {
+  try {
+    // Fetch all items from the database
+    const image = await tables.images.readAll();
 
+    // Respond with the items in JSON format
+    res.json(image);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+const deleteImage = async (req, res) => {
+  const { id } = req.params;
+  try {
+   await imageRepository.deleteImageById(id)
+      // Logique pour supprimer l'image de la base de données
+      // Exemple : await adminRepository.deleteImageById(id);
+      res.status(200).json({ message: "Image supprimée avec succès" });
+  } catch (err) {
+      console.error("Erreur lors de la suppression de l'image:", err);
+      res.status(500).json({ message: "Erreur lors de la suppression de l'image" });
+  }
+};
+// The R of BREAD - Read operation
+const read = async (req, res, next) => {
+  try {
+    // Fetch a specific item from the database based on the provided ID
+    const image = await tables.images.read(req.params.id);
+
+    // If the item is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the item in JSON format
+    if (image == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(image);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+const add = async (req, res, next) => {
+  // Extract the item data from the request body
+  const image = req.body;
+
+  try {
+    // Insert the item into the database
+    const insertId = await tables.images.create(image);
+
+    // Respond with HTTP 201 (Created) and the ID of the newly inserted item
+    res.status(201).json({ insertId });
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 // Initialiser Multer avec le stockage configuré
 // eslint-disable-next-line no-unused-vars
 const upload = multer({ storage });
@@ -94,4 +152,11 @@ exports.deleteImage = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+};
+module.exports = {
+  browse,
+  read,
+  // edit,
+  add,
+  deleteImage,
 };

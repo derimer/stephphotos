@@ -4,14 +4,14 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 
-const Router = require("./app/routers/api/router");
+// Assurez-vous que le fichier router exporte un objet express.Router()
+const router = require("./app/routers/api/router");
 
 const db = require("./database/client");
 
-// Importez le fichier tables.js
-
+// Initialisation de l'application Express
 const app = express();
-const port = process.env.APP_PORT || 3310;
+const port = process.env.APP_PORT || 3001;
 
 // Configuration des chemins
 const publicPath = path.join(__dirname, "public");
@@ -38,8 +38,12 @@ app.get("/api/test-db", async (req, res) => {
   }
 });
 
-// Utiliser le router API
-app.use("/api", Router);
+// Vérifiez si le router est valide avant de l'utiliser
+if (router && typeof router === "function") {
+  app.use("/api", router);
+} else {
+  console.error("Le router importé n'est pas valide. Vérifiez son exportation.");
+}
 
 // Démarrage du serveur
 app

@@ -8,11 +8,7 @@ const cors = require("cors");
 const path = require("path");
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-  })
-);
+
 
 const apiRouter = require("./routers/api/router");
 
@@ -21,7 +17,11 @@ app.use("/api", apiRouter);
 const reactBuildPath = path.join(__dirname, "/../../client/build");
 const publicFolderPath = path.join(__dirname, "/../public");
 app.use(express.static(reactBuildPath));
-
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+  })
+);
 // Servir les ressources du serveur
 app.use(
   "/assets",
@@ -29,12 +29,7 @@ app.use(
 );
 // Configure it
 
-  
  
-  // Logique pour gérer l'envoi d'email, par exemple avec Nodemailer
-  // ou une autre méthode de traitement des données du formulaire
-
-  
 
 app.get("*", (_, res) => {
   res.sendFile(path.join(reactBuildPath, "index.html"));

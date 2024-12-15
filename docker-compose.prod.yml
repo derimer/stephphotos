@@ -1,4 +1,4 @@
-version: "3.4"
+
 
 services:
   web:
@@ -17,6 +17,7 @@ services:
       DB_NAME: ${DB_NAME}
       VITE_BACKEND_URL: ""
       PROJECT_NAME_SPECIFIC_SAMPLE: ${PROJECT_NAME_SPECIFIC_SAMPLE}
+      
     networks:
       - proxy
     labels:
@@ -25,6 +26,16 @@ services:
       - "traefik.http.routers.${PROJECT_NAME:-project}-secure.entrypoints=websecure"
       - "traefik.http.routers.${PROJECT_NAME:-project}-secure.rule=Host(`${PROJECT_NAME:-project}.${HOST:-localhost}`)"
       - "traefik.http.services.${PROJECT_NAME:-project}.loadbalancer.server.port=3310"
+
+  database:
+    image: mysql/mysql-server:8.0
+    environment:
+      MYSQL_USER: ${USER_NAME}
+      MYSQL_PASSWORD: ${USER_PASSWORD}
+      MYSQL_ROOT_PASSWORD: rootpassword # À sécuriser
+      MYSQL_DATABASE: ${DB_NAME}
+    networks:
+      - proxy
 
 networks:
   proxy:
