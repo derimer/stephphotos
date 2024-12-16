@@ -59,22 +59,26 @@ class GalleryRepository extends AbstractRepository {
       const query = `
         SELECT images.id, images.name, images.filename
         FROM images
-        WHERE gallery_id = ?
-        LIMIT 1
+        JOIN galleries ON images.gallery_id = galleries.id
+        WHERE galleries.id = ?
       `;
       const [rows] = await this.database.query(query, [galleryId]);
-  
+
       if (rows.length === 0) {
         return null; // Aucune image trouvée
       }
-  
-      return rows[0]; // Retourner directement la première image
+
+      // Retourner les informations de la première image trouvée
+      return {
+        id: rows[0].id,
+        name: rows[0].name,
+        filename: rows[0].filename,
+      };
     } catch (error) {
-      console.error("Erreur lors de la récupération de la première image:", error);
+      console.error("Erreur lors de la récupération des images:", error);
       throw error;
     }
   }
-  
 
   async getImagesFromGallery(galleryId) {
     try {
@@ -106,28 +110,15 @@ class GalleryRepository extends AbstractRepository {
       throw error;
     }
   }
-  
+
   async deleteGallery(id) {
-    const connection = await this.database.getConnection(); // Si vous utilisez une transaction
     try {
-      await connection.beginTransaction(); // Démarrer une transaction
-  
-      // Supprimer les images associées
-      await connection.query("DELETE FROM images WHERE gallery_id = ?", [id]);
-  
-      // Supprimer la galerie
-      await connection.query("DELETE FROM galeries WHERE id = ?", [id]);
-  
-      await connection.commit(); // Valider la transaction
+      await this.database.query("DELETE FROM galeries WHERE id = ?", [id]);
     } catch (error) {
-      await connection.rollback(); // Annuler la transaction en cas d'erreur
       console.error("Erreur lors de la suppression de la galerie:", error);
       throw error;
-    } finally {
-      connection.release(); // Libérer la connexion
     }
   }
-  
 }
 
 module.exports =  new GalleryRepository; // <-- Exportez la classe, pas une instance

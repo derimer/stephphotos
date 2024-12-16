@@ -140,19 +140,22 @@ exports.getAccueilImage = async (req, res) => {
     res.status(500).json({ message: "Erreur serveur" });
   }
 };
-
-// Route pour supprimer une image
 exports.deleteImage = async (req, res) => {
   const { id } = req.params;
 
   try {
     // Suppression de l'image dans la base de données
-    await imageRepository.delete(id);
+    await imageRepository.deleteImageById(id); // Utilisez la méthode correcte
     res.json({ message: "Image supprimée avec succès" });
   } catch (err) {
+    console.error("Erreur lors de la suppression de l'image :", err); // Log l'erreur
     res.status(500).json({ error: err.message });
   }
 };
+
+
+// Route pour supprimer une image
+
 module.exports = {
   browse,
   read,

@@ -44,8 +44,17 @@ class ImageRepository extends AbstractRepository {
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing item
 
-  async delete(id) {
-    await this.database.query(`DELETE FROM ${this.table} WHERE id = ?`, [id]);
+  async deleteImageById(id) {
+    try {
+      const result = await this.database.query(
+        `DELETE FROM ${this.table} WHERE id = ?`,
+        [id]
+      );
+      return result;
+    } catch (error) {
+      console.error("Erreur lors de la suppression de l'image dans la base :", error.message);
+      throw error;
+    }
   }
 }
 // The D of CRUD - Delete operation
