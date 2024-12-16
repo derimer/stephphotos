@@ -148,11 +148,10 @@ exports.deleteImage = async (req, res) => {
     await imageRepository.deleteImageById(id); // Utilisez la méthode correcte
     res.json({ message: "Image supprimée avec succès" });
   } catch (err) {
-    console.error("Erreur lors de la suppression de l'image :", err); // Log l'erreur
+    console.error("Erreur lors de la suppression de l'image :", err);
     res.status(500).json({ error: err.message });
   }
 };
-
 
 // Route pour supprimer une image
 
