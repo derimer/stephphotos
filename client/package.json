@@ -2,6 +2,7 @@
   "name": "@harmonia/client",
   "type": "module",
   "scripts": {
+    "prepare": "husky install",
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
