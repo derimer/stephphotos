@@ -325,10 +325,10 @@ main#contact1 {
   display: grid;
   font-family: "Dancing Script", serif;
   font-optical-sizing: auto;
-
+  height: 830px;
   font-style: normal;
   grid-template-columns: 1fr 1fr 1fr;
-  padding: 40px;
+
   text-align: center;
   gap: 20px;
   font-size: 25px;
@@ -341,7 +341,7 @@ main#contact1 {
 }
 
 #About h1 {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 #About img {
   border-radius: 50%;
@@ -505,6 +505,7 @@ ajoutImage button:hover,
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: 1100px;
   }
 }
 
@@ -520,7 +521,8 @@ ajoutImage button:hover,
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 30px;
+    font-size: 18px;
+    margin: 10px;
   }
 }
 @media (max-width: 445px) {
@@ -530,6 +532,9 @@ ajoutImage button:hover,
   #message {
     width: 200px;
     gap: 20px;
+  }
+  #About {
+    padding-top: 5px;
   }
 }
 @media screen and (min-width: 768px) {
