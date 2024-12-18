@@ -76,7 +76,7 @@ app.use(logErrors);
 
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
-// app.use(express.json());
+ app.use(express.json());
 // app.use(express.urlencoded());
 // app.use(express.text());
 // app.use(express.raw());
@@ -128,8 +128,8 @@ app.use(logErrors);
 // 2. Ensure that the `reactBuildPath` points to the correct directory where your client's build artifacts are located.
 
 /*
-const reactBuildPath = path.join(__dirname, "/../../client/dist");
-const publicFolderPath = path.join(__dirname, "/../public");
+//const reactBuildPath = path.join(__dirname, "/../../client/dist");
+//const publicFolderPath = path.join(__dirname, "/../public");
 
 // Serve react resources
 
@@ -161,10 +161,10 @@ const logErrors = (err, req, res, next) => {
   // Pass the error to the next middleware in the stack
   next(err);
 };
-
+*/
 // Mount the logErrors middleware globally
 app.use(logErrors);
-*/
+
 
 /* ************************************************************************* */
 

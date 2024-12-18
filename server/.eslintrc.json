@@ -11,5 +11,13 @@
   },
   "rules": {
     "no-console": ["error", { "allow": ["error", "info", "warn"] }]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.js", "**/*.spec.js"], // Applique cette règle uniquement aux tests
+      "rules": {
+        "no-console": "off" // Désactive no-console dans les fichiers de test
+      }
+    }
+  ]
 }

@@ -10,6 +10,8 @@ const router = require("./app/routers/api/router");
 
 const db = require("./database/client");
 
+db.checkConnection();
+
 // Initialisation de l'application Express
 const app = express();
 const port = process.env.APP_PORT || 3001;
@@ -27,19 +29,17 @@ app.use(express.static(publicPath));
 app.use("/uploads", express.static(uploadsPath));
 
 // Test de la connexion à la base de données
-app.get("/api/test-db", async (req, res) => {
-  try {
-    const [rows] = await db.query("SELECT 1");
-    res.json({ message: "Connexion à la base de données réussie", data: rows });
-  } catch (error) {
-    res.status(500).json({
-      message: "Erreur de connexion à la base de données",
-      error: error.message,
-    });
-  }
+
+app.get("/api/test", (req, res) => {
+  res.json({ succès: true });
 });
+
+// Ajout des en-têtes de sécurité
 app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self' https://apis.google.com; style-src 'self' https://fonts.googleapis.com https://www.gstatic.com; img-src 'self' https://images.unsplash.com; font-src 'self' https://fonts.gstatic.com;");
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self' https://apis.google.com; style-src 'self' https://fonts.googleapis.com https://www.gstatic.com; img-src 'self' https://images.unsplash.com; font-src 'self' https://fonts.gstatic.com;"
+  );
   next();
 });
 
@@ -49,15 +49,22 @@ if (router && typeof router === "function") {
 } else {
   console.error("Le router importé n'est pas valide. Vérifiez son exportation.");
 }
+// Middleware pour gérer les routes inexistantes
+app.use((req, res) => {
+  res.status(404).send("Route non trouvée");
+});
 
-// Démarrage du serveur
-app
-  .listen(port, () => {
-    console.info(`Server is listening on port ${port}`);
-    db.checkConnection(); // Vérifiez la connexion à la base de données au démarrage
-  })
-  .on("error", (err) => {
-    console.error("Error:", err.message);
-  });
+// Exportez uniquement l'application pour les tests
+module.exports = app;
 
-module.exports = db;
+// Si vous exécutez ce fichier directement, démarrez le serveur
+if (require.main === module) {
+  app
+    .listen(port, () => {
+      console.info(`Server is listening on port ${port}`);
+      db.checkConnection(); // Vérifiez la connexion à la base de données au démarrage
+    })
+    .on("error", (err) => {
+      console.error("Error:", err.message);
+    });
+}
