@@ -31,7 +31,7 @@ class ImageRepository extends AbstractRepository {
 
   // Méthodes update et delete à implémenter
 
-  async update(imageData,id) {
+  async update(imageData, id) {
     const { name, author, exposure, filename } = imageData;
     await this.database.query(
       `UPDATE ${this.table} SET filename = ?, name = ?, author = ?, exposure = ? WHERE id = ?`,
@@ -52,7 +52,10 @@ class ImageRepository extends AbstractRepository {
       );
       return result;
     } catch (error) {
-      console.error("Erreur lors de la suppression de l'image dans la base :", error.message);
+      console.error(
+        "Erreur lors de la suppression de l'image dans la base :",
+        error.message
+      );
       throw error;
     }
   }

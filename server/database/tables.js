@@ -17,7 +17,6 @@ tables.images = new ImageRepository();
 tables.Contact = new ContactRepository();
 tables.accueil = new AdminRepository();
 
-;
 /* ************************************************************************* */
 
 // Use a Proxy to customize error messages when trying to access a non-existing table

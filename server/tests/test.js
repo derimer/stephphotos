@@ -1,11 +1,9 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const request = require("supertest");
 const app = require("../index"); // Importez votre application Express
 
 const database = require("../database/client");
-
-
 
 describe("Tests des routes API", () => {
   it("devrait retourner un succès pour /api/test", async () => {

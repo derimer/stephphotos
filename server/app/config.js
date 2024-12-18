@@ -9,7 +9,6 @@ const path = require("path");
 
 app.use(express.json());
 
-
 const apiRouter = require("./routers/api/router");
 
 app.use("/api", apiRouter);
@@ -28,8 +27,6 @@ app.use(
   express.static(path.join(publicFolderPath, "assets"), { maxAge: "1y" })
 );
 // Configure it
-
- 
 
 app.get("*", (_, res) => {
   res.sendFile(path.join(reactBuildPath, "index.html"));
@@ -76,7 +73,7 @@ app.use(logErrors);
 
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
- app.use(express.json());
+app.use(express.json());
 // app.use(express.urlencoded());
 // app.use(express.text());
 // app.use(express.raw());
@@ -164,7 +161,6 @@ const logErrors = (err, req, res, next) => {
 */
 // Mount the logErrors middleware globally
 app.use(logErrors);
-
 
 /* ************************************************************************* */
 

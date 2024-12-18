@@ -1,4 +1,3 @@
-
 require("dotenv").config();
 
 const database = require("../database/client");
@@ -16,4 +15,3 @@ test("You have executed the db:migrate and db:seed scripts", async () => {
   const [rows] = await database.query(`SELECT * FROM images`);
   expect(rows.length).toBeGreaterThan(0);
 });
-

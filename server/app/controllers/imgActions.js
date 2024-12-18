@@ -3,8 +3,7 @@ const path = require("path");
 const multer = require("multer");
 // Importer Multer
 const ImageRepository = require("../../database/models/ImageRepository");
-const tables=require("../../database/tables");
-
+const tables = require("../../database/tables");
 
 const imageRepository = new ImageRepository();
 
@@ -33,13 +32,15 @@ const browse = async (req, res, next) => {
 const deleteImage = async (req, res) => {
   const { id } = req.params;
   try {
-   await imageRepository.deleteImageById(id)
-      // Logique pour supprimer l'image de la base de données
-      // Exemple : await adminRepository.deleteImageById(id);
-      res.status(200).json({ message: "Image supprimée avec succès" });
+    await imageRepository.deleteImageById(id);
+    // Logique pour supprimer l'image de la base de données
+    // Exemple : await adminRepository.deleteImageById(id);
+    res.status(200).json({ message: "Image supprimée avec succès" });
   } catch (err) {
-      console.error("Erreur lors de la suppression de l'image:", err);
-      res.status(500).json({ message: "Erreur lors de la suppression de l'image" });
+    console.error("Erreur lors de la suppression de l'image:", err);
+    res
+      .status(500)
+      .json({ message: "Erreur lors de la suppression de l'image" });
   }
 };
 // The R of BREAD - Read operation

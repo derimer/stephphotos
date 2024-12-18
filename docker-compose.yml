@@ -1,25 +1,24 @@
-
 services:
   traefik:
     image: traefik:v2.5
     command:
-      - "--api.insecure=true"  # Interface API non sécurisée (pour le développement)
-      - "--providers.docker=true"  # Utiliser Docker comme fournisseur
-      - "--entrypoints.web.address=:80"  # Entrypoint pour HTTP
+      - "--api.insecure=true" # Interface API non sécurisée (pour le développement)
+      - "--providers.docker=true" # Utiliser Docker comme fournisseur
+      - "--entrypoints.web.address=:80" # Entrypoint pour HTTP
     ports:
-      - "80:80"  # Port HTTP
-      - "8080:8080"  # Port pour l'interface API
+      - "80:80" # Port HTTP
+      - "8080:8080" # Port pour l'interface API
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"  # Accès au socket Docker
+      - "/var/run/docker.sock:/var/run/docker.sock" # Accès au socket Docker
 
   web:
     build: .
     volumes:
       - .:/var/www
       - ./docker-entry.sh:/etc/entrypoint.sh
-    entrypoint: [ "sh", "/etc/entrypoint.sh" ]
+    entrypoint: ["sh", "/etc/entrypoint.sh"]
     ports:
-      - "3310:3310"  # Port exposé pour l'application
+      - "3310:3310" # Port exposé pour l'application
     environment:
       APP_PORT: 3310
       APP_SECRET: 123456789
@@ -29,19 +28,20 @@ services:
       DB_PASSWORD: password
       DB_NAME: js_template_fullstack
       VITE_BACKEND_URL: http://localhost:3310
-      STEPHPHOTOS_EMAIL: ${STEPHPHOTOS_EMAIL} 
+      STEPHPHOTOS_EMAIL: ${STEPHPHOTOS_EMAIL}
     depends_on:
       database:
         condition: service_healthy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.web.rule=Host(`yourdomain.com`)"  # Remplacez par votre domaine
-      - "traefik.http.services.web.loadbalancer.server.port=3310"  # Port de l'application
+      - "traefik.http.routers.web.rule=Host(`yourdomain.com`)" # Remplacez par votre domaine
+      - "traefik.http.services.web.loadbalancer.server.port=3310" # Port de l'application
 
   database:
     image: mysql/mysql-server:8.0
     healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost", "-uuser", "-ppassword" ]
+      test:
+        ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uuser", "-ppassword"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -54,10 +54,7 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: rootpassword
     ports:
-      - "3306:3306"  # Port exposé pour la base de données
+      - "3306:3306" # Port exposé pour la base de données
 
 volumes:
   db-data:
-
-
-

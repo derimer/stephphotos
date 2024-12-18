@@ -31,19 +31,16 @@ function Accueil() {
         if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
 
         const data = await response.json();
-        
 
         // Normalisez les URLs des images récupérées
         const normalizedImages = data.map((image) => ({
           ...image,
           filename: normalizeImageUrl(image.filename), // Utilisez image.filename ici
         }));
-    
 
         // Fusionne les images locales avec celles de la BDD
         const allImages = localImages.concat(normalizedImages);
         setImages(allImages); // Met à jour l'état avec toutes les images
-  
       } catch (error) {
         console.error("Erreur lors de la récupération des images :", error);
         setImages(localImages); // Utiliser uniquement les images locales en cas d'erreur

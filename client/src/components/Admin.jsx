@@ -299,7 +299,7 @@ export default function Admin() {
           type="text"
           placeholder="Nom"
           name="name"
-          value={newImage.name||""}
+          value={newImage.name || ""}
           onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
           required
         />
@@ -307,7 +307,7 @@ export default function Admin() {
           type="text"
           placeholder="Auteur"
           name="author"
-          value={newImage.author||""}
+          value={newImage.author || ""}
           onChange={(e) => setNewImage({ ...newImage, author: e.target.value })}
           required
         />
@@ -315,7 +315,7 @@ export default function Admin() {
           type="text"
           placeholder="Exposition"
           name="exposure"
-          value={newImage.exposure||""}
+          value={newImage.exposure || ""}
           onChange={(e) =>
             setNewImage({ ...newImage, exposure: e.target.value })
           }

@@ -622,13 +622,14 @@ button ::placeholder {
   flex-direction: column;
 }
 .merci {
+  height: 820px;
   display: flex;
   justify-content: center;
   margin-top: 80px;
   align-items: center;
   flex-direction: column;
   background-color: #f26160;
-  color: black;
+  color: white;
   gap: 40px;
   padding: 50px;
   text-align: center;

@@ -22,13 +22,12 @@ const browse = async (req, res) => {
   }
 };
 
-function sendContactEmail (req, res)  {
+function sendContactEmail(req, res) {
   const { firstName, lastName, email, message } = req.body;
 
   // Vérification des données requises
   if (!firstName || !lastName || !email || !message) {
-    res .status(400)
-      .send("Toutes les données requises ne sont pas fournies");
+    res.status(400).send("Toutes les données requises ne sont pas fournies");
   }
 
   // Configuration de l'e-mail
@@ -48,9 +47,7 @@ function sendContactEmail (req, res)  {
 
     // Retourner une réponse en cas de succès
     return res.status(200).send("Message envoyé avec succès");
-   
   });
-  
-};
+}
 
 module.exports = { sendContactEmail, browse };

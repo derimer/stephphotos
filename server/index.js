@@ -47,7 +47,9 @@ app.use((req, res, next) => {
 if (router && typeof router === "function") {
   app.use("/api", router);
 } else {
-  console.error("Le router importé n'est pas valide. Vérifiez son exportation.");
+  console.error(
+    "Le router importé n'est pas valide. Vérifiez son exportation."
+  );
 }
 // Middleware pour gérer les routes inexistantes
 app.use((req, res) => {

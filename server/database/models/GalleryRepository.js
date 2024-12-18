@@ -121,4 +121,4 @@ class GalleryRepository extends AbstractRepository {
   }
 }
 
-module.exports =  new GalleryRepository; // <-- Exportez la classe, pas une instance
+module.exports = new GalleryRepository(); // <-- Exportez la classe, pas une instance
