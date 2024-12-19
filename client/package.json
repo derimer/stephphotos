@@ -8,8 +8,9 @@
     "preview": "vite preview",
     "format": "prettier --write .",
     "lint": "eslint src --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint src --ext .js,.jsx --fix",   
-    "postinstall": "if [ -z \"$HUSKY\" ]; then husky install; fi"
+    "lint:fix": "eslint src --ext .js,.jsx --fix", 
+    "postinstall": "pnpm install --prod=false && husky install"
+
 
   },
   "dependencies": {

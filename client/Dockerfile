@@ -8,7 +8,7 @@ COPY package.json package-lock.json ./
 
 # Installer les dépendances
 RUN npm install
-
+RUN npm install husky --save-dev
 # Copier le répertoire server (sans node_modules)
 COPY server/package.json server/package-lock.json ./server/
 RUN cd server && npm install
