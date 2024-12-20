@@ -1,0 +1,2 @@
+packages:
+  - 'packages/*' # Remplacez par le chemin de vos espaces de travail si différent
