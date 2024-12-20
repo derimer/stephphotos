@@ -228,7 +228,7 @@ main ul {
 }
 main ul li {
   background-color: black;
-  padding: 20px;
+
   text-align: center;
 }
 main ul li:hover {
@@ -242,9 +242,10 @@ main ul li a {
 main ul li img {
   object-fit: initial;
   border: 1px solid white;
+  padding: 20px;
 }
-main#gallerie1 {
-  margin-top: 80px;
+main #singleGallery {
+  margin-top: 10px;
 }
 main#gallerie1 h1 {
   color: black;
