@@ -9,12 +9,14 @@ import About from "./components/About";
 import App from "./App";
 import Admin from "./components/Admin";
 import Login from "./components/Login";
+import Accueil from "./components/Accueil"
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      { path: "/", element: <Accueil /> },
       { path: "/gallerie", element: <Gallerie /> },
       { path: "/gallerie/singleGallery", element: <SingleGallery /> },
       { path: "/contact", element: <Contact /> },
