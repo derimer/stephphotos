@@ -1,6 +1,6 @@
 // Import the repository modules responsible for handling data operations on the tables
 // Import the repository modules responsible for handling data operations on the tables
-
+const ItemRepository = require("./models/itemRepository");
 const ImageRepository = require("./models/ImageRepository");
 const ContactRepository = require("./models/ContactRepository");
 const AdminRepository = require("./models/AdminRepository");
@@ -16,7 +16,7 @@ const tables = {};
 tables.images = new ImageRepository();
 tables.Contact = new ContactRepository();
 tables.accueil = new AdminRepository();
-
+tables.item = new ItemRepository();
 /* ************************************************************************* */
 
 // Use a Proxy to customize error messages when trying to access a non-existing table

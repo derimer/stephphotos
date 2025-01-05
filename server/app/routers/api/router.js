@@ -5,6 +5,7 @@ const pool = require("../../../index");
 
 const db = pool;
 const router = express.Router();
+const itemsRouter=require("./items/router")
 const imgActions = require("../../controllers/imgActions");
 const ContactRepository = require("../../../database/models/ContactRepository");
 const AdminRepository = require("../../../database/models/AdminRepository");
@@ -13,7 +14,7 @@ const galleryActions = require("../../controllers/galleryActions");
 // Initialisation des repositories
 const contactRepository = new ContactRepository();
 const adminRepository = new AdminRepository(db);
-
+router.use("/items", itemsRouter); 
 // Configuration de multer pour le téléchargement des images
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
