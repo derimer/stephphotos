@@ -5,20 +5,23 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  root: 'client', 
   plugins: [react()],
+  root: ".", // Définit la racine du projet
+  build: {
+    outDir: "dist", // Dossier de sortie pour les fichiers construits
+  },
   server: {
-    port: 3000,
+    port: 3000, // Définit le port du serveur de développement
   },
   esbuild: {
-    loader: "jsx",
-    include: /src\/.*\.jsx?$/,
-    exclude: [],
+    loader: "jsx", // Définit le loader pour JSX
+    include: /src\/.*\.jsx?$/, // Inclut les fichiers JSX dans src
+    exclude: [], // Aucune exclusion supplémentaire
   },
   optimizeDeps: {
     esbuildOptions: {
       loader: {
-        '.js': 'jsx',
+        ".js": "jsx", // Charge les fichiers JS comme JSX
       },
     },
   },
