@@ -321,16 +321,16 @@ main#contact1 {
   background-color: #4cae4c;
 }
 #About {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 80px;
   color: white;
   background-color: #333;
+  display: grid;
   font-family: "Dancing Script", serif;
   font-optical-sizing: auto;
   height: 830px;
   font-style: normal;
+  grid-template-columns: 1fr 1fr 1fr;
+
   text-align: center;
   gap: 20px;
   font-size: 25px;
@@ -342,151 +342,22 @@ main#contact1 {
   }
 }
 
+#About h1 {
+  padding-top: 50px;
+}
 #About img {
   border-radius: 50%;
   width: 250px;
   height: 250px;
 }
-#singleGallery {
-  margin-top: 80px;
-  padding: 2rem;
-  background-color: #3f2f2f;
-  min-height: 100vh;
-}
-
 #singleGallery h1 {
-  text-align: center;
-  font-size: 2.5rem;
-  color: white;
-  margin-bottom: 2rem;
-  font-family: "Helvetica Neue", sans-serif;
-}
-
-/* Style pour la liste des images */
-#singleGallery ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-#singleGallery ul li {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-#singleGallery ul li:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-#singleGallery ul li img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-
-#singleGallery ul li img:hover {
-  opacity: 0.9;
-}
-
-/* Style pour la modal d'affichage des images */
-#galleryContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 0.3s ease,
-    visibility 0.3s ease;
-}
-
-#galleryContainer.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-#galleryContainer img {
-  max-width: 90%;
-  max-height: 100%;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-/* Animation pour l'ouverture de la modal */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-#galleryContainer.visible {
-  animation: fadeIn 0.3s ease;
-}
-
-/* Style pour le bouton de fermeture (optionnel) */
-#galleryContainer::before {
-  content: "×";
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 2rem;
-  color: #fff;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  #singleGallery ul {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-
-  #singleGallery h1 {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  #singleGallery ul {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  }
-
-  #singleGallery h1 {
-    font-size: 1.5rem;
-  }
-}
-/*#singleGallery h1 {
   color: var(--black);
   font-weight: bold;
 }
 #singleGallery ul {
   margin-top: 50px;
-  
 }
-  */
-/*#galleryContainer {
+#galleryContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -513,7 +384,7 @@ main#contact1 {
   opacity: 1;
   visibility: visible;
 }
-*/
+
 #mainFooter {
   background-color: black;
   height: 40px;
@@ -610,9 +481,7 @@ ajoutImage button:hover,
   flex-wrap: wrap;
   gap: 20px;
 }
-#galeries {
-  margin-top: 50px;
-}
+
 .uldajout li {
   background-color: #333;
   padding: 15px;
@@ -641,16 +510,7 @@ ajoutImage button:hover,
     height: 1100px;
   }
 }
-@media (max-width: 1300px) {
-  #About {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 0;
-  }
-}
+
 @media (max-width: 600px) {
   .uldajout li {
     width: 100%;
@@ -677,7 +537,6 @@ ajoutImage button:hover,
   }
   #About {
     padding-top: 5px;
-    padding-bottom: 120px;
   }
 }
 @media screen and (min-width: 768px) {
@@ -718,9 +577,8 @@ ajoutImage button:hover,
   }
 
   #singleGallery ul li img {
-    width: 300px;
-    height: 300px;
-    background-color: white;
+    width: 280px;
+    height: 280px;
   }
 }
 

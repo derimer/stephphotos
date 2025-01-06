@@ -1,6 +1,7 @@
 // Get variables from .env file for database connection
 const mysql = require("mysql2/promise");
 
+
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
 const client = mysql.createPool({
@@ -10,8 +11,9 @@ const client = mysql.createPool({
   password: DB_PASSWORD,
   database: DB_NAME,
   waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
+  connectionLimit: 10, // Nombre maximum de connexions simultanées
+  queueLimit: 0 // Pas
+  
 });
 
 client.checkConnection = async () => {
@@ -28,5 +30,8 @@ client.checkConnection = async () => {
     console.warn(error.message);
   }
 };
+client.on("error", (err) => {
+  console.error("Unexpected database error:", err.message);
+});
 
 module.exports = client;
