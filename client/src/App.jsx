@@ -9,8 +9,9 @@ function App() {
   return (
     <>
       <NavBar />
-      <Accueil />
       <Outlet />
+      <Accueil />
+      
       <Footer />
     </>
   );

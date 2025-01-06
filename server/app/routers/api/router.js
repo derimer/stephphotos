@@ -9,7 +9,7 @@ const imgActions = require("../../controllers/imgActions");
 const ContactRepository = require("../../../database/models/ContactRepository");
 const AdminRepository = require("../../../database/models/AdminRepository");
 const galleryActions = require("../../controllers/galleryActions");
-
+const itemsRouter=require("./items/router")
 // Initialisation des repositories
 const contactRepository = new ContactRepository();
 const adminRepository = new AdminRepository(db);
@@ -29,6 +29,8 @@ const upload = multer({ storage });
 
 // Route pour télécharger l'image et l'ajouter dans la base de données
 const getImageUrl = (filename) => `/uploads/${filename}`;
+
+router.use("/items", itemsRouter);
 
 // Routes pour ajouter une image dans la galerie
 router.post("/api/add-image", upload.single("file"), async (req, res) => {

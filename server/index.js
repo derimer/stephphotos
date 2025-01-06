@@ -10,7 +10,6 @@ const router = require("./app/routers/api/router");
 
 const db = require("./database/client");
 
-db.checkConnection();
 
 // Initialisation de l'application Express
 const app = express();
@@ -57,7 +56,7 @@ app.use((req, res) => {
 });
 
 // Exportez uniquement l'application pour les tests
-module.exports = app;
+
 
 // Si vous exécutez ce fichier directement, démarrez le serveur
 if (require.main === module) {
@@ -70,3 +69,4 @@ if (require.main === module) {
       console.error("Error:", err.message);
     });
 }
+module.exports = app;
