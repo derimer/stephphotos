@@ -1,7 +1,7 @@
 {
-  "name": "@harmonia/client",
+  "name": "stephphotos",
   "version": "1.0.0",
-  "description": "Client-side application for Harmonia project",
+  "description": "Client-side application for Steph Photos project",
   "author": "Jean René",
   "license": "MIT",
   "private": true,
