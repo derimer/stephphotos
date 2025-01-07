@@ -10,7 +10,7 @@ const imgActions = require("../../controllers/imgActions");
 const ContactRepository = require("../../../database/models/ContactRepository");
 const AdminRepository = require("../../../database/models/AdminRepository");
 const galleryActions = require("../../controllers/galleryActions");
-const itemsRouter=require("./items/router")
+
 // Initialisation des repositories
 const contactRepository = new ContactRepository();
 const adminRepository = new AdminRepository(db);
