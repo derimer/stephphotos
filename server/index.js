@@ -1,4 +1,3 @@
-// Load environment variables from .env file
 require("dotenv").config();
 
 const path = require("path");
@@ -10,7 +9,6 @@ const router = require("./app/routers/api/router");
 
 const db = require("./database/client");
 
-
 // Initialisation de l'application Express
 const app = express();
 const port = process.env.APP_PORT || 3001;
@@ -19,8 +17,23 @@ const port = process.env.APP_PORT || 3001;
 const publicPath = path.join(__dirname, "public");
 const uploadsPath = path.join(publicPath, "uploads");
 
-// Middleware
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+// Middleware CORS avec gestion dynamique des origines (version simplifiée)
+const allowedOrigins = [
+  "http://localhost:3000", // Développement local
+  "https://stephphotos-client-fmid-pc2u6gc7w-derimer-jean-renes-projects.vercel.app", // Domaine déployé
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) =>
+      !origin || allowedOrigins.includes(origin)
+        ? callback(null, true)
+        : callback(new Error("Not allowed by CORS")),
+    credentials: true, // Si vous utilisez des cookies ou des sessions
+  })
+);
+
+// Middleware JSON
 app.use(express.json());
 
 // Servir les fichiers statiques
@@ -28,7 +41,6 @@ app.use(express.static(publicPath));
 app.use("/uploads", express.static(uploadsPath));
 
 // Test de la connexion à la base de données
-
 app.get("/api/test", (req, res) => {
   res.json({ succès: true });
 });
@@ -50,13 +62,11 @@ if (router && typeof router === "function") {
     "Le router importé n'est pas valide. Vérifiez son exportation."
   );
 }
+
 // Middleware pour gérer les routes inexistantes
 app.use((req, res) => {
   res.status(404).send("Route non trouvée");
 });
-
-// Exportez uniquement l'application pour les tests
-
 
 // Si vous exécutez ce fichier directement, démarrez le serveur
 if (require.main === module) {
@@ -69,4 +79,5 @@ if (require.main === module) {
       console.error("Error:", err.message);
     });
 }
+
 module.exports = app;
