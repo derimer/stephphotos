@@ -35,5 +35,9 @@
   "lint-staged": {
     "*.sql": "prettier --check",
     "*.js": "eslint --report-unused-disable-directives"
-  }
+  },
+  "engines": {
+  "node": "18.x"
+}
+
 }

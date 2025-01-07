@@ -40,7 +40,11 @@
   "lint-staged": {
   "*.js": "eslint --fix",
   "*.css": "prettier --write"
+},
+"engines": {
+  "node": "18.x"
 }
+
 
 }
 
