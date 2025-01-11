@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Steph from "../assets/images/image-85.jpg";
 import Hamburger from "../assets/images/hamburger.png";
+import Steph from "../assets/images/image-85.jpg";
+
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -64,7 +65,7 @@ function NavBar() {
         className="hamburger"
         onClick={toggleMenu}
       >
-        <img src={Hamburger} alt="" />
+        <img src={Hamburger} alt="Hamburger" />
         Menu
       </button>
     </header>

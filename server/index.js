@@ -18,18 +18,12 @@ const publicPath = path.join(__dirname, "public");
 const uploadsPath = path.join(publicPath, "uploads");
 
 // Middleware CORS avec gestion dynamique des origines (version simplifiée)
-const allowedOrigins = [
-  "http://localhost:3000", // Développement local
-  "https://stephphotos-client-fmid-pc2u6gc7w-derimer-jean-renes-projects.vercel.app", // Domaine déployé
-];
 
 app.use(
   cors({
-    origin: (origin, callback) =>
-      !origin || allowedOrigins.includes(origin)
-        ? callback(null, true)
-        : callback(new Error("Not allowed by CORS")),
-    credentials: true, // Si vous utilisez des cookies ou des sessions
+    origin: ["http://localhost:3000", "http://127.0.0.1:3000"], // Autoriser ces origines
+    methods: ["GET", "POST", "PUT", "DELETE"], // Méthodes HTTP autorisées
+    credentials: true, // Si vous gérez des cookies/sessions
   })
 );
 

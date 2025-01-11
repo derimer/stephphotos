@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "description": "",
+  "main": "index.js",
   "homepage": "https://github.com/WildCodeSchool/stephphotos#readme",
   "bugs": {
     "url": "https://github.com/WildCodeSchool/stephphotos/issues"
@@ -16,6 +17,7 @@
     "server"
   ],
   "scripts": {
+    "start": "node index.js",
     "postinstall": "husky install || true",
     "db:migrate": "npm run db:migrate --workspace=server",
     "db:seed": "npm run db:seed --workspace=server",
@@ -44,6 +46,7 @@
     "cors": "^2.8.5",
     "esbuild": "^0.24.1",
     "express": "^4.x.x",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "vite": "^4.4.0"
   }
 }
