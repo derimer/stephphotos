@@ -37,7 +37,7 @@
     "*.js": "eslint --report-unused-disable-directives"
   },
   "engines": {
-  "node": "18.x"
+  "node": "22.x"
 }
 
 }
