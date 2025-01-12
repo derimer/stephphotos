@@ -48,5 +48,9 @@
     "express": "^4.x.x",
     "jsonwebtoken": "^9.0.2",
     "vite": "^4.4.0"
-  }
+  },
+  "engines": {
+  "node": "22.x"
+}
+
 }

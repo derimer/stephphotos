@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "stephphotos",
   "builds": [
     {
       "src": "client/package.json",
@@ -24,10 +23,5 @@
       "src": "/(.*)",
       "dest": "/dist/$1"
     }
-  ],
-  "functions": {
-    "api/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  ]
 }
