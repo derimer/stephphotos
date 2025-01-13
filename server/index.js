@@ -36,7 +36,7 @@ app.use("/uploads", express.static(uploadsPath));
 
 // Test de la connexion à la base de données
 app.get("/api/test", (req, res) => {
-  res.json({ succès: true });
+  res.json({ message:"backend fonctionne!" });
 });
 
 // Ajout des en-têtes de sécurité
