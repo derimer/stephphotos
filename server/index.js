@@ -12,7 +12,7 @@ const db = require("./database/client");
 // Initialisation de l'application Express
 const app = express();
 const port = process.env.APP_PORT || 3001;
-
+const isDevelopment = process.env.NODE_ENV !== 'production';
 // Configuration des chemins
 const publicPath = path.join(__dirname, "public");
 const uploadsPath = path.join(publicPath, "uploads");

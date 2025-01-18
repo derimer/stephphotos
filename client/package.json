@@ -7,7 +7,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-     "prepare": "husky install",
+     "prepare": "if [ \"$CI\" != \"true\" ]; then husky install; fi",
     "start": "node server/index.js",
     "dev": "vite",
      "build": "vite build",
