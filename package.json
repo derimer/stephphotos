@@ -1,8 +1,4 @@
 {
-  "name": "stephphotos",
-  "version": "0.0.1",
-  "private": true,
-  "description": "",
   "main": "index.js",
   "homepage": "https://github.com/WildCodeSchool/stephphotos#readme",
   "bugs": {
@@ -38,7 +34,7 @@
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "eslint-plugin-react-refresh": "^0.4.16",
-    "husky": "^9.1.7",
+    "husky": "^8.0.0",
     "lint-staged": "^15.2.2"
   },
   "dependencies": {

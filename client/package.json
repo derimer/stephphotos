@@ -7,7 +7,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "husky install",
+     "prepare": "husky install",
     "start": "node server/index.js",
     "dev": "vite",
      "build": "vite build",
@@ -48,4 +48,3 @@
 
 
 }
-
