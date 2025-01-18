@@ -2,7 +2,7 @@
   "name": "@harmonia/server",
   "version": "1.0.0",
   "scripts": {
-    "prepare": "[ -n \"$CI\" ] || husky install",
+    "prepare": "husky install",
     "dev": "nodemon --ignore ./database/fixtures index.js",
     "db:migrate": "node ./bin/migrate.js",
     "db:seed": "node ./bin/seed.js",
