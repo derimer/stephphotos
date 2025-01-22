@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 // Import des images locales
 
-import Nenuphars from "../assets/images/image-71.jpg";
+import Nenuphars from "../assets/images/image-71.webp";
 
 function Accueil() {
   // Déclarez l'état pour stocker toutes les images

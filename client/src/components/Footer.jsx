@@ -1,8 +1,15 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <footer id="mainFooter">
       <p>&copy; copyright jean-rene Derimer - 2024</p>
-      <a href="https://www.instagram.com/stephanovalentinophoto/" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "inherit" }}>
+      <a
+        href="https://www.instagram.com/stephanovalentinophoto/"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "inherit" }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -15,6 +22,12 @@ function Footer() {
         </svg>
         stephanvalentinophoto
       </a>
+     
+      <Link
+        to="/login"
+        >
+       <p>Login</p>
+      </Link>
     </footer>
   );
 }

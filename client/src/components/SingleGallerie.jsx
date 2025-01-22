@@ -10,7 +10,7 @@ import Horizon from "../assets/images/image-52.jpg";
 import Plateau from "../assets/images/image-55.jpg";
 import Ombre from "../assets/images/image-56.jpg";
 import Billard from "../assets/images/image-57.jpg";
-import Mer from "../assets/images/image-71.jpg";
+import Mer from "../assets/images/image-71.webp";
 import Chemin from "../assets/images/image-72.jpg";
 import Foret from "../assets/images/image-73.jpg";
 import Portugal from "../assets/images/image-1.jpg";

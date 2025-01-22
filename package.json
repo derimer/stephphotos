@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "start": "node index.js",
-    "postinstall": "husky install || true",
+    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then rm -rf .husky; fi",
     "db:migrate": "npm run db:migrate --workspace=server",
     "db:seed": "npm run db:seed --workspace=server",
     "dev": "concurrently -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm:dev:*\"",
@@ -23,7 +23,7 @@
     "lint": "lint-staged",
     "test": "npm run test --workspaces --if-present",
     "clean": "cross-env-shell \"rm -rf ./client/node_modules ./server/node_modules ./node_modules ./package-lock.json\"",
-    "prepare": "husky install"
+    "prepare": ""
   },
   "keywords": [],
   "author": "WildCodeSchool",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.2.2",
     "@commitlint/config-conventional": "^19.2.2",
-    "concurrently": "^8.2.2",
+    "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
     "eslint-plugin-react-refresh": "^0.4.16",
     "husky": "^8.0.0",
@@ -41,8 +41,10 @@
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "esbuild": "^0.24.1",
+    "execa": "^9.5.2",
     "express": "^4.x.x",
     "jsonwebtoken": "^9.0.2",
+    "npm-run-all": "^4.1.5",
     "vite": "^4.4.0"
   },
   "engines": {

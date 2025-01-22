@@ -396,13 +396,16 @@ main#contact1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap:10px;
 }
 #mainFooter a {
  
   text-decoration: none; /* Supprime le soulignement */
  
 }
-
+#mainFooter p{
+  color:white;
+}
 #mainNav.open {
   display: flex;
 }
