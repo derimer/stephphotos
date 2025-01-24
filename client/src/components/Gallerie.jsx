@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import Gerbier from "../assets/images/image-2.jpg";
-import Pecheurs from "../assets/images/image-1.jpg";
-import Bouteilles from "../assets/images/image-19.jpg";
-import Acteur from "../assets/images/image-54.jpg";
+import Gerbier from "../assets/images/image-2.webp";
+import Pecheurs from "../assets/images/image-1.webp";
+import Bouteilles from "../assets/images/image-19.webp";
+import Acteur from "../assets/images/image-54.webp";
 
 export default function Gallerie() {
   return (

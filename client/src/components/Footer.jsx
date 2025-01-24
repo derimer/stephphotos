@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer id="mainFooter">
-      <p>&copy; copyright jean-rene Derimer - 2024</p>
+      <p>&copy; copyright jean-rene Derimer - 2025</p>
       <a
         href="https://www.instagram.com/stephanovalentinophoto/"
         target="_blank"
@@ -26,7 +26,7 @@ function Footer() {
       <Link
         to="/login"
         >
-       <p>Login</p>
+       <p>Admin</p>
       </Link>
     </footer>
   );

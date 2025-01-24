@@ -1,4 +1,4 @@
-import Steph from "../assets/images/image-85.jpg";
+import Steph from "../assets/images/image-85.webp";
 
 export default function About() {
   return (

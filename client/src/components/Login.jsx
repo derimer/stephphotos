@@ -34,6 +34,7 @@ export default function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          autoComplete="email" // Ajout de l'attribut pour le champ email
         />
         <input
           type="password"
@@ -41,9 +42,9 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          autoComplete="current-password" // Ajout de l'attribut pour le champ mot de passe
         />
         <button type="submit">Se connecter</button>
       </form>
     </div>
-  );
-}
+  );}
