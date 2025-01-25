@@ -23,7 +23,7 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3310/api/contact", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

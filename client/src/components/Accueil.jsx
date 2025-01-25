@@ -21,13 +21,13 @@ function Accueil() {
   ];
   const normalizeImageUrl = (filename) => {
     if (!filename) return "";
-    return `http://localhost:3310/uploads/${filename}`; // Assurez-vous que c'est correct
+    return `${import.meta.env.VITE_API_URL}/uploads/${filename}`; // Assurez-vous que c'est correct
   };
   // Fonction pour récupérer les images depuis l'API
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch("http://localhost:3310/api/accueil");
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/accueil`);
         if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
 
         const data = await response.json();

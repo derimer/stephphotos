@@ -22,7 +22,7 @@ export default function Admin() {
     if (!filename) return "";
     if (filename.startsWith("http")) return filename;
     const cleanFilename = filename.replace(/^\/uploads\//, "");
-    return `http://localhost:3310/uploads/${cleanFilename}`;
+    return `${import.meta.env.VITE_API_URL}/uploads/${cleanFilename}`;
   };
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Admin() {
 
   const fetchMessages = useCallback(async () => {
     try {
-      const response = await fetch("http://localhost:3310/api/admin/messages");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/messages`);
       if (!response.ok)
         throw new Error("Erreur lors de la récupération des messages");
       const data = await response.json();
@@ -51,7 +51,7 @@ export default function Admin() {
 
   const fetchImages = useCallback(async () => {
     try {
-      const response = await fetch("http://localhost:3310/api/accueil");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/accueil`);
       if (!response.ok)
         throw new Error("Erreur lors de la récupération des images");
       const data = await response.json();
@@ -73,7 +73,7 @@ export default function Admin() {
 
   const fetchGalleries = useCallback(async () => {
     try {
-      const response = await fetch("http://localhost:3310/api/galeries");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/galeries`);
       if (!response.ok)
         throw new Error("Erreur lors de la récupération des galeries");
       const data = await response.json();
@@ -91,7 +91,7 @@ export default function Admin() {
   const fetchGalleryImages = useCallback(async (galleryId) => {
     try {
       const response = await fetch(
-        `http://localhost:3310/api/galeries/${galleryId}/images`
+        `${import.meta.env.VITE_API_URL}/api/galeries/${galleryId}/images`
       );
       if (!response.ok)
         throw new Error("Erreur lors de la récupération des images");
@@ -157,7 +157,7 @@ export default function Admin() {
     formData.append("exposure", newImage.exposure);
 
     try {
-      const response = await fetch("http://localhost:3310/api/accueil", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/accueil`, {
         method: "POST",
         body: formData,
       });
@@ -194,7 +194,7 @@ export default function Admin() {
     formData.append("galleryId", selectedGallery);
 
     try {
-      const url = `http://localhost:3310/api/galeries/${selectedGallery}/images`;
+      const url = `${import.meta.env.VITE_API_URL}/api/galeries/${selectedGallery}/images`;
       const response = await fetch(url, {
         method: "POST",
         body: formData,
@@ -232,7 +232,7 @@ export default function Admin() {
   const handleDeleteMessage = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:3310/api/admin/messages/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/admin/messages/${id}`,
         { method: "DELETE" }
       );
       if (!response.ok)
@@ -246,7 +246,7 @@ export default function Admin() {
 
   const handleDeleteImage = async (id, galleryId) => {
     try {
-      const response = await fetch(`http://localhost:3310/api/images/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/images/${id}`, {
         method: "DELETE",
       });
       if (!response.ok)

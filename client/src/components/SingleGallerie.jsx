@@ -167,13 +167,13 @@ export default function SingleGallery() {
 
   const normalizeImageUrl = (filename) => {
     if (!filename) return "";
-    return `http://localhost:3310/uploads/${filename}`;
+    return `${import.meta.env.VITE_API_URL}/uploads/${filename}`;
   };
 
   const fetchImages = useCallback(async () => {
     try {
       const response = await fetch(
-        `http://localhost:3310/api/galeries/${galId}/images`
+        `${import.meta.env.VITE_API_URL}/api/galeries/${galId}/images`
       );
       if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
 
