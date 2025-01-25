@@ -21,7 +21,7 @@ const uploadsPath = path.join(publicPath, "uploads");
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://127.0.0.1:3000"], // Autoriser ces origines
+    origin: ["http://localhost:3000", "http://127.0.0.1:3000","http://vps-40561016.vps.ovh.net:3000"], // Autoriser ces origines
     methods: ["GET", "POST", "PUT", "DELETE"], // Méthodes HTTP autorisées
     credentials: true, // Si vous gérez des cookies/sessions
   })

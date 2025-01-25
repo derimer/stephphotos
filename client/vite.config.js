@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => ({
   },
   server: {
     port: 3000, // Définit le port du serveur de développement
+    allowedHosts: ["vps-40561016.vps.ovh.net"], 
   },
   esbuild: {
     loader: "jsx", // Définit le loader pour JSX
