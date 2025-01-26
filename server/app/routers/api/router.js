@@ -128,24 +128,25 @@ router.get("/admin/messages", async (req, res) => {
 
 // Supprimer un message par ID
 router.delete("/admin/messages/:id", async (req, res) => {
-  const { id } = req.params;
+  const id = parseInt(req.params.id, 10);
+  if (Number.isNaN(id)) {
+    return res.status(400).json({ message: "ID invalide" });
+  }
 
   try {
-    const message = await contactRepository.readById({ id });
-
-    if (!message) {
-      return res.status(404).json({ error: "Message non trouvé" });
-    }
-
-    await contactRepository.deleteById(id);
-    return res.status(200).json({ message: "Message supprimé avec succès" });
+    const success = await contactRepository.delete(id);
+    if (success) {
+      return res.status(200).json({ message: "Message supprimé avec succès" });
+    } 
+      return res.status(404).json({ message: "Message non trouvé" });
+    
   } catch (error) {
     console.error("Erreur lors de la suppression du message:", error);
-    return res
-      .status(500)
-      .json({ error: "Erreur lors de la suppression du message" });
+    return res.status(500).json({ message: "Erreur lors de la suppression du message" });
   }
 });
+
+
 
 // Routes pour la galerie d'images
 router.get("/accueil", async (req, res) => {

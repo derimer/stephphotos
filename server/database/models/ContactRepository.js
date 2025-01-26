@@ -46,6 +46,18 @@ class ContactRepository extends AbstractRepository {
       throw error; // Relancez l'erreur pour une gestion ultérieure
     }
   }
-}
+
+  async delete(id) {
+    const [result] = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+  
+    return result.affectedRows > 0;
+  }
+}  
+  
+  
+
 
 module.exports = ContactRepository;

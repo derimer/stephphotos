@@ -232,14 +232,20 @@ export default function Admin() {
   const handleDeleteMessage = async (id) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/admin/messages/${id}`,
-        { method: "DELETE" }
+        `http://localhost:3310/api/admin/messages/${id}`,
+        {
+          method: "DELETE",
+        }
       );
-      if (!response.ok)
+      if (!response.ok) {
+        const errorData = await response.text();
+        console.error("Réponse du serveur:", errorData);
         throw new Error("Erreur lors de la suppression du message");
+      }
+  
       setMessages(messages.filter((message) => message.id !== id));
-    } catch (erreur) {
-      console.error("Erreur lors de la suppression du message:", erreur);
+    } catch (err) {
+      console.error("Erreur:", err); // Remplacez 'error' par 'err'
       setError("Erreur lors de la suppression du message");
     }
   };
@@ -359,26 +365,23 @@ export default function Admin() {
       <div className="exist">
         <h2>Messages des utilisateurs</h2>
         {messages.length > 0 ? (
-          <ul>
-            {messages.map((message) => (
-              <li key={message.id}>
-                <strong>
-                  {message.firstName} {message.lastName}
-                </strong>{" "}
-                ({message.email}):
-                <p>{message.message}</p>
-                <button
-                  type="button"
-                  onClick={() => handleDeleteMessage(message.id)}
-                >
-                  supprimer
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Aucun message à afficher.</p>
-        )}
+  <ul>
+    {messages.map((message) => (
+      <li key={message.id}>
+        <strong>
+          {message.firstName} {message.lastName}
+        </strong>{" "}
+        ({message.email}):
+        <p>{message.message}</p>
+        <button  type="button"onClick={() => handleDeleteMessage(message.id)}>
+          supprimer
+        </button>
+      </li>
+    ))}
+  </ul>
+) : (
+  <p>Aucun message à afficher.</p>
+)}
       </div>
 
       <div className="ajoutImage">
