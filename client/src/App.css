@@ -54,6 +54,7 @@ img {
   width: 100%;
   position: fixed;
   top: 0;
+  height:100px;
 }
 #fName {
   background-color: #f26160;
@@ -81,13 +82,14 @@ img {
 #mainNav img {
   width: 80px;
   height: 80px;
+  border:2px solid white;
 }
 #mainNav {
   position: absolute;
   background-color: black;
   width: 100%;
   top: 40px;
-  padding-bottom: 10px;
+  padding: 10px;
   display: none;
 }
 #mainNav ul {

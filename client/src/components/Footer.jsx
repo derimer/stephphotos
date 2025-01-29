@@ -26,7 +26,7 @@ function Footer() {
       <Link
         to="/login"
         >
-       <p>Admin</p>
+       <p>Login</p>
       </Link>
     </footer>
   );
