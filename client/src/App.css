@@ -55,6 +55,8 @@ img {
   position: fixed;
   top: 0;
   height:100px;
+  
+  
 }
 #fName {
   background-color: #f26160;
@@ -356,7 +358,7 @@ main#contact1 {
   font-weight: bold;
 }
 #singleGallery ul {
-  margin-top: 50px;
+  margin-top: 80px;
   
 }
  
