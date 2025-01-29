@@ -348,6 +348,7 @@ main#contact1 {
   border-radius: 50%;
   width: 250px;
   height: 250px;
+  border:2px solid white;
 }
 
 #singleGallery h1 {
