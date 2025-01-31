@@ -57,14 +57,7 @@ function Accueil() {
     }
   }, [location,images]);
 
-  // Choisir une image aléatoire
-  useEffect(() => {
-    if (images.length > 0) {
-      const chosenImage = images[Math.floor(Math.random() * images.length)];
-      setRandomImage(chosenImage);
-    }
-  }, [images]);
-
+  
   return (
     <section
       id="pageContent"
