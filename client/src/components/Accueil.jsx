@@ -1,6 +1,6 @@
 // src/components/Accueil.js
 import { useEffect, useState } from "react";
-
+import { useLocation } from "react-router-dom"; 
 // Import des images locales
 
 import Nenuphars from "../assets/images/image-71.webp";
@@ -9,7 +9,7 @@ function Accueil() {
   // Déclarez l'état pour stocker toutes les images
   const [images, setImages] = useState([]);
   const [randomImage, setRandomImage] = useState(null);
-
+  const location = useLocation();
   // Images locales définies
   const localImages = [
     {
@@ -55,7 +55,7 @@ function Accueil() {
       const chosenImage = images[Math.floor(Math.random() * images.length)];
       setRandomImage(chosenImage);
     }
-  }, [images]);
+  }, [location,images]);
 
   // Choisir une image aléatoire
   useEffect(() => {
