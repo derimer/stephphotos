@@ -23,7 +23,7 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+    fetch(`${import.meta.env.VITE_API_URL}/contact`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
