@@ -58,7 +58,6 @@ import Aude from "../assets/images/image-69.webp";
 import Lingerie1 from "../assets/images/image-68.webp";
 import Lingerie2 from "../assets/images/image-67.webp";
 import Cannes from "../assets/images/image-64.webp";
-import Aurore from "../assets/images/image-51.webp";
 import Audray3 from "../assets/images/image-33.webp";
 import Lily3 from "../assets/images/image-3.webp";
 
@@ -146,8 +145,7 @@ export default function SingleGallery() {
           Aude,
           Lingerie1,
           Lingerie2,
-          Cannes,
-          Aurore,
+          Cannes,          
           Audray3,
           Lily3,
         ],
