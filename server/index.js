@@ -32,7 +32,7 @@ app.use(express.json());
 
 // Servir les fichiers statiques
 app.use(express.static(publicPath));
-app.use("/uploads", express.static(uploadsPath));
+app.use("/api/uploads", express.static(uploadsPath));
 app.get('/api/hello', (req, res) => {
   res.status(200).send('Hello from Vercel!');
 });
