@@ -283,7 +283,7 @@ export default function Admin() {
       {error && <p className="error">{error}</p>}
 
       <div className="ajoutImage">
-        <h2>Ajouter une nouvelle image</h2>
+        <h2>Ajouter une nouvelle image à l'accueil</h2>
         <input
           type="file"
           accept="image/*"
