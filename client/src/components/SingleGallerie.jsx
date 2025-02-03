@@ -112,8 +112,7 @@ export default function SingleGallery() {
       },
       gal3: {
         title: "Couleurs",
-        images: [
-          Bouteilles,
+        images: [        
           Mariage,
           Urban,
           Cloche,
