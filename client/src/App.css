@@ -382,7 +382,7 @@ main#contact1 {
 }
 #galleryContainer img {
   border: solid 5px var(--white);
-  max-height: 80%;
+  max-height: 90%;
   width: auto;
 }
 #galleryContainer.visible {
