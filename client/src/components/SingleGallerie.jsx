@@ -3,7 +3,6 @@ import { useSearchParams } from "react-router-dom";
 
 import Pecheur from "../assets/images/image-2.webp";
 import Gerbier from "../assets/images/image-6.webp";
-import Festival from "../assets/images/image-10.webp";
 import Paris from "../assets/images/image-14.webp";
 import Concert from "../assets/images/image-50.webp";
 import Horizon from "../assets/images/image-52.webp";
@@ -74,8 +73,7 @@ export default function SingleGallery() {
         title: "Paysages",
         images: [
           Pecheur,
-          Gerbier,
-          Festival,
+          Gerbier,          
           Paris,
           Concert,
           Horizon,
