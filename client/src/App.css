@@ -420,7 +420,11 @@ main form textarea {
   border-radius: 5px;
   color: white;
 }
-
+.home img{
+  width: 100%; /* S'adapte à la largeur de l'écran */
+  height: auto; /* Ajuste automatiquement la hauteur */
+  overflow: hidden;
+}
 .gestion {
   font-family: "Arial", sans-serif;
 

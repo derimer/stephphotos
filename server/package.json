@@ -39,6 +39,6 @@
     "*.js": "eslint --report-unused-disable-directives"
   },
   "engines": {
-    "node": "20.x"
+    "node": ">=20.x"
   }
 }
