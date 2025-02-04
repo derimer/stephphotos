@@ -32,7 +32,6 @@ import Urban from "../assets/images/image-92.webp";
 import Cloche from "../assets/images/image-29.webp";
 import Printemps from "../assets/images/image-45.webp";
 import Fontaine from "../assets/images/image-46.webp";
-import Couloir from "../assets/images/image-47.webp";
 import Spectacle from "../assets/images/image-58.webp";
 import Lyon from "../assets/images/image-70.webp";
 import Rue from "../assets/images/image-76.webp";
@@ -42,20 +41,9 @@ import Sortie from "../assets/images/image-83.webp";
 import Miss from "../assets/images/image-84.webp";
 import Tasses from "../assets/images/image-91.webp";
 import Violons from "../assets/images/image-95.webp";
-import Audray from "../assets/images/image-13.webp";
-import Pilote from "../assets/images/image-41.webp";
-import Lily from "../assets/images/image-59.webp";
-import Masque from "../assets/images/image-87.webp";
-import Regards from "../assets/images/image-39.webp";
 import Vintage from "../assets/images/image-96.webp";
 import Centrale from "../assets/images/image-22.webp";
-import Fanny from "../assets/images/image-40.webp";
-import Audray2 from "../assets/images/image-42.webp";
 import Gare from "../assets/images/image-48.webp";
-import Julie from "../assets/images/image-86.webp";
-import Aude from "../assets/images/image-69.webp";
-import Lingerie1 from "../assets/images/image-68.webp";
-import Lingerie2 from "../assets/images/image-67.webp";
 import Cannes from "../assets/images/image-64.webp";
 import Audray3 from "../assets/images/image-33.webp";
 import Lily3 from "../assets/images/image-3.webp";
@@ -115,8 +103,7 @@ export default function SingleGallery() {
           Urban,
           Cloche,
           Printemps,
-          Fontaine,
-          Couloir,
+          Fontaine,         
           Spectacle,
           Lyon,
           Rue,
@@ -130,18 +117,7 @@ export default function SingleGallery() {
       },
       gal4: {
         title: "Portrait&charme",
-        images: [
-          Audray,
-          Pilote,
-          Lily,
-          Masque,
-          Regards,
-          Fanny,
-          Audray2,
-          Julie,
-          Aude,
-          Lingerie1,
-          Lingerie2,
+        images: [     
           Cannes,          
           Audray3,
           Lily3,
