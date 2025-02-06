@@ -54,7 +54,7 @@ img {
   align-items: center;
   justify-content: center;
   color: white;
- background-image: url(./assets/images/hero-bg.png);
+ background-image: url(./assets/images/hero-bg.png); 
  background-size: cover;
  background-repeat: no-repeat;
   height: 180px;
@@ -402,7 +402,7 @@ main#contact1 {
   width: 100%; 
   bottom: 0;
   position: fixed;
-  background-image: url(./assets/images/hero-bg.png);
+  background-image: url(./assets/images/hero-bg.png) ; 
   background-size: cover;
   font-size: 16px;
   display: flex;
@@ -500,9 +500,7 @@ main form textarea {
   flex-wrap: wrap;
   gap: 20px;
 }
-#galeries {
-  margin-top: 120px;
-}
+
 .uldajout li {
   background-color: #333;
   padding: 15px;
