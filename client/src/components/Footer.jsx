@@ -8,7 +8,7 @@ function Footer() {
         href="https://www.instagram.com/stephanovalentinophoto/"
         target="_blank"
         rel="noopener noreferrer"
-        style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "inherit" }}
+        style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "white" }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -30,14 +30,19 @@ body {
   min-height: 100%;
   background-color: black;
 }
-h1 {
-  font-family: wfont_d0599a_0ca1c94f35c547868d933030d180fede,
-    wf_0ca1c94f35c547868d933030d, orig_vogue_regular;
-  display: inline !important;
-  font-size: 1.2em !important;
-
+#mainHeader h1 {
+ 
+  font-size: 1.5em !important;
   font-weight: bold !important;
   margin-left: 20px;
+  margin-top:50px;
+  /* Dégradé sur le texte */
+  background-image: linear-gradient(90deg, #D6C7FF, #AB8BFF);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
 }
 
 img {
@@ -45,16 +50,17 @@ img {
   height: auto;
 }
 #mainHeader {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  color: white;
+  display: flex; /* Simplifie la disposition pour éviter les restrictions de la grille */
   align-items: center;
-  background-color: black;
-  height: 80px;
+  justify-content: center;
+  color: white;
+ background-image: url(./assets/images/hero-bg.png);
+ background-size: cover;
+ background-repeat: no-repeat;
+  height: 180px;
   width: 100%;
-  position: fixed;
-  top: 0;
-  height:100px;
+  flex-direction: column;
+  
   
   
 }
@@ -135,7 +141,7 @@ img {
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  border: 1px solid white;
+  
 }
 #pageContent.home {
   display: flex;
@@ -396,7 +402,8 @@ main#contact1 {
   width: 100%; 
   bottom: 0;
   position: fixed;
-  color: white;
+  background-image: url(./assets/images/hero-bg.png);
+  background-size: cover;
   font-size: 16px;
   display: flex;
   align-items: center;
