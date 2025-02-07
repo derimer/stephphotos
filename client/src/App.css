@@ -32,7 +32,7 @@ body {
 }
 #mainHeader h1 {
  
-  font-size: 1.5em !important;
+  font-size: 2.5 em !important;
   font-weight: bold !important;
   margin-left: 20px;
   margin-top:50px;
@@ -54,7 +54,7 @@ img {
   align-items: center;
   justify-content: center;
   color: white;
- background-image: url(./assets/images/hero-bg.png); 
+ background-color: rgb(3, 3, 27);
  background-size: cover;
  background-repeat: no-repeat;
   height: 180px;
@@ -336,7 +336,7 @@ main#contact1 {
   align-items: center;
   margin-top: 80px;
   color: white;
-  background-color: #333;
+  background-color: #0f0303;
   font-family: "Dancing Script", serif;
   font-optical-sizing: auto;
   height: 830px;
@@ -402,7 +402,7 @@ main#contact1 {
   width: 100%; 
   bottom: 0;
   position: fixed;
-  background-image: url(./assets/images/hero-bg.png) ; 
+  background-color: rgb(3, 3, 27);   
   background-size: cover;
   font-size: 16px;
   display: flex;
