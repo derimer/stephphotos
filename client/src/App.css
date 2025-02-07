@@ -161,6 +161,7 @@ img {
   flex-flow: column nowrap;
   justify-content: flex-end;
   position: relative;
+  bottom:150px;
   text-align: center;
 }
 #pictInfo h1 {
