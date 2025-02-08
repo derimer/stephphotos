@@ -58,7 +58,7 @@ export default function SingleGallery() {
   const staticGalleries = useMemo(
     () => ({
       gal1: {
-        title: "Paysages",
+        title: "Voyages",
         images: [
           Pecheur,
           Gerbier,          
