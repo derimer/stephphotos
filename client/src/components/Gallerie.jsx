@@ -13,7 +13,7 @@ export default function Gallerie() {
           <li>
             <Link to="/gallerie/singleGallery?id=1">
               <img src={Gerbier} alt="mont gerbier" />
-              <h2>PAYSAGES</h2>
+              <h2>Voyages</h2>
             </Link>
           </li>
           <li>

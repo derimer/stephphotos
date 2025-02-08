@@ -253,7 +253,10 @@ main ul li img {
   object-fit: initial;
   border: 1px solid white;
   padding: 20px;
+  max-width: 90%;
+  height: auto;
 }
+
 main #singleGallery {
   margin-top: 10px;
 }
@@ -550,6 +553,9 @@ main form textarea {
   .uldajout li {
     width: 100%;
   }
+  #mainHeader h1{
+    font-size: 20px;
+  }
   #mainFooter {
     font-size: 10px;
   }
@@ -560,6 +566,10 @@ main form textarea {
     flex-direction: column;
     font-size: 18px;
     margin: 10px;
+  }
+  main ul li img {
+    max-width: 90%;
+    height: auto;
   }
 }
 @media (max-width: 445px) {
