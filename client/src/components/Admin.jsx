@@ -137,8 +137,8 @@ export default function Admin() {
     if (!selectedFile) return;
   
     const options = {
-      maxSizeMB: 1.3,// Taille maximale en Mo
-      maxWidthOrHeight: 2500, // Dimensions maximales
+      maxSizeMB: 1,// Taille maximale en Mo
+      maxWidthOrHeight: 1500, // Dimensions maximales
       useWebWorker: true, // Utilisation de Web Workers pour améliorer les performances
     };
   
