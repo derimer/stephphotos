@@ -1,6 +1,8 @@
 // controllers/imageController.js
+const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
+const sharp = require("sharp");
 // Importer Multer
 const ImageRepository = require("../../database/models/ImageRepository");
 const tables = require("../../database/tables");
@@ -27,6 +29,21 @@ const browse = async (req, res, next) => {
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
+  }
+};
+exports.processTiffImage = async (req, res) => {
+  try {
+    const inputPath = req.file.path; // Chemin du fichier téléchargé
+    const outputPath = `optimized/${req.file.filename}.jpeg`;
+
+    await sharp(inputPath)
+      .jpeg({ quality: 80 })
+      .toFile(outputPath);
+
+    res.status(200).send("Image convertie et optimisée avec succès");
+  } catch (error) {
+    console.error("Erreur lors de la conversion de l'image :", error);
+    res.status(500).send("Erreur lors de la conversion de l'image");
   }
 };
 const deleteImage = async (req, res) => {
@@ -141,16 +158,29 @@ exports.getAccueilImage = async (req, res) => {
     res.status(500).json({ message: "Erreur serveur" });
   }
 };
+
+
 exports.deleteImage = async (req, res) => {
   const { id } = req.params;
 
   try {
-    // Suppression de l'image dans la base de données
-    await imageRepository.deleteImageById(id); // Utilisez la méthode correcte
-    res.json({ message: "Image supprimée avec succès" });
+    const image = await imageRepository.read(id);
+    if (!image) {
+      return res.status(404).json({ message: "Image non trouvée" });
+    }
+
+    const filePath = path.join(__dirname, "../public/assets/images", image.filename);
+
+    // Supprimer le fichier physique
+    fs.unlink(filePath, (err) => {
+      if (err) console.error("Erreur lors de la suppression du fichier :", err);
+    });
+
+    await imageRepository.deleteImageById(id);
+   return res.json({ message: "Image supprimée avec succès" });
   } catch (err) {
     console.error("Erreur lors de la suppression de l'image :", err);
-    res.status(500).json({ error: err.message });
+   return res.status(500).json({ error: err.message });
   }
 };
 

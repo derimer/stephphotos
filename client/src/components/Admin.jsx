@@ -18,7 +18,7 @@ export default function Admin() {
   const [error, setError] = useState("");
   const [imagesFetched, setImagesFetched] = useState(false);
   const navigate = useNavigate();
-
+  const acceptedFormats = ["image/jpeg", "image/png", "image/webp"];
   const normalizeImageUrl = (filename) => {
     if (!filename) return "";
     if (filename.startsWith("http")) return filename;
@@ -131,32 +131,25 @@ export default function Admin() {
       fetchImagesForGalleries();
     }
   }, [galleries, imagesFetched, fetchImagesForGalleries]);
-
-  const handleFileChange = async (e) => {
+  const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
   
-    const options = {
-      maxSizeMB: 1,// Taille maximale en Mo
-      maxWidthOrHeight: 1500, // Dimensions maximales
-      useWebWorker: true, // Utilisation de Web Workers pour améliorer les performances
-    };
-  
-    try {
-      const compressedFile = await imageCompression(selectedFile, options);
-      setFile(compressedFile);
-  
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result);
-      };
-      reader.readAsDataURL(compressedFile);
-    } catch (erreur) {
-      console.error('Erreur lors de la compression de l\'image :', erreur);
+    if (selectedFile.size > 100 * 1024 * 1024) {
+      console.error("Le fichier est trop volumineux (limite de 100 Mo).");
+      return;
     }
+  
+    setFile(selectedFile);
+  
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreview(reader.result); // Seulement pour une prévisualisation
+    };
+    reader.readAsDataURL(selectedFile);
   };
   
-
+  
   const handleAddImage = async () => {
     if (!file || !newImage.name || !newImage.author || !newImage.exposure) {
       setError("Veuillez remplir tous les champs et sélectionner une image");

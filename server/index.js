@@ -18,6 +18,8 @@ const publicPath = path.join(__dirname, "public");
 const uploadsPath = path.join(publicPath, "uploads");
 
 // Middleware CORS avec gestion dynamique des origines (version simplifiée)
+app.use(express.json({ limit: "200mb" }));
+app.use(express.urlencoded({ limit: "200mb", extended: true }));
 
 app.use(
   cors({
