@@ -110,12 +110,7 @@ img {
   margin-left: 90px;
 }
 #mainNav a {
-  background-image: linear-gradient(90deg, #D6C7FF, #AB8BFF);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  white-space: nowrap;
+  color:white;
   text-decoration: none;
   font-size: calc(var(--normal-text-size-value)* 1rem);
     display: block;
@@ -445,23 +440,12 @@ main#contact1 {
   gap:10px;
 }
 #mainFooter a {
-  background-image: linear-gradient(90deg, #D6C7FF, #AB8BFF);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  white-space: nowrap;
- 
+  color:white;
   text-decoration: none; /* Supprime le soulignement */
  
 }
 #mainFooter p{
-  background-image: linear-gradient(90deg, #D6C7FF, #AB8BFF);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  white-space: nowrap;
+  color:white;
 }
 #mainNav.open {
   display: flex;
