@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import Gerbier from "../assets/images/image-2.webp";
 import Bleudemer from "../assets/images/image-6.webp";
 import Chemin from "../assets/images/image-14.webp";
-import Concert from "../assets/images/image-50.webp";
+import Concert from "../assets/images/image-5.webp";
 import Grandsud from "../assets/images/image-52.webp";
 import Isabelle from "../assets/images/image-55.webp";
 import Ombre from "../assets/images/image-56.webp";
@@ -186,9 +186,8 @@ export default function SingleGallery() {
       },
       gal10: {
         title: "Evenements couleur",
-        images: [     
-          Cannes,          
-          Concert,
+        images: [    
+         Concert,
           
         ],
       },
