@@ -53,4 +53,14 @@ CREATE TABLE accueil (
   exposure VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-insert into galeries (title) values ('voyages'), ('N_et_B'),("couleurs"),('portrait_et_charme');
+insert into galeries (title) values 
+  ('voyages_n&b'), 
+  ('voyages_couleur'),
+  ('sublime_n&b'),
+  ('sublime_couleur'),
+  ('portrait_n&b'),
+  ('portrait_couleur'),
+  ('charme_n&b'),
+  ('charme_couleur'),
+  ('evenements_n&b'),
+  ('evenements_couleur');

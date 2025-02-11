@@ -65,7 +65,9 @@ function Accueil() {
       style={{
         backgroundImage: randomImage ? `url(${randomImage.filename})` : "none",
       }}
+      
     >
+      <div></div>
       <div id="pictInfo">
         {randomImage ? (
           <>

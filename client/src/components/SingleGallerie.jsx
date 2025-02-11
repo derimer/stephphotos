@@ -1,23 +1,23 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import Pecheur from "../assets/images/image-2.webp";
-import Gerbier from "../assets/images/image-6.webp";
-import Paris from "../assets/images/image-14.webp";
+import Gerbier from "../assets/images/image-2.webp";
+import Bleudemer from "../assets/images/image-6.webp";
+import Chemin from "../assets/images/image-14.webp";
 import Concert from "../assets/images/image-50.webp";
-import Horizon from "../assets/images/image-52.webp";
-import Plateau from "../assets/images/image-55.webp";
+import Grandsud from "../assets/images/image-52.webp";
+import Isabelle from "../assets/images/image-55.webp";
 import Ombre from "../assets/images/image-56.webp";
-import Billard from "../assets/images/image-57.webp";
-import Mer from "../assets/images/image-71.webp";
-import Chemin from "../assets/images/image-72.webp";
-import Foret from "../assets/images/image-73.webp";
-import Portugal from "../assets/images/image-1.webp";
-import Piscine from "../assets/images/image-4.webp";
-import Verres from "../assets/images/image-8.webp";
-import Perspective from "../assets/images/image-9.webp";
-import Salon from "../assets/images/image-16.webp";
-import Bouteilles from "../assets/images/image-18.webp";
+import Turquoise from "../assets/images/image-57.webp";
+import Nenuphars from "../assets/images/image-71.webp";
+import Piscine from "../assets/images/image-72.webp";
+import Plagenb from "../assets/images/image-73.webp";
+import Pecheur from "../assets/images/image-1.webp";
+import Lilly2 from "../assets/images/image-4.webp";
+import Boulanger from "../assets/images/image-8.webp";
+import Billard from "../assets/images/image-9.webp";
+import Bar from "../assets/images/image-16.webp";
+import Salon from "../assets/images/image-18.webp";
 import News from "../assets/images/image-20.webp";
 import Gallerienb from "../assets/images/image-21.webp";
 import Miroire from "../assets/images/image-35.webp";
@@ -25,7 +25,7 @@ import Sevillane from "../assets/images/image-36.webp";
 import Pallier from "../assets/images/image-44.webp";
 import Fleurs from "../assets/images/image-60.webp";
 import Auto from "../assets/images/image-61.webp";
-import Bar from "../assets/images/image-89.webp";
+import Bar2 from "../assets/images/image-89.webp";
 import Christal from "../assets/images/image-94.webp";
 import Mariage from "../assets/images/image-15.webp";
 import Urban from "../assets/images/image-92.webp";
@@ -47,6 +47,15 @@ import Gare from "../assets/images/image-48.webp";
 import Cannes from "../assets/images/image-64.webp";
 import Audray3 from "../assets/images/image-33.webp";
 import Lily3 from "../assets/images/image-3.webp";
+import Portugal from "../assets/images/image-26.webp";
+import Pilote from "../assets/images/image-41.webp";
+import Regards from "../assets/images/image-11.webp";
+import Audray4 from "../assets/images/image-13.webp";
+import Bain from "../assets/images/image-31.webp";
+import Colonnes from "../assets/images/image-32.webp";
+import Voisine from "../assets/images/image-40.webp";
+import Acteur from "../assets/images/image-54.webp";
+import Lilly5 from "../assets/images/image-59.webp";
 
 export default function SingleGallery() {
   const [gallery, setGallery] = useState(null);
@@ -58,54 +67,74 @@ export default function SingleGallery() {
   const staticGalleries = useMemo(
     () => ({
       gal1: {
-        title: "Voyages",
+        title: "Voyages n&b",
         images: [
-          Pecheur,
           Gerbier,          
-          Paris,
-          Concert,
-          Horizon,
-          Plateau,
-          Ombre,
-          Billard,
-          Mer,
-          Chemin,
-          Foret,
+           Portugal,             
           Centrale,
+          Sevillane,
+          Gallerienb,
+          Pecheur,
+          Plagenb,
         ],
       },
       gal2: {
-        title: "N&B",
+        title: "voyages couleur",
         images: [
-          Portugal,
+                
+         Bleudemer,
+          Chemin,
+          Grandsud,          
+         Nenuphars,
+          Turquoise,
+          Isabelle,
           Piscine,
-          Verres,
-          Perspective,
-          Salon,
-          Bouteilles,
-          News,
-          Gallerienb,
-          Miroire,
-          Sevillane,
-          Pallier,
-          Fleurs,
-          Auto,
-          Bar,
-          Christal,
-          Vintage,
-          Gare,
+
+                   
+                 
+          
+          
+          
+          
         ],
       },
       gal3: {
-        title: "Couleurs",
+        title: "sublime n&b",
         images: [        
+          Billard,
+          Gare, 
+          Vintage,
+          Christal, 
+          Bar, 
+          Fleurs,
+          Pallier, 
+          Miroire, 
+          News,
+          Salon,
+          Boulanger,
+          Christal,
+          Bar2,
+          
+          
+                 
+          
+          
+          
+          
+        ],
+      },
+      gal4: {
+        title: "sublime couleur",
+        images: [    
+           
+          Ombre,
           Mariage,
-          Urban,
           Cloche,
           Printemps,
-          Fontaine,         
-          Spectacle,
-          Lyon,
+          Urban,
+          Colonnes, 
+          Fontaine,
+          Spectacle, 
           Rue,
           Ruines,
           Coiffeurs,
@@ -113,14 +142,54 @@ export default function SingleGallery() {
           Miss,
           Tasses,
           Violons,
+          
         ],
       },
-      gal4: {
-        title: "Portrait&charme",
+      gal5: {
+        title: "Portait n&b ",
+        images: [     
+          Pilote,
+          Voisine,
+          Acteur,
+          Lilly5,
+        ],
+      },
+      gal6: {
+        title: "Portait couleur",
+        images: [   
+         Audray4,
+        ],
+      },
+      gal7: {
+        title: "Charme n&b",
+        images: [     
+          Lily3,
+          Lilly2,
+          Regards,
+        ],
+      },
+      gal8: {
+        title: "charme couleur",
         images: [     
           Cannes,          
           Audray3,
-          Lily3,
+          Bain,
+         
+        ],
+      },
+      gal9: {
+        title: "Evenements n&b",
+        images: [     
+          Lyon,
+          Auto,
+        ],
+      },
+      gal10: {
+        title: "Evenements couleur",
+        images: [     
+          Cannes,          
+          Concert,
+          
         ],
       },
     }),
