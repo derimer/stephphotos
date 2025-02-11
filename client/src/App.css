@@ -153,6 +153,27 @@ img {
   font-size: 16px;
   font-weight: lighter;
 }
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-container img {
+  width: 300Px; /* S'assure que l'image occupe toute la largeur disponible */
+  height: 300px;
+}
+
+.image-container h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* Ajustez la couleur du texte */
+  font-size: 2rem; /* Ajustez la taille du texte selon vos préférences */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombre de texte pour améliorer la lisibilité */
+  text-align: center; /* Centrer le texte si nécessaire */
+}
+
 #pictInfo {
   background-color: rgba(155, 155, 155, 0.8);
   padding: 40px;
@@ -265,6 +286,7 @@ main #singleGallery {
 main#gallerie1 h1 {
   color: black;
 }
+
 main#contact1 {
   margin-top: 80px;
   display: flex;
