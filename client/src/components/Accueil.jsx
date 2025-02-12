@@ -1,28 +1,30 @@
 // src/components/Accueil.js
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom"; 
+import { useLocation } from "react-router-dom";
 // Import des images locales
-
-import Nenuphars from "../assets/images/image-71.webp";
+import Salon from "../assets/images/image-81.webp";
 
 function Accueil() {
   // Déclarez l'état pour stocker toutes les images
   const [images, setImages] = useState([]);
   const [randomImage, setRandomImage] = useState(null);
   const location = useLocation();
+
   // Images locales définies
   const localImages = [
     {
-      filename: Nenuphars,
-      name: "Les nénuphars",
+      filename: Salon,
+      name: "Salon n&b",
       author: "Stéphane Valentin",
       exposure: "100 ISO - 18 mm - f/22 - 302 Sec",
     },
   ];
+
   const normalizeImageUrl = (filename) => {
     if (!filename) return "";
     return `${import.meta.env.VITE_API_URL}/uploads/${filename}`; // Assurez-vous que c'est correct
   };
+
   // Fonction pour récupérer les images depuis l'API
   useEffect(() => {
     const fetchImages = async () => {
@@ -49,15 +51,28 @@ function Accueil() {
 
     fetchImages();
   }, []);
+
   // Choisir une image aléatoire
   useEffect(() => {
     if (images.length > 0) {
       const chosenImage = images[Math.floor(Math.random() * images.length)];
       setRandomImage(chosenImage);
     }
-  }, [location,images]);
+  }, [location, images]);
 
-  
+  // Défilement des images toutes les 10 secondes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (images.length > 0) {
+        const chosenImage = images[Math.floor(Math.random() * images.length)];
+        setRandomImage(chosenImage);
+      }
+    }, 5000); // 10000 millisecondes = 10 secondes
+
+    // Nettoyer l'intervalle lorsque le composant est démonté
+    return () => clearInterval(interval);
+  }, [images]);
+
   return (
     <section
       id="pageContent"
@@ -65,9 +80,7 @@ function Accueil() {
       style={{
         backgroundImage: randomImage ? `url(${randomImage.filename})` : "none",
       }}
-      
     >
-      <div></div>
       <div id="pictInfo">
         {randomImage ? (
           <>
