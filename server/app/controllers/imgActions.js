@@ -164,27 +164,15 @@ exports.deleteImage = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const image = await imageRepository.read(id);
-    if (!image) {
-      return res.status(404).json({ message: "Image non trouvée" });
-    }
-
-    const filePath = path.join(__dirname, "../public/assets/images", image.filename);
-
-    // Supprimer le fichier physique
-    fs.unlink(filePath, (err) => {
-      if (err) console.error("Erreur lors de la suppression du fichier :", err);
-    });
-
-    await imageRepository.deleteImageById(id);
-   return res.json({ message: "Image supprimée avec succès" });
+    // Suppression de l'image dans la base de données
+    await imageRepository.deleteImageById(id); // Utilisez la méthode correcte
+    res.json({ message: "Image supprimée avec succès" });
   } catch (err) {
     console.error("Erreur lors de la suppression de l'image :", err);
-   return res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 
-// Route pour supprimer une image
 
 module.exports = {
   browse,
