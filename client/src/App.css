@@ -182,7 +182,7 @@ img {
 .accueil-links {
   font-size: 2rem;
   position: absolute;
-  bottom: 150px; /* Ajustez cette valeur selon vos besoins */
+  bottom: 300px; /* Ajustez cette valeur selon vos besoins */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -550,6 +550,29 @@ main form textarea {
   font-size: 1em;
   transition: background-color 0.3s ease;
 }
+/* CSS nécessaire */
+.background-layer {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.content-layer {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  min-height: 100vh;
+}
+
+/* Pour le footer */
+footer {
+  position: relative;
+  z-index: 3;
+}
+
 .ajoutImage button:hover,
 .exist button:hover {
   background-color: #4cae4c;

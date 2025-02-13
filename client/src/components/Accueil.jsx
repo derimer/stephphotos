@@ -1,8 +1,9 @@
 // src/components/Accueil.js
 import { useEffect, useState } from "react";
 import { useLocation,Link } from "react-router-dom";
+import imageCompression from 'browser-image-compression';
 // Import des images locales
-import Salon from "../assets/images/image-81.webp";
+import Isabelle from "../assets/images/image-98.jpg";
 
 function Accueil() {
   // Déclarez l'état pour stocker toutes les images
@@ -13,8 +14,8 @@ function Accueil() {
   // Images locales définies
   const localImages = [
     {
-      filename: Salon,
-      name: "Salon n&b",
+      filename: Isabelle,
+      name: "vals",
       author: "Stéphane Valentin",
       exposure: "100 ISO - 18 mm - f/22 - 302 Sec",
     },
@@ -22,9 +23,12 @@ function Accueil() {
 
   const normalizeImageUrl = (filename) => {
     if (!filename) return "";
-    return `${import.meta.env.VITE_API_URL}/uploads/${filename}`; // Assurez-vous que c'est correct
+    if (filename.startsWith("http")) return filename;
+    const cleanFilename = filename.replace(/^\/uploads\//, "");
+    // Ajout de paramètres de compression et format WebP
+    return `${import.meta.env.VITE_API_URL}/uploads/${cleanFilename}?q=80&auto=format&fit=crop&w=800`;
   };
-
+  
   // Fonction pour récupérer les images depuis l'API
   useEffect(() => {
     const fetchImages = async () => {
@@ -67,7 +71,7 @@ function Accueil() {
         const chosenImage = images[Math.floor(Math.random() * images.length)];
         setRandomImage(chosenImage);
       }
-    }, 5000); // 10000 millisecondes = 10 secondes
+    }, 20000); // 10000 millisecondes = 10 secondes
 
     // Nettoyer l'intervalle lorsque le composant est démonté
     return () => clearInterval(interval);
@@ -97,10 +101,10 @@ function Accueil() {
   
       {/* Liens positionnés en bas au centre */}
       <div className="accueil-links">
-        <Link to="/gallerie/singleGallery?id=3" className="sublime-link">
+        <Link to="/galleries/nb" className="sublime-link">
           N&B
         </Link>
-        <Link to="/gallerie/singleGallery?id=4" className="sublime-link">
+        <Link to="/galleries/color" className="sublime-link">
           <span className="cool" style={{ color: '#FF0000' }}>C</span>
           <span style={{ color: '#66CC66' }}>O</span>
           <span style={{ color: '#FF9966' }}>U</span>

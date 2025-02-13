@@ -263,4 +263,6 @@ router.delete(
   galleryActions.deleteImageFromGallery
 );
 
+
+
 module.exports = router;

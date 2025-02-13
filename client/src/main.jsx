@@ -9,7 +9,7 @@ import About from "./components/About";
 import App from "./App";
 import Admin from "./components/Admin";
 import Login from "./components/Login";
-import Accueil from "./components/Accueil"
+import Accueil from "./components/Accueil";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +17,16 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/Accueil", element: <Accueil /> },
-      { path: "/gallerie", element: <Gallerie /> },
-      { path: "/gallerie/singleGallery", element: <SingleGallery /> },
+      { 
+        path: "/gallerie",
+        children: [
+          { index: true, element: <Gallerie /> }, // Route existante
+          { path: "singleGallery", element: <SingleGallery /> },
+        ]
+      },
+      // Nouvelles routes pour le filtrage
+      { path: "/galleries/nb", element: <Gallerie /> },
+      { path: "/galleries/color", element: <Gallerie /> },
       { path: "/contact", element: <Contact /> },
       { path: "/merci", element: <Merci /> },
       { path: "/about", element: <About /> },

@@ -9,8 +9,12 @@ function App() {
   return (
     <>
       <NavBar />
-      <Outlet />
-      <Accueil />
+      <div className="background-layer">
+      <div className="content-layer">
+        <Outlet />
+      </div>
+        <Accueil />
+      </div>
       
       <Footer />
     </>
