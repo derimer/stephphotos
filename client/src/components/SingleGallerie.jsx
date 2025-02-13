@@ -5,7 +5,7 @@ import Bleudemer from "../assets/images/image-6.webp";
 import Concert from "../assets/images/image-5.webp";
 import Ombre from "../assets/images/image-56.webp";
 import Billard from "../assets/images/image-9.webp";
-import Lyon from "../assets/images/image-70.webp";
+import auto from "../assets/images/image-78.webp";
 import Cannes from "../assets/images/image-64.webp";
 import Lily3 from "../assets/images/image-3.webp";
 import Pilote from "../assets/images/image-41.webp";
@@ -98,7 +98,7 @@ export default function SingleGallery() {
       gal9: {
         title: "Evenements n&b",
         images: [     
-          Lyon,
+          auto,
          
         ],
       },
