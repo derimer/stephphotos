@@ -182,7 +182,7 @@ img {
 .accueil-links {
   font-size: 2rem;
   position: absolute;
-  bottom: 100px; /* Ajustez cette valeur selon vos besoins */
+  bottom: 150px; /* Ajustez cette valeur selon vos besoins */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
