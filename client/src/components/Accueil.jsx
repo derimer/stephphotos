@@ -1,6 +1,6 @@
 // src/components/Accueil.js
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation,Link } from "react-router-dom";
 // Import des images locales
 import Salon from "../assets/images/image-81.webp";
 
@@ -79,6 +79,8 @@ function Accueil() {
       className="home"
       style={{
         backgroundImage: randomImage ? `url(${randomImage.filename})` : "none",
+        position: 'relative',
+        minHeight: '100vh'
       }}
     >
       <div id="pictInfo">
@@ -92,8 +94,24 @@ function Accueil() {
           <p>Chargement...</p>
         )}
       </div>
+  
+      {/* Liens positionnés en bas au centre */}
+      <div className="accueil-links">
+        <Link to="/gallerie/singleGallery?id=3" className="sublime-link">
+          N&B
+        </Link>
+        <Link to="/gallerie/singleGallery?id=4" className="sublime-link">
+          <span className="cool" style={{ color: '#FF0000' }}>C</span>
+          <span style={{ color: '#66CC66' }}>O</span>
+          <span style={{ color: '#FF9966' }}>U</span>
+          <span style={{ color: '#ADD8E6' }}>L</span>
+          <span style={{ color: '#FFFF00' }}>E</span>
+          <span style={{ color: '#7F00FF' }}>U</span>
+          <span style={{ color: '#9400D3' }}>R</span>
+        </Link>
+      </div>
     </section>
   );
-}
+}  
 
 export default Accueil;

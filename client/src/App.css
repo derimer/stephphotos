@@ -173,6 +173,38 @@ img {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombre de texte pour améliorer la lisibilité */
   text-align: center; /* Centrer le texte si nécessaire */
 }
+.home {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.accueil-links {
+  font-size: 2rem;
+  position: absolute;
+  bottom: 100px; /* Ajustez cette valeur selon vos besoins */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 100px;
+  z-index: 2;
+  padding: 15px 25px;
+  background: transparent;
+  
+  
+}
+
+.sublime-link {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  text-decoration: none;
+  font-size: 1.4em;
+  transition: transform 0.3s ease;
+}
+
+.sublime-link:hover {
+  transform: translateY(-2px);
+}
 
 #pictInfo {
   background-color: rgba(155, 155, 155, 0.8);
@@ -182,7 +214,7 @@ img {
   height: 220px;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-end;  
+  justify-content: space-between;  
   text-align: center;
 }
 #pictInfo h1 {
@@ -550,6 +582,7 @@ main form textarea {
   .uldajout li {
     width: calc(50% - 20px);
   }
+  
   #About {
     display: flex;
     justify-content: center;
@@ -571,8 +604,8 @@ main form textarea {
     padding: 0;
   }
   #pageContent {
-    background-size: contain;
-    background-attachment: scroll;
+    width:100%;
+    
    
 }
 }

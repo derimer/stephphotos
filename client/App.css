@@ -55,6 +55,7 @@ img {
   position: fixed;
   top: 0;
 }
+
 #fName {
   background-color: #f26160;
   border: 1px solid white;
@@ -133,6 +134,26 @@ img {
   background-attachment: fixed;
   border: 1px solid white;
 }
+.accueil-links {
+ display:flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.sublime-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  padding: 8px 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.sublime-link:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
 #pageContent.home {
   display: flex;
   justify-content: center;
