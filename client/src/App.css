@@ -562,7 +562,7 @@ main form textarea {
 
 .content-layer {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   background: transparent;
   min-height: 100vh;
 }
@@ -703,7 +703,7 @@ footer {
     justify-content: flex-end;
   }
   main ul {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   #singleGallery ul li img {
@@ -782,11 +782,11 @@ button ::placeholder {
     grid-column: 1 / -1;
   }
   main ul {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 @media screen and (min-width: 1280px) {
   main ul {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
