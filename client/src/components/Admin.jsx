@@ -314,7 +314,7 @@ export default function Admin() {
         )}
         <input
           type="text"
-          placeholder="Nom"
+          placeholder="description"
           name="name"
           value={newImage.name || ""}
           onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
@@ -330,7 +330,7 @@ export default function Admin() {
         />
         <input
           type="text"
-          placeholder="Exposition"
+          placeholder="outil"
           name="exposure"
           value={newImage.exposure || ""}
           onChange={(e) =>

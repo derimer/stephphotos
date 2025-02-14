@@ -182,12 +182,12 @@ img {
 .accueil-links {
   font-size: 2rem;
   position: absolute;
-  bottom: 300px; /* Ajustez cette valeur selon vos besoins */
+  bottom: 400px; /* Ajustez cette valeur selon vos besoins */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 100px;
-  z-index: 2;
+  gap: 1000px;
+  
   padding: 15px 25px;
   background: transparent;
   
@@ -558,25 +558,6 @@ main form textarea {
   flex-direction: column;
 }
 
-.background-page {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.content-layer {
-  position: relative;
-  z-index: 2;
-  margin-top: auto; /* Pousse le contenu vers le bas */
-  
-  padding: 2rem;
-  border-radius: 20px 20px 0 0;
-  box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
-  min-height: 90vh; /* Ajustez selon vos besoins */
-}
 
 /* Ajustements pour le footer */
 footer {
@@ -587,28 +568,7 @@ footer {
   margin-top: auto;
 }
 
-/* CSS nécessaire */
-/*.background-layer {
-  
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-}
 
-.content-layer {
-  position: relative;
-  z-index: 4;
-  background: transparent;
-  min-height: 100vh;
-}
-
-/* Pour le footer */
-/*footer {
-  position: relative;
-  z-index: 3;
-}
-
-*/
 .ajoutImage button:hover,
 .exist button:hover {
   background-color: #4cae4c;
@@ -652,6 +612,7 @@ footer {
   #pictInfo{
     display:none;
   }
+  
 }
 @media (max-width: 1300px) {
   #About {
@@ -666,6 +627,24 @@ footer {
     width:100%;
     
    
+}
+.accueil-links{
+  font-size: 2rem;
+    position: absolute;
+    bottom: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex
+;
+    gap: 100px;
+    z-index: 2;
+    padding: 15px 25px;
+    background: transparent;
+}
+main ul{
+  position:relative;
+    bottom:450px;
+    grid-template-columns: repeat(2, 1fr)
 }
 }
 @media (max-width: 600px) {
@@ -689,6 +668,12 @@ footer {
   main ul li img {
     max-width: 90%;
     height: auto;
+  }
+  main ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }
 @media (max-width: 445px) {
@@ -739,7 +724,7 @@ footer {
     justify-content: flex-end;
   }
   main ul {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   #singleGallery ul li img {
@@ -818,6 +803,8 @@ button ::placeholder {
     grid-column: 1 / -1;
   }
   main ul {
+    position:relative;
+    bottom:450px;
     grid-template-columns: repeat(5, 1fr);
   }
 }
