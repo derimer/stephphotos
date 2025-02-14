@@ -392,7 +392,7 @@ main#contact1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 80px;
+  
   color: white;
   background-color: #0f0303;
   
@@ -428,7 +428,7 @@ main#contact1 {
 }
  
 #galleryContainer {
-  position: fixed;
+ 
   top: 0;
   left: 0;
   width: 100vw;
@@ -642,8 +642,7 @@ footer {
     background: transparent;
 }
 main ul{
-  position:relative;
-    bottom:450px;
+ 
     grid-template-columns: repeat(2, 1fr)
 }
 }
@@ -724,12 +723,15 @@ main ul{
     justify-content: flex-end;
   }
   main ul {
+    position:relative;
+    top:0;
     grid-template-columns: repeat(3, 1fr);
   }
 
   #singleGallery ul li img {
     width: 300px;
     height: 300px;
+    position:relative;
     
     border:1px solid white;
   }
@@ -804,14 +806,14 @@ button ::placeholder {
   }
   main ul {
     position:relative;
-    bottom:450px;
+    top:0;
     grid-template-columns: repeat(5, 1fr);
   }
 }
 @media screen and (min-width: 1280px) {
   main ul {
     position:relative;
-    bottom:450px;
+    top:0;
     grid-template-columns: repeat(5, 1fr);
   }
 }

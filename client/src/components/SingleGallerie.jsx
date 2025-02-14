@@ -216,6 +216,7 @@ export default function SingleGallery() {
           className="visible"
           role="dialog"
           aria-modal="true"
+         
         >
           <img src={selectedImage} alt="" />
         </div>

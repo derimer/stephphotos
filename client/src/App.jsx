@@ -9,14 +9,14 @@ import Accueil from "./components/Accueil";
 // App.jsx
 function App() {
   return (
-    <div className="app-container">
+    <div>
       <NavBar />
-      <Accueil className="background-page" />
-      
-      <div className="content-layer">
+     
+    
+      <div >
         <Outlet /> {/* Contenu des pages */}
       </div>
-
+      <Accueil />
       <Footer />
     </div>
   );
