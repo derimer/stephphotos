@@ -447,7 +447,7 @@ main#contact1 {
 }
 #galleryContainer img {
   border: solid 5px var(--white);
-  max-height: 90%;
+  max-height: 100%;
   width: auto;
 }
 #galleryContainer.visible {
@@ -456,6 +456,9 @@ main#contact1 {
 }
 #singleGallery h1{
   text-align: center;
+}
+.gestion .title{
+  color:white;
 }
 #mainFooter {
   background-color: black;
@@ -496,7 +499,7 @@ main form textarea {
 .gestion {
   font-family: "Arial", sans-serif;
 
-  color: #333;
+  color: white;
   line-height: 1.6;
 
   margin: 20px auto;
@@ -514,23 +517,36 @@ main form textarea {
 .gestion h2 {
   font-size: 1.8em;
   margin-bottom: 15px;
-  color: #444;
+  color: white;
 }
 .error {
   color: #d9534f;
   margin-bottom: 20px;
 }
-.ajoutImage,
+
+.exist1{
+  background-color: #0f0303;
+  color:white;
+}
+.exist2{
+  background-color: brown;
+  color:black;
+}
+.exist3{
+  background-color: #093f28;
+  color:#333;
+}
+.ajoutImage1,
 .exist {
   margin-bottom: 30px;
   padding: 20px;
-  background-color: #f26160;
+  background-color: #272323;
   border: 1px solid #ddd;
   border-radius: 8px;
 }
-.ajoutImage input[type="file"],
-.ajoutImage input[type="text"],
-.ajoutImage select {
+.ajoutImage1 input[type="file"],
+.ajoutImage1 input[type="text"],
+.ajoutImage1 select {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -539,10 +555,42 @@ main form textarea {
   font-size: 1em;
   background-color: #f26160;
 }
-.ajoutImage button,
+.ajoutImage1 button,
 .exist button {
   padding: 10px 20px;
   background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+.ajoutImage2,
+.exist3 {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #272323;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.ajoutImage2 input[type="file"],
+.ajoutImage2 input[type="text"],
+.ajoutImage2 select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  background-color: #054905;
+  color:white;
+ 
+}
+.ajoutImage2 button,
+.exist button {
+  padding: 10px 20px;
+  background-color: #e05311;
   color: #fff;
   border: none;
   border-radius: 4px;

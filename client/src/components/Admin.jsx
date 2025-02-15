@@ -294,8 +294,8 @@ export default function Admin() {
       <h1>Gestion des Images</h1>
       {error && <p className="error">{error}</p>}
 
-      <div className="ajoutImage">
-        <h2>Ajouter une nouvelle image à l'accueil</h2>
+      <div className="ajoutImage1">
+        <h2 className="title">Ajouter une nouvelle image à l'accueil</h2>
         <input
           type="file"
           accept="image/*"
@@ -343,8 +343,8 @@ export default function Admin() {
         </button>
       </div>
 
-      <div className="exist">
-        <h2>Images Accueil</h2>
+      <div className="exist1">
+        <h2 className="title">Images Accueil</h2>
         <ul className="uldajout">
           {Array.isArray(images) && images.length > 0 ? (
             images.map((image) => (
@@ -373,8 +373,8 @@ export default function Admin() {
         </ul>
       </div>
 
-      <div className="exist">
-        <h2>Messages des utilisateurs</h2>
+      <div className="exist2">
+        <h2 className ="title">Messages des utilisateurs</h2>
         {messages.length > 0 ? (
   <ul>
     {messages.map((message) => (
@@ -395,8 +395,8 @@ export default function Admin() {
 )}
       </div>
 
-      <div className="ajoutImage">
-        <h2>Ajouter une image à une galerie</h2>
+      <div className="ajoutImage2">
+        <h2 className="title">Ajouter une image à une galerie</h2>
         <input
           type="file"
           accept="image/*"
@@ -424,7 +424,7 @@ export default function Admin() {
           ))}
         </select>
         <button
-          className="exist"
+          className="exist3"
           type="button"
           onClick={handleAddImageToGallery}
         >
