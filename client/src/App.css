@@ -446,8 +446,9 @@ main#contact1 {
     visibility 1s;
 }
 #galleryContainer img {
+  z-index: 1;
   border: solid 5px var(--white);
-  max-height: 100%;
+  
   width: auto;
 }
 #galleryContainer.visible {
