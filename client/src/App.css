@@ -427,7 +427,7 @@ main#contact1 {
   
 }
  
-#galleryContainer {
+/*#galleryContainer {
  
   top: 0;
   left: 0;
@@ -454,7 +454,42 @@ main#contact1 {
 #galleryContainer.visible {
   opacity: 1;
   visibility: visible;
+}*/
+#galleryContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
+
+#galleryContainer img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border: solid 5px var(--white);
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.clickable-image {
+  cursor: pointer;
+}
+
 #singleGallery h1{
   text-align: center;
 }
