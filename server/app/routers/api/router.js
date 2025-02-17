@@ -262,6 +262,25 @@ router.delete(
   "/galeries/:galleryId/images/:imageId",
   galleryActions.deleteImageFromGallery
 );
+router.delete("/images/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Supprimer l'image de la base de données
+    const result = await pool.query("DELETE FROM accueil WHERE id = ?", [id]);
+
+    if (result.affectedRows === 0) {
+      // Si aucune ligne n'a été affectée, l'image n'existe pas
+      return res.status(404).json({ message: "Image non trouvée" });
+    }
+
+    // Envoyer une réponse de succès
+   return res.status(204).send(); // 204 No Content
+  } catch (error) {
+    console.error("Erreur lors de la suppression de l'image:", error);
+  return  res.status(500).json({ message: "Erreur lors de la suppression de l'image" });
+  }
+});
 
 
 
