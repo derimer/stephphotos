@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import Gerbier from "../assets/images/image-2.webp";
 import Bleudemer from "../assets/images/image-6.webp";
 import Concert from "../assets/images/image-5.webp";
-import Ombre from "../assets/images/image-56.webp";
+import Gallerie from "../assets/images/image-47.webp";
 import Billard from "../assets/images/image-9.webp";
 import auto from "../assets/images/image-78.webp";
 import Cannes from "../assets/images/image-64.webp";
@@ -62,7 +62,7 @@ export default function SingleGallery() {
         title: "sublime couleur",
         images: [    
            
-          Ombre,
+          Gallerie,
          
           
         ],
