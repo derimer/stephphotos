@@ -6,7 +6,7 @@ import Bouteilles from "../assets/images/image-19.webp";
 import Acteur from "../assets/images/image-54.webp";
 import Julie from "../assets/images/image-87.webp";
 import Hotel from "../assets/images/image-25.webp";
-import Lilly from "../assets/images/image-3.webp";
+import Lilly8 from "../assets/images/image-3.webp";
 import Lyon from "../assets/images/image-78.webp";
 import Rmc from "../assets/images/image-97.jpg";
 import Vintage from "../assets/images/image-96.webp";
@@ -17,7 +17,7 @@ const galleriesConfig = [
   { id: 1, type: 'nb', image: Gerbier, title: 'Voyages N&B' },
   { id: 3, type: 'nb', image: Pecheurs, title: 'sublime N&B' },
   { id: 5, type: 'nb', image: Acteur, title: 'Portrait N&B' },
-  { id: 7, type: 'nb', image: Lilly, title: 'Charme N&B' },
+  { id: 7, type: 'nb', image: Lilly8, title: 'Charme N&B' },
   { id: 9, type: 'nb', image: Lyon, title: 'Evenements n&b' },
   { id: 11, type: 'nb', image: Vintage, title: 'Au quotidien n&b' },
   { id: 2, type: 'color', image: Hotel, title: 'Voyages couleur' },

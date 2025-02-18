@@ -7,7 +7,7 @@ import Bouteilles from "../assets/images/image-19.webp";
 import Acteur from "../assets/images/image-54.webp";
 import Julie from "../assets/images/image-87.webp";
 import Hotel from "../assets/images/image-25.webp";
-import Lilly from "../assets/images/image-3.webp";
+import Lilly8 from "../assets/images/image-3.webp";
 import Lyon from "../assets/images/image-78.webp";
 import Rmc from "../assets/images/image-97.jpg";
 import Vintage from "../assets/images/image-96.webp";
@@ -82,7 +82,7 @@ export default function SingleGallery() {
       gal7: {
         title: "Charme n&b",
         images: [     
-          Lilly ,
+          Lilly8 ,
           
         ],
       },
