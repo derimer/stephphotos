@@ -6,7 +6,7 @@ import Bouteilles from "../assets/images/image-19.webp";
 import Acteur from "../assets/images/image-54.webp";
 import Julie from "../assets/images/image-87.webp";
 import Hotel from "../assets/images/image-25.webp";
-import lilly8 from "../assets/images/image-3.webp";
+import lilly8 from "../assets/images/lilly8.jpg";
 import Lyon from "../assets/images/image-78.webp";
 import Rmc from "../assets/images/image-97.jpg";
 import Vintage from "../assets/images/image-96.webp";
