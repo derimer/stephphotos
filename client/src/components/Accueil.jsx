@@ -17,7 +17,7 @@ function Accueil() {
       filename: Isabelle,
       name: "THERMES",
       author: "RICOH GR",
-      exposure: "800 ASA - 18 mm - f/8 - 302 Sec",
+      exposure: "800 ASA - f/8 ",
     },
   ];
 
