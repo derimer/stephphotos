@@ -288,6 +288,34 @@ export default function Admin() {
       setError("Erreur lors de la suppression de l'image");
     }
   };
+ const fetchImagesAccueil = async () => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/getAccueilImages`);
+  const data = await response.json();
+  setImages(data); // Met à jour les images après suppression
+};
+
+const handleDeleteImageAccueil = async (id) => {
+  try {
+    // Suppression de l'image
+    await fetch(`${import.meta.env.VITE_API_URL}/deleteAccueilImage/${id}`, {
+      method: "DELETE",
+    });
+    
+   
+
+    // Mise à jour de l'affichage après suppression
+    setImages((prevImages) => prevImages.filter((image) => image.id !== id));
+
+    // Rafraîchir la liste des images
+    fetchImagesAccueil(); // On re-récupère les images pour être sûr qu'elles soient à jour
+  } catch (erreur) {
+    console.error("Erreur lors de la suppression :", erreur);
+  }
+};
+
+useEffect(() => {
+  fetchImagesAccueil(); // Cette fonction est exécutée au montage initial
+}, []); // Le tableau vide [] indique qu'on charge les images une seule fois
 
   return (
     <div className="gestion">
@@ -361,7 +389,7 @@ export default function Admin() {
                 )}
                 <button
                   type="button"
-                  onClick={() => handleDeleteImage(image.id)}
+                  onClick={() => handleDeleteImageAccueil(image.id)}
                 >
                   Supprimer
                 </button>

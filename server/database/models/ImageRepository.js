@@ -59,12 +59,28 @@ class ImageRepository extends AbstractRepository {
       throw error;
     }
   }
-}
+
 // The D of CRUD - Delete operation
 // TODO: Implement the delete operation to remove an item by its ID
 
 // async delete(id) {
 //   ...
 // }
+async deleteAccueilImageById(id) {
+  try {
+      const result = await this.database.query(
+          `DELETE FROM accueil WHERE id = ?`,
+          [id]
+      );
+      return result;
+  } catch (error) {
+      console.error(
+          "Erreur lors de la suppression de l'image dans la table accueil :",
+          error.message
+      );
+      throw error;
+  }
+}
+}
 
 module.exports = ImageRepository;

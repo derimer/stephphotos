@@ -10,6 +10,7 @@ const imgActions = require("../../controllers/imgActions");
 const ContactRepository = require("../../../database/models/ContactRepository");
 const AdminRepository = require("../../../database/models/AdminRepository");
 const galleryActions = require("../../controllers/galleryActions");
+const ImageRepository = require("../../../database/models/ImageRepository");
 
 // Initialisation des repositories
 const contactRepository = new ContactRepository();
@@ -262,23 +263,37 @@ router.delete(
   "/galeries/:galleryId/images/:imageId",
   galleryActions.deleteImageFromGallery
 );
-router.delete("/images/:id", async (req, res) => {
-  const { id } = req.params;
 
+router.get("/getAccueilImages", async (req, res) => {
   try {
-    // Supprimer l'image de la base de données
-    const result = await pool.query("DELETE FROM accueil WHERE id = ?", [id]);
+    const imageRepo = new ImageRepository();
+    const [rows] = await imageRepo.database.query("SELECT * FROM accueil");
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Erreur lors de la récupération des images :", error);
+    res.status(500).json({ 
+      message: "Erreur lors de la récupération des images", 
+      error: error.message 
+    });
+  }
+});
 
+// Route DELETE pour supprimer une image de la table "accueil" par ID
+router.delete("/deleteAccueilImage/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const imageRepo = new ImageRepository();
+    const result = await imageRepo.deleteAccueilImageById(id);
     if (result.affectedRows === 0) {
-      // Si aucune ligne n'a été affectée, l'image n'existe pas
       return res.status(404).json({ message: "Image non trouvée" });
     }
-
-    // Envoyer une réponse de succès
-   return res.status(204).send(); // 204 No Content
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    return res.status(204).send(); // 204 No Content
   } catch (error) {
     console.error("Erreur lors de la suppression de l'image:", error);
-  return  res.status(500).json({ message: "Erreur lors de la suppression de l'image" });
+    return res.status(500).json({ message: "Erreur serveur" });
   }
 });
 

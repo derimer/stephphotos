@@ -157,21 +157,42 @@ exports.getAccueilImage = async (req, res) => {
     console.error("Erreur lors de la récupération de l'image :", error);
     res.status(500).json({ message: "Erreur serveur" });
   }
+
+
+exports.deleteImage = async (req,res) => {
+    const { id } = req.params;
+
+    try {
+        // Vérifier si l'image existe dans la table accueil
+        const [imageInAccueil] = await imageRepository.database.query(
+            `SELECT * FROM accueil WHERE id = ?`,
+            [id]
+        );
+
+        if (imageInAccueil.length > 0) {
+            await imageRepository.deleteAccueilImageById(id);
+            return res.json({ message: "Image supprimée de l'accueil avec succès" });
+        }
+
+        // Si l'image n'est pas dans accueil, on tente de la supprimer de la table images
+        const result = await imageRepository.deleteImageById(id);
+        
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Image non trouvée" });
+        }
+
+        return res.status(200).json({ message: "Image supprimée avec succès" });
+
+    } catch (err) {
+        console.error("Erreur lors de la suppression de l'image :", err);
+        return res.status(500).json({ error: err.message });
+    }
 };
 
 
-exports.deleteImage = async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    // Suppression de l'image dans la base de données
-    await imageRepository.deleteImageById(id); // Utilisez la méthode correcte
-    res.json({ message: "Image supprimée avec succès" });
-  } catch (err) {
-    console.error("Erreur lors de la suppression de l'image :", err);
-    res.status(500).json({ error: err.message });
-  }
 };
+
+
 
 
 module.exports = {
