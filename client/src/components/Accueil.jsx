@@ -15,9 +15,9 @@ function Accueil() {
   const localImages = [
     {
       filename: Isabelle,
-      name: "vals",
-      author: "stephanovalentinophoto",
-      exposure: "100 ISO - 18 mm - f/22 - 302 Sec",
+      name: "THERMES",
+      author: "RICOH GR",
+      exposure: "800 ASA - 18 mm - f/8 - 302 Sec",
     },
   ];
 
