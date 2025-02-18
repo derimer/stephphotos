@@ -10,6 +10,8 @@ import Audray from "../assets/images/image-42.webp";
 import Lilly from "../assets/images/image-3.webp";
 import Lyon from "../assets/images/image-78.webp";
 import Rmc from "../assets/images/image-97.jpg";
+import Vintage from "../assets/images/image-96.webp";
+import Coiffeur from "../assets/images/image-80.webp";
 
 const galleriesConfig = [
   { id: 1, type: 'nb', image: Gerbier, title: 'Voyages N&B' },
@@ -17,11 +19,13 @@ const galleriesConfig = [
   { id: 5, type: 'nb', image: Acteur, title: 'Portrait N&B' },
   { id: 7, type: 'nb', image: Lilly, title: 'Charme N&B' },
   { id: 9, type: 'nb', image: Lyon, title: 'Evenements n&b' },
+  { id: 11, type: 'nb', image: Vintage, title: 'Au quotidien n&b' },
   { id: 2, type: 'color', image: Hotel, title: 'Voyages couleur' },
   { id: 4, type: 'color', image: Bouteilles, title: 'sublime Couleur' },
   { id: 6, type: 'color', image: Audray, title: 'Portrait couleur' },
   { id: 8, type: 'color', image: Julie, title: 'Charme Couleur' },
-  { id: 10, type: 'color', image: Rmc, title: 'Evenements Couleur' }
+  { id: 10, type: 'color', image: Rmc, title: 'Evenements Couleur' },
+  { id: 13, type: 'color', image: Coiffeur, title: 'Au quotidien Couleur' },
 ];
 export default function Gallerie() {
   const location = useLocation();

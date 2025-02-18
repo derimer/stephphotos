@@ -16,7 +16,7 @@ function Accueil() {
     {
       filename: Isabelle,
       name: "vals",
-      author: "Stéphane Valentin",
+      author: "stephanovalentinophoto",
       exposure: "100 ISO - 18 mm - f/22 - 302 Sec",
     },
   ];
@@ -102,8 +102,11 @@ function Accueil() {
       {/* Liens positionnés en bas au centre */}
       <div className="accueil-links">
         <Link to="/galleries/nb" className="sublime-link">
-          N&B
+        <span className="cool" style={{ color: 'white' }}>N</span>
+          <span style={{ color: 'black' }}>&</span>
+          <span style={{ color: 'white' }}>B</span>
         </Link>
+        
         <Link to="/galleries/color" className="sublime-link">
           <span className="cool" style={{ color: '#FF0000' }}>C</span>
           <span style={{ color: '#66CC66' }}>O</span>

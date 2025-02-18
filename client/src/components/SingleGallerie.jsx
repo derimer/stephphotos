@@ -7,11 +7,9 @@ import Gallerie from "../assets/images/image-47.webp";
 import Billard from "../assets/images/image-9.webp";
 import auto from "../assets/images/image-78.webp";
 import Cannes from "../assets/images/image-64.webp";
-import Lily3 from "../assets/images/image-3.webp";
+import Lily3 from "../assets/images/lilly8.jpg";
 import Pilote from "../assets/images/image-41.webp";
 import Audray4 from "../assets/images/image-13.webp";
-
-
 
 export default function SingleGallery() {
   const [gallery, setGallery] = useState(null);
@@ -83,7 +81,7 @@ export default function SingleGallery() {
       gal7: {
         title: "Charme n&b",
         images: [     
-          Lily3,
+          Lily3 ,
           
         ],
       },
