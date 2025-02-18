@@ -196,6 +196,7 @@ img {
 
 .sublime-link {
   font-family: "Dancing Script", serif;
+  font-size:20px;
   border:2px solid black;
   padding:20px;
   text-decoration: none;
