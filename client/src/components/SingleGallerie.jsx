@@ -10,6 +10,8 @@ import Cannes from "../assets/images/image-64.webp";
 import Lily3 from "../assets/images/lilly8.jpg";
 import Pilote from "../assets/images/image-41.webp";
 import Audray4 from "../assets/images/image-13.webp";
+import Paris from "../assets/images/image-75.webp";
+import News from "../assets/images/image-20.webp";
 
 export default function SingleGallery() {
   const [gallery, setGallery] = useState(null);
@@ -104,6 +106,20 @@ export default function SingleGallery() {
         title: "Evenements couleur",
         images: [    
          Concert,
+          
+        ],
+      },
+      gal11: {
+        title: "au quotidien n&b ",
+        images: [    
+       News,
+          
+        ],
+      },
+      gal12: {
+        title: "au quotidien couleur ",
+        images: [    
+         Paris,
           
         ],
       },

@@ -211,7 +211,7 @@ img {
   font-family: "Dancing Script", serif;
   position:relative;
   bottom:120px;
-  background-color: rgba(155, 155, 155, 0.8);
+  background-color:#3333336e;
   padding: 40px;
   color: var(--white);
   width: 220px;

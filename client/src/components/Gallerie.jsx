@@ -25,7 +25,7 @@ const galleriesConfig = [
   { id: 6, type: 'color', image: Audray, title: 'Portrait couleur' },
   { id: 8, type: 'color', image: Julie, title: 'Charme Couleur' },
   { id: 10, type: 'color', image: Rmc, title: 'Evenements Couleur' },
-  { id: 13, type: 'color', image: Coiffeur, title: 'Au quotidien Couleur' },
+  { id: 12, type: 'color', image: Coiffeur, title: 'Au quotidien Couleur' },
 ];
 export default function Gallerie() {
   const location = useLocation();

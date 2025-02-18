@@ -108,7 +108,10 @@ exports.getAllImages = async (req, res) => {
 };
 
 exports.addImage = async (req, res) => {
-  const { name, author, exposure } = req.body;
+  const name = req.body.name || null;
+  const author = req.body.author || null;
+  const exposure = req.body.exposure || null;
+
   // Vérifiez si un fichier a été téléchargé
   if (!req.file) {
     return res.status(400).json({ message: "Aucun fichier téléchargé" });
@@ -116,18 +119,18 @@ exports.addImage = async (req, res) => {
 
   const { filename } = req.file; // Multer fournit le nom du fichier
 
-  // Vérifiez si tous les champs nécessaires sont remplis
-  if (!filename || !name || !author || !exposure) {
-    return res.status(400).json({ message: "Tous les champs sont requis" });
+  // La validation ne vérifie plus si name, author, exposure sont vides
+  if (!filename) {
+    return res.status(400).json({ message: "Aucun fichier téléchargé" });
   }
 
   try {
     // Crée une entrée dans la base de données
     const id = await imageRepository.create({
       filename,
-      name,
-      author,
-      exposure,
+      name,    // `name` peut être null
+      author,  // `author` peut être null
+      exposure // `exposure` peut être null
     });
 
     // Récupère la nouvelle image créée
@@ -145,6 +148,7 @@ exports.addImage = async (req, res) => {
     });
   }
 };
+
 exports.getAccueilImage = async (req, res) => {
   try {
     const image = await imageRepository.readRandomImage(); // Supposons que vous avez une fonction qui renvoie une image aléatoire

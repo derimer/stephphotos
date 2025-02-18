@@ -162,21 +162,24 @@ export default function Admin() {
       setError("Veuillez remplir tous les champs et sélectionner une image");
       return;
     }
-
+  
     const formData = new FormData();
     formData.append("file", file);
     formData.append("name", newImage.name);
     formData.append("author", newImage.author);
     formData.append("exposure", newImage.exposure);
-
+  
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/accueil`, {
         method: "POST",
         body: formData,
       });
-
-      if (!response.ok) throw new Error("Erreur lors de l'ajout de l'image");
-
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Erreur lors de l'ajout de l'image");
+      }
+  
       const data = await response.json();
       setImages((prevImages) => [
         ...prevImages,
@@ -185,7 +188,7 @@ export default function Admin() {
           filename: normalizeImageUrl(data.image.filename),
         },
       ]);
-
+  
       setNewImage({ name: "", author: "", exposure: "" });
       setFile(null);
       setPreview("");
@@ -194,6 +197,7 @@ export default function Admin() {
       setError("Erreur lors de l'ajout de l'image");
     }
   };
+  
 
   const handleAddImageToGallery = async () => {
     if (!file || !newImage.name || !selectedGallery) {
@@ -347,7 +351,7 @@ useEffect(() => {
           name="name"
           value={newImage.name || ""}
           onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
-          required
+          
         />
         <input
           type="text"
@@ -355,7 +359,7 @@ useEffect(() => {
           name="author"
           value={newImage.author || ""}
           onChange={(e) => setNewImage({ ...newImage, author: e.target.value })}
-          required
+         
         />
         <input
           type="text"
@@ -365,7 +369,7 @@ useEffect(() => {
           onChange={(e) =>
             setNewImage({ ...newImage, exposure: e.target.value })
           }
-          required
+          
         />
         <button type="button" id="ajouterImg" onClick={handleAddImage}>
           Ajouter l'image
