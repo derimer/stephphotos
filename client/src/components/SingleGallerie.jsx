@@ -1,17 +1,18 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+
 import Gerbier from "../assets/images/image-2.webp";
-import Bleudemer from "../assets/images/image-6.webp";
-import Concert from "../assets/images/image-5.webp";
-import Gallerie from "../assets/images/image-47.webp";
-import Billard from "../assets/images/image-9.webp";
-import auto from "../assets/images/image-78.webp";
-import Cannes from "../assets/images/image-64.webp";
-import Lily3 from "../assets/images/lilly8.jpg";
-import Pilote from "../assets/images/image-41.webp";
-import Audray4 from "../assets/images/image-13.webp";
-import Paris from "../assets/images/image-75.webp";
-import News from "../assets/images/image-20.webp";
+import Pecheurs from "../assets/images/image-1.webp";
+import Bouteilles from "../assets/images/image-19.webp";
+import Acteur from "../assets/images/image-54.webp";
+import Julie from "../assets/images/image-87.webp";
+import Hotel from "../assets/images/image-25.webp";
+import Lilly from "../assets/images/image-3.webp";
+import Lyon from "../assets/images/image-78.webp";
+import Rmc from "../assets/images/image-97.jpg";
+import Vintage from "../assets/images/image-96.webp";
+import Coiffeur from "../assets/images/image-80.webp";
+import Audray8 from "../assets/images/audray8.jpg";
 
 export default function SingleGallery() {
   const [gallery, setGallery] = useState(null);
@@ -33,8 +34,7 @@ export default function SingleGallery() {
         title: "voyages couleur",
         images: [
                 
-         Bleudemer,
-        
+        Hotel,
 
                    
                  
@@ -47,7 +47,7 @@ export default function SingleGallery() {
       gal3: {
         title: "sublime n&b",
         images: [        
-          Billard,
+          Pecheurs,
          
           
           
@@ -62,7 +62,7 @@ export default function SingleGallery() {
         title: "sublime couleur",
         images: [    
            
-          Gallerie,
+          Bouteilles,
          
           
         ],
@@ -70,27 +70,26 @@ export default function SingleGallery() {
       gal5: {
         title: "Portait n&b ",
         images: [     
-          Pilote,
-         
+          Acteur,
         ],
       },
       gal6: {
         title: "Portait couleur",
         images: [   
-         Audray4,
+         Audray8,
         ],
       },
       gal7: {
         title: "Charme n&b",
         images: [     
-          Lily3 ,
+          Lilly ,
           
         ],
       },
       gal8: {
         title: "charme couleur",
         images: [     
-          Cannes,          
+          Julie,          
           
          
         ],
@@ -98,28 +97,28 @@ export default function SingleGallery() {
       gal9: {
         title: "Evenements n&b",
         images: [     
-          auto,
+          Lyon,
          
         ],
       },
       gal10: {
         title: "Evenements couleur",
         images: [    
-         Concert,
+         Rmc,
           
         ],
       },
       gal11: {
         title: "au quotidien n&b ",
         images: [    
-       News,
+       Vintage,
           
         ],
       },
       gal12: {
         title: "au quotidien couleur ",
         images: [    
-         Paris,
+        Coiffeur,
           
         ],
       },
