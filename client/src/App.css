@@ -199,8 +199,9 @@ img {
   border:2px solid black;
   padding:10px;
   text-decoration: none;
-  
+  width:150px;
   transition: transform 0.3s ease;
+  text-align: center;
 }
 
 .sublime-link:hover {
