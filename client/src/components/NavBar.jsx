@@ -31,7 +31,7 @@ function NavBar() {
 
   return (
     <header id="mainHeader">
-      <h1>STEPHANOVALENTINOPHOTO</h1>
+      <h1><strong>Stephanovalentinophoto</strong></h1>
 
       <nav id="mainNav" className={menuOpen ? "open" : ""}>
         <img src={Steph} alt="photosteph" id="logoImg" />

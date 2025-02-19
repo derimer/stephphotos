@@ -33,9 +33,9 @@ body {
   background-color: black;
 }
 #mainHeader h1 {
- 
-  font-size: 1.5 em !important;
-  font-weight: bold !important;
+  font-family: "Dancing Script", serif;
+  font-size:1.5em !important;
+  font-weight:extra-bold !important;
   margin-left: 20px;
   margin-top:20px;
   /* Dégradé sur le texte */
@@ -94,7 +94,7 @@ img {
   border:2px solid white;
 }
 #mainNav {
-  position: absolute;
+  position: relative;
   background-color: black;
   width: 100%;
   top: 40px;
@@ -197,8 +197,8 @@ img {
 .sublime-link {
   font-family: "Dancing Script", serif;
   
-  font-size:20px;
-  border:5px solid black;
+  font-size:25px;
+  border:10px solid black;
   padding:20px;
   text-decoration: none;
   width:150px;
@@ -525,6 +525,8 @@ main#contact1 {
 }
 #mainNav.open {
   display: flex;
+  justify-content: center;
+  
 }
 main form input,
 main form textarea {
@@ -811,9 +813,29 @@ main ul{
     width: 200px;
     gap: 20px;
   }
+  .hamburger {
+    display: block; /* Afficher le bouton hamburger */
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+   #mainNav ul {
+    flex-flow: row nowrap;
+    margin-left: 0px;
+  }
+  #mainNav a {
+    font-size: 1.2em;
+  }
   #About {
     padding-top: 5px;
     padding-bottom: 120px;
+  }
+  #mainNav {
+    display: block;
+ 
+  }
+  #menuToggle {
+    display: block; 
   }
 }
 @media screen and (min-width: 768px) {
