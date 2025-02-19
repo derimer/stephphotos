@@ -1,16 +1,16 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import Gerbier from "../assets/images/image-2.webp";
-import Pecheurs from "../assets/images/image-1.webp";
+import Gerbier from "../assets/images/image-103.webp";
+import Regards from "../assets/images/image-102.webp";
 import Bouteilles from "../assets/images/image-19.webp";
 import Acteur from "../assets/images/image-54.webp";
 import Julie from "../assets/images/image-87.webp";
 import Hotel from "../assets/images/image-25.webp";
 import lilly8 from "../assets/images/lilly8.webp";
 import Lyon from "../assets/images/image-78.webp";
-import Rmc from "../assets/images/image-97.webp";
-import Vintage from "../assets/images/image-96.webp";
+import Autorose from "../assets/images/image-101.webp";
+import Vintage from "../assets/images/image-100.webp";
 import Coiffeur from "../assets/images/image-80.webp";
 import Audray8 from "../assets/images/audray8.webp";
 
@@ -47,7 +47,7 @@ export default function SingleGallery() {
       gal3: {
         title: "sublime n&b",
         images: [        
-          Pecheurs,
+          Regards,
          
           
           
@@ -104,7 +104,7 @@ export default function SingleGallery() {
       gal10: {
         title: "Evenements couleur",
         images: [    
-         Rmc,
+        Autorose,
           
         ],
       },
