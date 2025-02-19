@@ -34,7 +34,7 @@ body {
 }
 #mainHeader h1 {
   font-family: "Dancing Script", serif;
-  font-size:1.5em !important;
+  font-size:2.5em !important;
   font-weight:extra-bold !important;
   margin-left: 20px;
   margin-top:20px;
@@ -64,6 +64,14 @@ img {
   
   
   
+}
+.image-log{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+ 
 }
 #fName {
   background-color: #f26160;
@@ -372,11 +380,11 @@ main#contact1 {
 .image-info {
   background: rgba(0, 0, 0, 0.7);
   color: white;
-  padding: 10px;
+  font-family: "Dancing Script", serif;
   border-radius: 5px;
   text-align: center;
-  width: 80%;
-  margin-top: 10px;
+ padding: 5px;
+  
 }
 
 .login form {

@@ -438,7 +438,7 @@ useEffect(() => {
         />
         <input
           type="text"
-          placeholder="Nom"
+          placeholder="contexte de la photo"
           name="name"
           value={newImage.name}
           onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
@@ -464,38 +464,46 @@ useEffect(() => {
           Ajouter l'image à la galerie
         </button>
       </div>
-
       {galleries.map((gallery) => (
-        <div key={gallery.id} className="exist">
-          <h2>{gallery.title}</h2>
-          <ul className="uldajout">
-            {gallery.images && gallery.images.length > 0 ? (
-              gallery.images.map((image) => (
-                <li key={image.id}>
-                  <div>
-                    {image.name} - {image.author} - {image.exposure}
-                  </div>
-                  {image.filename && (
-                    <img
-                      src={normalizeImageUrl(image.filename)}
-                      alt={image.name}
-                      style={{ maxWidth: "150px", marginTop: "10px" }}
-                    />
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => handleDeleteImage(image.id, gallery.id)}
-                  >
-                    Supprimer
-                  </button>
-                </li>
-              ))
-            ) : (
-              <p>Aucune image à afficher.</p>
+  <div key={gallery.id} className="exist">
+    <h2>{gallery.title}</h2>
+    <ul className="uldajout">
+      {gallery.images && gallery.images.length > 0 ? (
+        gallery.images.map((image) => (
+          <li key={image.id}>
+            <div>
+              {image.name||null} - {image.author||null} - {image.exposure||null}
+            </div>
+            {image.filename && (
+              <>
+                <img
+                  src={normalizeImageUrl(image.filename)}
+                  alt={image.name}
+                  style={{ maxWidth: "150px", marginTop: "10px" }}
+                />
+                {/* Ajout du descriptif du contexte de l'image */}
+                {image.context && (
+                  <p>{image.context||null}</p>
+                )}
+              </>
             )}
-          </ul>
-        </div>
-      ))}
+            <button
+              type="button"
+              onClick={() => handleDeleteImage(image.id, gallery.id)}
+            >
+              Supprimer
+            </button>
+          </li>
+        ))
+      ) : (
+        <p>Aucune image à afficher.</p>
+      )}
+    </ul>
+  </div>
+
+))}
+   
+    
     </div>
   );
 }

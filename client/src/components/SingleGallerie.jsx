@@ -219,6 +219,12 @@ export default function SingleGallery() {
                 alt={`${gallery.title} ${index + 1}`}
                 className="clickable-image"
               />
+                <div className="image-info">
+              <p>{image.name || null}</p>
+             
+             
+              {image.context && <p>Contexte : {image.context}</p>}
+            </div>
             </li>
           ))}
         </ul>
