@@ -831,13 +831,40 @@ main ul{
     padding-bottom: 120px;
   }
   #mainNav {
-    display: block;
- 
+    
+    position: static;
+    background: transparent;
+    display: flex;
+    padding: 0;
+    justify-content: center;
+  }
+  #mainNav {
+    display: flex;
+    transition: all 0.3s ease-in-out;
+  }
+  #mainNav.open{
+    display: none;
+   
+  }
+  .hamburger {
+    display: none; /* Afficher le bouton hamburger */
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  #mainNav ul {
+    flex-flow: column nowrap;
+    margin-left: 0px;
+  }
+  #mainNav a {
+    font-size: 1.2em;
+  }
+  
   }
   #menuToggle {
     display: block; 
   }
-}
+
 @media screen and (min-width: 768px) {
   #mainNav {
     display: block; /* Toujours afficher le menu sur desktop */
