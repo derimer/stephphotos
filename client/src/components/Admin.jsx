@@ -355,7 +355,7 @@ useEffect(() => {
         />
         <input
           type="text"
-          placeholder="Auteur"
+          placeholder="outil"
           name="author"
           value={newImage.author || ""}
           onChange={(e) => setNewImage({ ...newImage, author: e.target.value })}
@@ -363,7 +363,7 @@ useEffect(() => {
         />
         <input
           type="text"
-          placeholder="outil"
+          placeholder="reglages"
           name="exposure"
           value={newImage.exposure || ""}
           onChange={(e) =>

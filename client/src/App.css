@@ -450,34 +450,7 @@ main#contact1 {
   
 }
  
-/*#galleryContainer {
- 
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  visibility: hidden;
-  opacity: 0;
-  transition:
-    opacity 1s,
-    visibility 1s;
-}
-#galleryContainer img {
-  z-index: 1;
-  border: solid 5px var(--white);
-  
-  width: auto;
-}
-#galleryContainer.visible {
-  opacity: 1;
-  visibility: visible;
-}*/
+
 #galleryContainer {
   position: fixed;
   top: 0;
@@ -622,7 +595,12 @@ main form textarea {
   border-radius: 4px;
   font-size: 1em;
   background-color: #f26160;
+ 
 }
+::placeholder{
+color:white;
+}
+
 .ajoutImage1 button,
 .exist button {
   padding: 10px 20px;

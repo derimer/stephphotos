@@ -1,7 +1,7 @@
 // src/components/Accueil.js
 import { useEffect, useState } from "react";
 import { useLocation,Link } from "react-router-dom";
-import imageCompression from 'browser-image-compression';
+
 // Import des images locales
 import Isabelle from "../assets/images/image-98.jpg";
 

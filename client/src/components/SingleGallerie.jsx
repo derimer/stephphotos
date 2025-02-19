@@ -7,12 +7,12 @@ import Bouteilles from "../assets/images/image-19.webp";
 import Acteur from "../assets/images/image-54.webp";
 import Julie from "../assets/images/image-87.webp";
 import Hotel from "../assets/images/image-25.webp";
-import lilly8 from "../assets/images/lilly8.jpg";
+import lilly8 from "../assets/images/lilly8.webp";
 import Lyon from "../assets/images/image-78.webp";
-import Rmc from "../assets/images/image-97.jpg";
+import Rmc from "../assets/images/image-97.webp";
 import Vintage from "../assets/images/image-96.webp";
 import Coiffeur from "../assets/images/image-80.webp";
-import Audray8 from "../assets/images/audray8.jpg";
+import Audray8 from "../assets/images/audray8.webp";
 
 export default function SingleGallery() {
   const [gallery, setGallery] = useState(null);
