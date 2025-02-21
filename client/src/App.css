@@ -166,10 +166,7 @@ img {
   display: inline-block;
 }
 
-.image-container img {
-  width: 300Px; /* S'assure que l'image occupe toute la largeur disponible */
-  height: 300px;
-}
+
 
 .image-container h2 {
   position: absolute;
@@ -348,6 +345,15 @@ main#contact1 {
   gap: 50px;
   text-align: center;
 }
+.gallery-logo{
+  position:absolute ;
+  bottom:40px;
+  left:70px;
+  z-index: 1;
+  border-radius: 50%;
+ max-width: 100px;
+ max-height: 100px;
+}
 .login {
   font-family: "Arial", sans-serif;
   background-color: #333;
@@ -365,11 +371,10 @@ main#contact1 {
 .containerMentions{
   height: 900px;;
   display:flex;
-  justify-content: center;
   align-items: center;
-  
   color:white;
   flex-direction: column;
+  text-align: center;
 }
 .containerMentions a{
   color:white;
@@ -868,6 +873,10 @@ main ul{
     display: none;
    
   }
+  #mainNav img{
+    display: none;
+  }
+  
   .sublime-link{
     padding:10px;
     font-size: 16px;

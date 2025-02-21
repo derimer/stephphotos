@@ -65,7 +65,7 @@ function NavBar() {
         className="hamburger"
         onClick={toggleMenu}
       >
-        <img src={Hamburger} alt="Hamburger" />
+         {menuOpen && <img src={Hamburger} alt="Hamburger" />} 
         Menu
       </button>
     </header>
