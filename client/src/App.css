@@ -362,7 +362,19 @@ main#contact1 {
 
   text-align: center;
 }
-
+.containerMentions{
+  height: 900px;;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  
+  color:white;
+  flex-direction: column;
+}
+.containerMentions a{
+  color:white;
+  text-decoration: none;
+}
 .login h2 {
   margin-bottom: 20px;
   color: #333;

@@ -10,6 +10,7 @@ import App from "./App";
 import Admin from "./components/Admin";
 import Login from "./components/Login";
 import Accueil from "./components/Accueil";
+import MentionLegales from "./components/MentionsLegales";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       { path: "/about", element: <About /> },
       { path: "admin", element: <Admin /> },
       { path: "/login", element: <Login /> },
+      { path: "/mentionLegales", element: <MentionLegales /> },
     ],
   },
 ]);
