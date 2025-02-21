@@ -8,7 +8,7 @@ function MentionsLegales  () {
         <h2 >Éditeur du site</h2>
         <p>Ce site est édité par :</p>
         <p><strong>Stéphane Valentin</strong></p>
-        <p>Email :stephano.valentin@wanadoo.fr </p>
+        <p>Email :steph.valentin@free.fr </p>
         <p>Adresse :le village 07210 Saint-Vincent-De-Barres, France</p>
     
      
