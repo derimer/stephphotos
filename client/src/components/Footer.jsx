@@ -23,15 +23,16 @@ function Footer() {
         stephanvalentinophoto
       </a>
      
-      <Link
-        to="/login"
-        >
-       <p>Login</p>
-      </Link>
+     
       <Link
         to="/MentionLegales"
         >
        <p>Mentions légales</p>
+      </Link>
+      <Link
+        to="/login"
+        >
+       <p>Login</p>
       </Link>
     </footer>
   );

@@ -20,7 +20,7 @@ function MentionsLegales  () {
      
         <h2>Hébergement</h2>
         <p>Ce site est hébergé par :</p>
-        <p><strong>Nom de l'hébergeur</strong></p>
+        <p><strong>OVHcloud</strong></p>
         <p>Adresse : 2 rue Kellermann - 59100 Roubaix - France</p>
         <p>Site Web : <a href="https://www.ovhcloud.com/fr/" className="text-blue-500 underline">OVHcloud.com</a></p>
       

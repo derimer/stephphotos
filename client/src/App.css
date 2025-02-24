@@ -148,7 +148,7 @@ img {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-attachment: fixed;
+  
  
 }
 
@@ -341,7 +341,7 @@ main#contact1 {
   flex-direction: column;
   background-color: #f26160;
   color: white;
-  height: 800px;
+  
   gap: 50px;
   text-align: center;
 }
@@ -512,7 +512,9 @@ main#contact1 {
 .clickable-image {
   cursor: pointer;
 }
-
+.hamburger img{
+  display:none;
+}
 #singleGallery h1{
   text-align: center;
 }
@@ -736,25 +738,54 @@ footer {
     align-items: center;
     z-index: 1000;
   }
-  
+  #mainFooter{
+    gap:0;
+  }
   #galleryContainer img {
     max-width: 110%;
     max-height: 100%;
     object-fit: contain;
     border: solid 5px var(--white);
   }
+  .hamburger img{
+    margin-top:50px;
+    display: flex;
+  }
   
-  .close-button {
+  
+  #mainNav {
+    display: none; /* Cache le menu par défaut */
+    flex-direction: column;
     position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 30px;
-    color: white;
+    top: 60px; /* Ajuste selon la hauteur de ton header */
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    padding: 10px 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  #mainNav.open {
+    display: flex; 
+   
+   ;/* Affiche le menu quand la classe 'open' est ajoutée */
+  }
+#mainNav ul{
+  justify-content: center;
+}
+  .hamburger {
+    display: block;
     background: none;
     border: none;
     cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
   }
-  
+
   .clickable-image {
     cursor: pointer;
   }
@@ -771,6 +802,16 @@ footer {
   }
   
 }
+@media (min-width: 740px) and (max-width: 800px) {
+  #mainNav {
+    display: none !important; /* On cache le menu */
+  }
+
+  /* Le menu ne s'affiche que lorsqu'il a la classe "open" */
+  #mainNav.open {
+    display: flex !important;
+  }
+}
 @media (max-width: 1300px) {
   #About {
     display: flex;
@@ -782,9 +823,11 @@ footer {
   }
   #pageContent {
     width:100%;
+    background-size: cover;
     
    
 }
+
 .accueil-links{
   font-size: 2rem;
     position: absolute;
@@ -804,6 +847,48 @@ main ul{
 }
 }
 @media (max-width: 600px) {
+  #About {
+    padding-top: 5px;
+    padding-bottom: 120px;
+  }
+  
+   #mainNav ul {
+   
+    margin-left: 0px;
+  }
+  
+  #mainNav a {
+    font-size: 1.2em;
+  }
+  
+  
+  #mainNav {
+    display: none; /* Cache le menu par défaut */
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Ajuste selon la hauteur de ton header */
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    padding: 10px 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  
+
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
   .uldajout li {
     width: 100%;
   }
@@ -811,8 +896,10 @@ main ul{
     font-size: 20px;
   }
   #mainFooter {
-    font-size: 10px;
+    font-size: 9px;
+    
   }
+  
   #About {
     display: flex;
     justify-content: center;
@@ -821,10 +908,7 @@ main ul{
     font-size: 18px;
     margin: 10px;
   }
-  main ul li img {
-    max-width: 90%;
-    height: auto;
-  }
+  
   main ul{
     display: flex;
     justify-content: center;
@@ -850,6 +934,7 @@ main ul{
    
     margin-left: 0px;
   }
+  
   #mainNav a {
     font-size: 1.2em;
   }
@@ -857,58 +942,53 @@ main ul{
     padding-top: 5px;
     padding-bottom: 120px;
   }
+  
   #mainNav {
-    
-    position: static;
-    background: transparent;
-    
-    padding: 0;
-    justify-content: center;
-  }
-  #mainNav {
-    display: flex;
+    display: none; /* Cache le menu par défaut */
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Ajuste selon la hauteur de ton header */
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    padding: 10px 0;
     transition: all 0.3s ease-in-out;
   }
-  #mainNav.open{
-    display: none;
-   
+
+  #mainNav.open {
+    display: flex; /* Affiche le menu quand la classe 'open' est ajoutée */
   }
-  #mainNav img{
-    display: none;
+
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
   }
+
+  .hamburger img {
+    width: 100%;
+    height: auto;
+  }
+}
   
   .sublime-link{
     padding:10px;
     font-size: 16px;
   }
-  .hamburger {
-    display: none; /* Afficher le bouton hamburger */
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  #mainNav ul {
-    flex-flow: column nowrap;
-    margin-left: 0px;
-  }
-  #mainNav a {
-    font-size: 1.2em;
-  }
   
-  }
-  #menuToggle {
-    display: block; 
-  }
 
 @media screen and (min-width: 768px) {
+ 
+ 
   #mainNav {
-    display: block; /* Toujours afficher le menu sur desktop */
-  }
-  #menuToggle {
-    display: none;
-  }
-  #mainNav {
-    
+    display:none;
     position: static;
     background: transparent;
     display: flex;
@@ -917,6 +997,10 @@ main ul{
   }
   #mainNav {
     transition: all 0.3s ease-in-out;
+  }
+  .hamburger img{
+    margin-top:50px;
+    display: none;
   }
   .hamburger {
     display: block; /* Afficher le bouton hamburger */

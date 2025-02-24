@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Hamburger from "../assets/images/hamburger.webp";
 import Steph from "../assets/images/image-85.webp";
 
-
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -35,38 +34,25 @@ function NavBar() {
 
       <nav id="mainNav" className={menuOpen ? "open" : ""}>
         <img src={Steph} alt="photosteph" id="logoImg" />
-
         <ul>
           <li>
-            <Link to="/" onClick={toggleMenu}>
-              Accueil
-            </Link>
+            <Link to="/" onClick={toggleMenu}>Accueil</Link>
           </li>
           <li>
-            <Link to="/about" onClick={toggleMenu}>
-              À propos
-            </Link>
+            <Link to="/about" onClick={toggleMenu}>À propos</Link>
           </li>
           <li>
-            <Link to="/gallerie" onClick={toggleMenu}>
-              Galeries
-            </Link>
+            <Link to="/gallerie" onClick={toggleMenu}>Galeries</Link>
           </li>
           <li>
-            <Link to="/contact" onClick={toggleMenu}>
-              Contact
-            </Link>
+            <Link to="/contact" onClick={toggleMenu}>Contact</Link>
           </li>
         </ul>
       </nav>
-      <button
-        type="button"
-        id="menuToggle"
-        className="hamburger"
-        onClick={toggleMenu}
-      >
-         {menuOpen && <img src={Hamburger} alt="Hamburger" />} 
-        Menu
+
+      {/* Bouton hamburger visible en mobile */}
+      <button type="button" id="menuToggle" className="hamburger" onClick={toggleMenu}>
+        <img src={Hamburger} alt="Menu"className="clickable-image" />
       </button>
     </header>
   );
