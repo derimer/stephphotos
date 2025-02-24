@@ -984,7 +984,9 @@ main ul{
     font-size: 16px;
   }
   
-
+#mainFooter{
+  gap:2px;
+}
 @media screen and (min-width: 768px) {
  
  
