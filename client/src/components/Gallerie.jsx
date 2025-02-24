@@ -12,7 +12,7 @@ import Autorose from "../assets/images/image-101.webp";
 import Vintage from "../assets/images/image-100.webp";
 import Coiffeur from "../assets/images/image-80.webp";
 import Audray8 from "../assets/images/audray8.webp";
-import logo18 from "../assets/images/image-104.jpg";
+import logo18 from "../assets/images/image-105.png";
 
 const galleriesConfig = [
   { id: 1, type: 'nb', image: Gerbier, title: 'Voyages N&B' },
