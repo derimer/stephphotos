@@ -52,7 +52,7 @@ function NavBar() {
 
       {/* Bouton hamburger visible en mobile */}
       <button type="button" id="menuToggle" className="hamburger" onClick={toggleMenu}>
-        <img src={Hamburger} alt="Menu"className="clickable-image" />
+        <img src={Hamburger} alt="Menu" />
       </button>
     </header>
   );
