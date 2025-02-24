@@ -1,7 +1,7 @@
 // Admin.jsx
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-// import imageCompression from 'browser-image-compression';
+import imageCompression from 'browser-image-compression';
 
 export default function Admin() {
   const [images, setImages] = useState([]);
@@ -133,12 +133,11 @@ export default function Admin() {
     }
   }, [galleries, imagesFetched, fetchImagesForGalleries]);
 
-
+  
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
 
-    /*
     const options = {
       maxSizeMB: 1,// Taille maximale en Mo
       maxWidthOrHeight: 1500, // Dimensions maximales
@@ -148,17 +147,15 @@ export default function Admin() {
     try {
       const compressedFile = await imageCompression(selectedFile, options);
       setFile(compressedFile);
-*/
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreview(reader.result);
       };
-     /*
       reader.readAsDataURL(compressedFile);
     } catch (erreur) {
       console.error('Erreur lors de la compression de l\'image :', erreur);
     }
-      */
   };
   
   

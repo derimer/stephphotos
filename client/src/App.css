@@ -201,16 +201,32 @@ img {
 
 .sublime-link {
   font-family: "Dancing Script", serif;
-  background-color:#3333336e;
-  opacity: 0.9;
- 
-  font-size:25px;
-  
-  padding:20px;
+  background-color: rgba(10, 9, 9, 0.6); /* Légère transparence */
+  opacity: 0.9; /* Augmenter légèrement la visibilité */
+  font-weight: bold;
+  font-size: 50px; /* Augmenter la taille */
+  padding: 30px 50px; /* Élargir le padding */
   text-decoration: none;
-  width:150px;
-  transition: transform 0.3s ease;
+  color: white; /* Couleur plus contrastée */
+  text-transform: uppercase; /* Mettre en majuscules */
+  letter-spacing: 2px; /* Espacement des lettres */
+width:100px;
+  /* Ajout d'un contour ou d'une ombre pour rendre le texte plus lisible */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0px 0px 5px rgba(255, 255, 255, 0.5);
+
+  /* Effet au survol */
+  transition: transform 0.3s ease, background-color 0.3s ease;
   text-align: center;
+  border: 2px solid white; /* Ajout d'un léger contour */
+  border-radius: 10px;
+}
+
+/* Effet au survol */
+.sublime-link:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.3); /* Légère lumière au survol */
+  color: #ffcc00; /* Changer la couleur du texte */
+  text-shadow: 3px 3px 10px rgba(255, 204, 0, 0.8), 0px 0px 8px rgba(0, 0, 0, 0.9);
 }
 
 .sublime-link:hover {
