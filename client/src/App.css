@@ -1005,8 +1005,8 @@ main ul{
   gap:2px;
 }
 @media screen and (min-width: 768px) {
- 
- 
+
+  
   #mainNav {
     display:none;
     position: static;
@@ -1020,7 +1020,7 @@ main ul{
   }
   .hamburger img{
     margin-top:50px;
-    display: none;
+    
   }
   .hamburger {
     display: block; /* Afficher le bouton hamburger */
