@@ -772,7 +772,7 @@ footer {
   #mainNav {
     display: none; /* Cache le menu par défaut */
     flex-direction: column;
-    position: absolute;
+    
     top: 60px; /* Ajuste selon la hauteur de ton header */
     left: 0;
     width: 100%;
@@ -784,6 +784,7 @@ footer {
 
   #mainNav.open {
     display: flex; 
+    z-index: 1;
    
    ;/* Affiche le menu quand la classe 'open' est ajoutée */
   }
@@ -838,7 +839,7 @@ footer {
     padding: 0;
   }
   #pageContent {
-    margin-top:270px;
+    margin-top:150px;
     width:100%;
     background-size: cover;
     
