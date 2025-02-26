@@ -45,7 +45,7 @@ function NavBar() {
       {/* Afficher le hamburger seulement si le menu est fermé */}
       {!menuOpen && (
         <button type="button" id="menuToggle" className="hamburger" onClick={toggleMenu}>
-          <img src={Hamburger} alt="Menu" className="clickable-image" />
+          <img src={Hamburger} alt="Menu"  />
         </button>
       )}
     </header>
