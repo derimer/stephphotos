@@ -177,7 +177,7 @@ img {
 }
 
 #galleryContainer {
-  animation: fadeInScale 0.5s ease-out; /* Applique l'animation */
+  animation: fadeInScale 1.5s ease-out; /* Applique l'animation */
 }
 @keyframes fadeIn {
   from {
