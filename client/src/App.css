@@ -350,7 +350,7 @@ main#gallerie1 h1 {
 }
 
 main#contact1 {
-  margin-top: 80px;
+ 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -764,10 +764,17 @@ footer {
     border: solid 5px var(--white);
   }
   .hamburger img{
-    margin-top:50px;
+    
     display: flex;
   }
-  
+  #mainNav {
+    display: none !important; /* On cache le menu */
+  }
+
+  /* Le menu ne s'affiche que lorsqu'il a la classe "open" */
+  #mainNav.open {
+    display: flex !important;
+  }
   
   #mainNav {
     display: none; /* Cache le menu par défaut */
@@ -819,16 +826,8 @@ footer {
   }
   
 }
-@media (min-width: 740px) and (max-width: 800px) {
-  #mainNav {
-    display: none !important; /* On cache le menu */
-  }
 
-  /* Le menu ne s'affiche que lorsqu'il a la classe "open" */
-  #mainNav.open {
-    display: flex !important;
-  }
-}
+
 @media (max-width: 1300px) {
   #About {
     display: flex;
@@ -839,7 +838,7 @@ footer {
     padding: 0;
   }
   #pageContent {
-    margin-top:150px;
+    
     width:100%;
     background-size: cover;
     
@@ -1018,10 +1017,8 @@ main ul{
   #mainNav {
     transition: all 0.3s ease-in-out;
   }
-  .hamburger img{
-    margin-top:50px;
-    
-  }
+  
+ 
   .hamburger {
     display: block; /* Afficher le bouton hamburger */
     background: none;
@@ -1131,5 +1128,8 @@ button ::placeholder {
     position:relative;
     top:0;
     grid-template-columns: repeat(6, 1fr);
+  }
+  #menuToggle{
+    display:none;
   }
 }

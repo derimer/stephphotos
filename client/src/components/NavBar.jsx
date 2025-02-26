@@ -35,25 +35,19 @@ function NavBar() {
       <nav id="mainNav" className={menuOpen ? "open" : ""}>
         <img src={Steph} alt="photosteph" id="logoImg" />
         <ul>
-          <li>
-            <Link to="/" onClick={toggleMenu}>Accueil</Link>
-          </li>
-          <li>
-            <Link to="/about" onClick={toggleMenu}>À propos</Link>
-          </li>
-          <li>
-            <Link to="/gallerie" onClick={toggleMenu}>Galeries</Link>
-          </li>
-          <li>
-            <Link to="/contact" onClick={toggleMenu}>Contact</Link>
-          </li>
+          <li><Link to="/" onClick={toggleMenu}>Accueil</Link></li>
+          <li><Link to="/about" onClick={toggleMenu}>À propos</Link></li>
+          <li><Link to="/gallerie" onClick={toggleMenu}>Galeries</Link></li>
+          <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
         </ul>
       </nav>
 
-      {/* Bouton hamburger visible en mobile */}
-      <button type="button" id="menuToggle" className="hamburger" onClick={toggleMenu}>
-        <img src={Hamburger} alt="Menu" />
-      </button>
+      {/* Afficher le hamburger seulement si le menu est fermé */}
+      {!menuOpen && (
+        <button type="button" id="menuToggle" className="hamburger" onClick={toggleMenu}>
+          <img src={Hamburger} alt="Menu" className="clickable-image" />
+        </button>
+      )}
     </header>
   );
 }
