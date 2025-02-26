@@ -232,7 +232,7 @@ export default function SingleGallery() {
       {selectedImage && (
         <div
           id="galleryContainer"
-          className="visible"
+          className="visible fade-in"
           role="dialog"
           aria-modal="true"
          
