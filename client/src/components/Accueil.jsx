@@ -71,7 +71,7 @@ function Accueil() {
         const chosenImage = images[Math.floor(Math.random() * images.length)];
         setRandomImage(chosenImage);
       }
-    }, 20000); // 10000 millisecondes = 10 secondes
+    }, 10000); // 10000 millisecondes = 10 secondes
 
     // Nettoyer l'intervalle lorsque le composant est démonté
     return () => clearInterval(interval);
