@@ -71,7 +71,7 @@ function Accueil() {
         const chosenImage = images[Math.floor(Math.random() * images.length)];
         setRandomImage(chosenImage);
       }
-    }, 2000); // 10000 millisecondes = 10 secondes
+    }, 4000); // 10000 millisecondes = 10 secondes
 
     // Nettoyer l'intervalle lorsque le composant est démonté
     return () => clearInterval(interval);
@@ -79,13 +79,17 @@ function Accueil() {
 
   return (
     <section
-      id="pageContent"
-      className="home"
-      style={{
-        backgroundImage: randomImage ? `url(${randomImage.filename})` : "none",
-        position: 'relative',
-        minHeight: '100vh'
-      }}
+    id="pageContent"
+    key={randomImage?.filename}  // Force React à recréer l'élément à chaque image
+    className="home"
+    style={{
+      backgroundImage: randomImage ? `url(${randomImage.filename})` : "none",
+      position: "relative",
+      minHeight: "100vh",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      animation: "fadeIn 2s linear",
+    }}
     >
       <div id="pictInfo">
         {randomImage ? (
@@ -94,6 +98,7 @@ function Accueil() {
             <p>{randomImage.author}</p>
             <p>{randomImage.exposure}</p>
           </>
+          
         ) : (
           <p>Chargement...</p>
         )}
