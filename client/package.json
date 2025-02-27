@@ -10,26 +10,28 @@
     "prepare": "",
     "start": "node index.js",
     "dev": "vite",
-     "build": "vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "format": "prettier --write .",
     "lint": "eslint src --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext .js,.jsx --fix"
-     
   },
   "dependencies": {
-    "browser-image-compression": "^2.0.2", 
+    "@vitejs/plugin-react": "^4.2.1",
+    "browser-image-compression": "^2.0.2",
+    "esbuild": "0.25.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-medium-image-zoom": "^4.3.5",
     "react-router-dom": "^6.23.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.2.11"
+    "vite": "^6.2.0"
   },
-  "workspaces": ["client", "server"],
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "devDependencies": {
-   
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
@@ -39,13 +41,9 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.2.0",
     "prettier": "^3.2.5"
-    
   },
   "lint-staged": {
-  "*.js": "eslint --fix",
-  "*.css": "prettier --write"
-}
-
-
-
+    "*.js": "eslint --fix",
+    "*.css": "prettier --write"
+  }
 }

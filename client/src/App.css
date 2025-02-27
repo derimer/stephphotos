@@ -60,11 +60,9 @@ img {
  background-size: cover;
  background-repeat: no-repeat; 
   width: 100%;
-  flex-direction: column;
-  
-  
-  
+  flex-direction: column;     
 }
+
 .image-log{
   display: flex;
   align-items: center;

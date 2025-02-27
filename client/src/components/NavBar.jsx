@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Hamburger from "../assets/images/hamburger.webp";
 import Steph from "../assets/images/image-85.webp";
+import Appareils from "../assets/images/image-109.jpg";
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,8 +31,9 @@ function NavBar() {
 
   return (
     <header id="mainHeader">
+     
       <h1><strong>Stephanovalentinophoto</strong></h1>
-
+     
       <nav id="mainNav" className={menuOpen ? "open" : ""}>
         <img src={Steph} alt="photosteph" id="logoImg" />
         <ul>

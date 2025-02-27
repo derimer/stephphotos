@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation,Link } from "react-router-dom";
 
 // Import des images locales
-import Isabelle from "../assets/images/image-98.jpg";
+import Isabelle from "../assets/images/image-98.webp";
 
 function Accueil() {
   // Déclarez l'état pour stocker toutes les images
