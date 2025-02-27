@@ -863,7 +863,7 @@ footer {
     padding: 0;
   }
   #pageContent {
-    
+    margin-top:20px;
     width:100%;
     background-size: cover;
     
@@ -972,6 +972,9 @@ main ul{
     border: none;
     cursor: pointer;
   }
+  #mainHeader{
+    height: 100px;;
+  }
    #mainNav ul {
    
     margin-left: 0px;
@@ -999,6 +1002,7 @@ main ul{
   }
 
   #mainNav.open {
+    margin-top:20px;
     display: flex; /* Affiche le menu quand la classe 'open' est ajoutée */
   }
 
@@ -1015,6 +1019,7 @@ main ul{
   }
 
   .hamburger img {
+    margin-top:20px;
     width: 100%;
     height: auto;
   }
