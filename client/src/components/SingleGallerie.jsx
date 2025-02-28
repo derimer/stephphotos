@@ -59,7 +59,7 @@ export default function SingleGallery() {
         ],
       },
       gal4: {
-        title: "Sublime couleur",
+        title: "Sublime Couleur",
         images: [    
            
           Bouteilles,
@@ -74,7 +74,7 @@ export default function SingleGallery() {
         ],
       },
       gal6: {
-        title: "Portait couleur",
+        title: "Portait Couleur",
         images: [   
          Audray8,
         ],
@@ -102,7 +102,7 @@ export default function SingleGallery() {
         ],
       },
       gal10: {
-        title: "Evenements couleur",
+        title: "Evenements Couleur",
         images: [    
         Autorose,
           
@@ -116,7 +116,7 @@ export default function SingleGallery() {
         ],
       },
       gal12: {
-        title: "Au Quotidien couleur ",
+        title: "Au Quotidien Couleur ",
         images: [    
         Coiffeur,
           
