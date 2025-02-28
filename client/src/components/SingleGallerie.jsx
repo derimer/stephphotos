@@ -24,14 +24,14 @@ export default function SingleGallery() {
   const staticGalleries = useMemo(
     () => ({
       gal1: {
-        title: "Voyages n&b",
+        title: "Voyages N & B",
         images: [
           Gerbier,          
           
         ],
       },
       gal2: {
-        title: "voyages couleur",
+        title: "Voyages Couleur",
         images: [
                 
         Hotel,
@@ -45,7 +45,7 @@ export default function SingleGallery() {
         ],
       },
       gal3: {
-        title: "sublime n&b",
+        title: "Sublime N & B",
         images: [        
           Regards,
          
@@ -59,7 +59,7 @@ export default function SingleGallery() {
         ],
       },
       gal4: {
-        title: "sublime couleur",
+        title: "Sublime couleur",
         images: [    
            
           Bouteilles,
@@ -68,7 +68,7 @@ export default function SingleGallery() {
         ],
       },
       gal5: {
-        title: "Portait n&b ",
+        title: "Portait N & B ",
         images: [     
           Acteur,
         ],
@@ -80,14 +80,14 @@ export default function SingleGallery() {
         ],
       },
       gal7: {
-        title: "Charme n&b",
+        title: "Charme N & B",
         images: [     
           lilly8 ,
           
         ],
       },
       gal8: {
-        title: "charme couleur",
+        title: "Charme Couleur",
         images: [     
           Julie,          
           
@@ -95,7 +95,7 @@ export default function SingleGallery() {
         ],
       },
       gal9: {
-        title: "Evenements n&b",
+        title: "Evenements N & B",
         images: [     
           Lyon,
          
@@ -109,14 +109,14 @@ export default function SingleGallery() {
         ],
       },
       gal11: {
-        title: "au quotidien n&b ",
+        title: "Au Quotidien N & B ",
         images: [    
        Vintage,
           
         ],
       },
       gal12: {
-        title: "au quotidien couleur ",
+        title: "Au Quotidien couleur ",
         images: [    
         Coiffeur,
           

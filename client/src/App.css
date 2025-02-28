@@ -116,12 +116,14 @@ img {
   margin-left: 90px;
 }
 #mainNav a {
-  color:white;
+  color:rgb(223, 211, 211);
   text-decoration: none;
   font-size: calc(var(--normal-text-size-value)* 1rem);
     display: block;
   margin: 10px;
   padding-top: 10px;
+  font-family: "Dancing Script", serif;
+  font-weight: bold;
 }
 #mainNav a:hover {
   color: var(--shaded-red);
@@ -158,6 +160,7 @@ img {
 #galeries p {
   font-size: 16px;
   font-weight: lighter;
+ 
 }
 .image-container {
   position: relative;
@@ -202,6 +205,7 @@ img {
   font-size: 2rem; /* Ajustez la taille du texte selon vos préférences */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombre de texte pour améliorer la lisibilité */
   text-align: center; /* Centrer le texte si nécessaire */
+  font-family: "Dancing Script", serif;
 }
 .home {
   background-size: cover;
@@ -509,7 +513,7 @@ main#contact1 {
   font-family: 'Poppins', sans-serif;
 }
 #singleGallery h1 {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Dancing Script", serif;
   color: white;
   font-weight: bold;
 }
@@ -583,15 +587,19 @@ main#contact1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:10px;
-}
-#mainFooter a {
-  color:white;
-  text-decoration: none; /* Supprime le soulignement */
  
 }
-#mainFooter p{
+#mainFooter a {
+  font-family: "Dancing Script", serif;
   color:white;
+  text-decoration: none; /* Supprime le soulignement */
+  gap:50px;
+
+}
+#mainFooter p{
+  font-family: "Dancing Script", serif;
+  color:white;
+  gap:50px;
 }
 #mainNav.open {
   display: flex;
@@ -780,7 +788,7 @@ footer {
     z-index: 1000;
   }
   #mainFooter{
-    gap:0;
+    gap:50px;
   }
   #galleryContainer img {
     max-width: 110%;
@@ -1031,7 +1039,8 @@ main ul{
   }
   
 #mainFooter{
-  gap:2px;
+  gap:10px;
+  font-size:15px;
 }
 @media screen and (min-width: 768px) {
 
