@@ -33,7 +33,7 @@ body {
   background-color: black;
 }
 #mainHeader h1 {
-  font-family: "Dancing Script", serif;
+  
   font-size:2.5em !important;
   font-weight:extra-bold !important;
   margin-left: 20px;
@@ -122,7 +122,7 @@ img {
     display: block;
   margin: 10px;
   padding-top: 10px;
-  font-family: "Dancing Script", serif;
+ 
   font-weight: bold;
 }
 #mainNav a:hover {
@@ -201,11 +201,10 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: rgb(243, 235, 235); /* Ajustez la couleur du texte */
-  font-size: 2rem; /* Ajustez la taille du texte selon vos préférences */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombre de texte pour améliorer la lisibilité */
-  text-align: center; /* Centrer le texte si nécessaire */
-  font-family: "Dancing Script", serif;
+  color: #f3ebeb; /* Simplified color value */
+  font-size: 2rem; /* Adjust the text size as needed */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for better readability */
+  text-align: center; /* Center the text */
 }
 .home {
   background-size: cover;
@@ -498,7 +497,7 @@ main#contact1 {
   gap: 20px;
   font-size: 25px; 
   font-family: "Dancing Script", serif;
-  font-weight: weight;
+  font-weight: normal;
     
   
 }
@@ -513,7 +512,7 @@ main#contact1 {
   font-family: 'Poppins', sans-serif;
 }
 #singleGallery h1 {
-  font-family: "Dancing Script", serif;
+  text-align: center;
   color: white;
   font-weight: bold;
 }
@@ -590,14 +589,14 @@ main#contact1 {
  
 }
 #mainFooter a {
-  font-family: "Dancing Script", serif;
+ 
   color:white;
   text-decoration: none; /* Supprime le soulignement */
   gap:50px;
 
 }
 #mainFooter p{
-  font-family: "Dancing Script", serif;
+  
   color:white;
   gap:50px;
 }
