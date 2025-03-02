@@ -197,7 +197,11 @@ img {
 }
 
 .home {
-  animation: fadeIn 5s linear 1;
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  animation: fadeIn 2s linear;
 }
 
 
@@ -218,13 +222,12 @@ img {
 }
 
 .accueil-links {
-  font-size: 2rem;
   position: absolute;
-  bottom: 400px; /* Ajustez cette valeur selon vos besoins */
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 1000px;
+  gap: 20px;
   
   padding: 15px 25px;
   background: transparent;
@@ -264,6 +267,16 @@ width:100px;
 
 .sublime-link:hover {
   transform: translateY(-2px);
+}
+
+#pictInfo {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
 }
 
 #pictInfo {
@@ -582,28 +595,29 @@ main#contact1 {
 #mainFooter {
   background-color: black;
   height: 40px;
-  width: 100%; 
+  width: 100%;
   bottom: 0;
   position: fixed;
-  background-color: rgb(3, 3, 27);   
+  background-color: rgb(3, 3, 27);
   background-size: cover;
   font-size: 16px;
   display: flex;
   align-items: center;
-  justify-content: center;
- 
+  justify-content: space-between;
+  padding: 0 20px;
+  color: white;
 }
-#mainFooter a {
- 
-  color:white;
-  text-decoration: none; /* Supprime le soulignement */
-  gap:50px;
 
+.footer-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  margin: 0 10px;
 }
-#mainFooter p{
-  
-  color:white;
-  gap:50px;
+
+.footer-icon {
+  margin-right: 8px;
 }
 #mainNav.open {
   display: flex;
@@ -970,6 +984,9 @@ main ul{
     flex-direction: column;
   }
 }
+footer p{
+  gap:5px;
+}
 @media (max-width: 445px) {
   #pictInfo {
     display: none;
@@ -1043,8 +1060,8 @@ main ul{
   }
   
 #mainFooter{
-  gap:10px;
-  font-size:15px;
+  gap:5px;
+  font-size:12px;
 }
 @media screen and (min-width: 768px) {
 

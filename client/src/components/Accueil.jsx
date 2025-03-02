@@ -1,17 +1,14 @@
 // src/components/Accueil.js
 import { useEffect, useState } from "react";
-import { useLocation,Link } from "react-router-dom";
-
-// Import des images locales
+import { useLocation, Link } from "react-router-dom";
 import Isabelle from "../assets/images/image-98.webp";
+// Assuming you have a CSS file for styles
 
 function Accueil() {
-  // Déclarez l'état pour stocker toutes les images
   const [images, setImages] = useState([]);
   const [randomImage, setRandomImage] = useState(null);
   const location = useLocation();
 
-  // Images locales définies
   const localImages = [
     {
       filename: Isabelle,
@@ -25,11 +22,9 @@ function Accueil() {
     if (!filename) return "";
     if (filename.startsWith("http")) return filename;
     const cleanFilename = filename.replace(/^\/uploads\//, "");
-    // Ajout de paramètres de compression et format WebP
     return `${import.meta.env.VITE_API_URL}/uploads/${cleanFilename}?q=80&auto=format&fit=crop&w=800`;
   };
-  
-  // Fonction pour récupérer les images depuis l'API
+
   useEffect(() => {
     const fetchImages = async () => {
       try {
@@ -37,26 +32,22 @@ function Accueil() {
         if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
 
         const data = await response.json();
-
-        // Normalisez les URLs des images récupérées
         const normalizedImages = data.map((image) => ({
           ...image,
-          filename: normalizeImageUrl(image.filename), // Utilisez image.filename ici
+          filename: normalizeImageUrl(image.filename),
         }));
 
-        // Fusionne les images locales avec celles de la BDD
         const allImages = localImages.concat(normalizedImages);
-        setImages(allImages); // Met à jour l'état avec toutes les images
+        setImages(allImages);
       } catch (error) {
         console.error("Erreur lors de la récupération des images :", error);
-        setImages(localImages); // Utiliser uniquement les images locales en cas d'erreur
+        setImages(localImages);
       }
     };
 
     fetchImages();
   }, []);
 
-  // Choisir une image aléatoire
   useEffect(() => {
     if (images.length > 0) {
       const chosenImage = images[Math.floor(Math.random() * images.length)];
@@ -64,32 +55,30 @@ function Accueil() {
     }
   }, [location, images]);
 
-  // Défilement des images toutes les 10 secondes
   useEffect(() => {
     const interval = setInterval(() => {
       if (images.length > 0) {
         const chosenImage = images[Math.floor(Math.random() * images.length)];
         setRandomImage(chosenImage);
       }
-    }, 4000); // 10000 millisecondes = 10 secondes
+    }, 4000);
 
-    // Nettoyer l'intervalle lorsque le composant est démonté
     return () => clearInterval(interval);
   }, [images]);
 
   return (
     <section
-    id="pageContent"
-    key={randomImage?.filename}  // Force React à recréer l'élément à chaque image
-    className="home"
-    style={{
-      backgroundImage: randomImage ? `url(${randomImage.filename})` : "none",
-      position: "relative",
-      minHeight: "100vh",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      animation: "fadeIn 2s linear",
-    }}
+      id="pageContent"
+      key={randomImage?.filename}
+      className="home"
+      style={{
+        backgroundImage: randomImage ? `url(${randomImage.filename})` : "none",
+        position: "relative",
+        minHeight: "100vh",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        animation: "fadeIn 2s linear",
+      }}
     >
       <div id="pictInfo">
         {randomImage ? (
@@ -98,20 +87,18 @@ function Accueil() {
             <p>{randomImage.author}</p>
             <p>{randomImage.exposure}</p>
           </>
-          
         ) : (
           <p>Chargement...</p>
         )}
       </div>
-  
-      {/* Liens positionnés en bas au centre */}
+
       <div className="accueil-links">
         <Link to="/galleries/nb" className="sublime-link">
-        <span className="cool" style={{ color: 'white' }}>N</span>
+          <span className="cool" style={{ color: 'white' }}>N</span>
           <span style={{ color: 'black' }}>&</span>
           <span style={{ color: 'white' }}>B</span>
         </Link>
-        
+
         <Link to="/galleries/color" className="sublime-link">
           <span className="cool" style={{ color: '#FF0000' }}>C</span>
           <span style={{ color: '#66CC66' }}>O</span>
@@ -124,6 +111,6 @@ function Accueil() {
       </div>
     </section>
   );
-}  
+}
 
 export default Accueil;
