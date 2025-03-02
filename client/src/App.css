@@ -34,7 +34,7 @@ body {
 }
 #mainHeader h1 {
   
-  font-size:2.5em !important;
+  font-size:1.5em !important;
   font-weight:extra-bold !important;
   margin-left: 20px;
   margin-top:20px;
@@ -100,12 +100,17 @@ img {
   border:2px solid white;
 }
 #mainNav {
-  position: relative;
-  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  top: 40px;
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 20px;
-  display: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
 }
 #mainNav ul {
   list-style: none;
