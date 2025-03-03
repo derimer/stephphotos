@@ -139,10 +139,10 @@ export default function Admin() {
     if (!selectedFile) return;
 
     const options = {
-      maxSizeMB: 5,// Taille maximale en Mo
+      maxSizeMB: 5, // Taille maximale en Mo
       maxWidthOrHeight: 2500, // Dimensions maximales
-      useWebWorker: true,
-      initialQuality:0.9, // Utilisation de Web Workers pour améliorer les performances
+      useWebWorker: true, // Utilisation de Web Workers pour améliorer les performances
+      initialQuality: 1, // Qualité initiale sans perte
     };
 
     try {
