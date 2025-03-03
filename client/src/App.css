@@ -32,6 +32,9 @@ body {
   min-height: 100%;
   background-color: black;
 }
+body.no-scroll {
+  overflow: hidden;
+}
 #mainHeader h1 {
   
   font-size:1.5em !important;

@@ -199,9 +199,17 @@ export default function SingleGallery() {
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("click", handleImageClick);
 
+    // Désactiver le défilement lorsque l'image en grand est affichée
+    if (selectedImage) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("click", handleImageClick);
+      document.body.style.overflow = ""; // Réactiver le défilement lors du démontage
     };
   }, [selectedImage, showSinglePict, closeSinglePict]);
 
