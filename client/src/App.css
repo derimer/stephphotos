@@ -226,12 +226,14 @@ img {
 
 .accueil-links {
   position: absolute;
-  bottom: 40px;
+  bottom: 180px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
   
+  gap:600px;
   padding: 15px 25px;
   background: transparent;
   
