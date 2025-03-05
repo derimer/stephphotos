@@ -35,6 +35,9 @@ body {
 body.no-scroll {
   overflow: hidden;
 }
+.hidden {
+  display: none;
+}
 #mainHeader h1 {
   font-family: 'Roboto', sans-serif;
   font-size:1.5em !important;

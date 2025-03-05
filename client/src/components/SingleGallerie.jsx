@@ -199,17 +199,20 @@ export default function SingleGallery() {
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("click", handleImageClick);
 
-    // Désactiver le défilement lorsque l'image en grand est affichée
+    // Désactiver le défilement et masquer le contenu de l'accueil lorsque l'image en grand est affichée
     if (selectedImage) {
       document.body.classList.add("no-scroll");
+      document.getElementById("pageContent").classList.add("hidden");
     } else {
       document.body.classList.remove("no-scroll");
+      document.getElementById("pageContent").classList.remove("hidden");
     }
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("click", handleImageClick);
       document.body.classList.remove("no-scroll"); // Réactiver le défilement lors du démontage
+      document.getElementById("pageContent").classList.remove("hidden"); // Réafficher le contenu de l'accueil lors du démontage
     };
   }, [selectedImage, showSinglePict, closeSinglePict]);
 
