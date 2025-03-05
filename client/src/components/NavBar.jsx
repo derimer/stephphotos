@@ -32,8 +32,9 @@ function NavBar() {
   return (
     <header id="mainHeader">
       <h1><strong>Stephanovalentinophoto</strong></h1>
+      <img src={Steph} alt="photosteph" id="logoImg" />
       <nav id="mainNav" className={menuOpen ? "open" : ""}>
-        <img src={Steph} alt="photosteph" id="logoImg" />
+       
         <ul>
           <li><Link to="/" onClick={toggleMenu}><i className="fas fa-home"></i></Link></li>
           <li><Link to="/about" onClick={toggleMenu}><i className="fas fa-info-circle"></i></Link></li>
