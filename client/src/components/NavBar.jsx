@@ -41,7 +41,7 @@ function NavBar() {
           <li><Link to="/mentionsLegales" onClick={toggleMenu} aria-label="Mentions légales"><i className="fas fa-gavel" /></Link></li>
           <li><Link to="/login" onClick={toggleMenu} aria-label="Login"><i className="fas fa-user" /></Link></li>
           <li><a href="https://www.instagram.com/stephanovalentinophoto/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram" /></a></li>
-          <li><a href="https://www.facebook.com/steph.valentin?locale=fr_FR" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i className="fab fa-facebook" /></a></li>
+         
         </ul>
       </nav>
 
