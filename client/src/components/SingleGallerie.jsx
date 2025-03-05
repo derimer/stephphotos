@@ -201,15 +201,15 @@ export default function SingleGallery() {
 
     // Désactiver le défilement lorsque l'image en grand est affichée
     if (selectedImage) {
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("no-scroll");
     } else {
-      document.body.style.overflow = "";
+      document.body.classList.remove("no-scroll");
     }
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("click", handleImageClick);
-      document.body.style.overflow = ""; // Réactiver le défilement lors du démontage
+      document.body.classList.remove("no-scroll"); // Réactiver le défilement lors du démontage
     };
   }, [selectedImage, showSinglePict, closeSinglePict]);
 
