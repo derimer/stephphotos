@@ -332,7 +332,9 @@ useEffect(() => {
 
       <div className="ajoutImage1">
         <h2 className="title">Ajouter une nouvelle image à l'accueil</h2>
+        <label htmlFor="fileInput">Sélectionner une image</label>
         <input
+          id="fileInput"
           type="file"
           accept="image/*"
           onChange={handleFileChange}
@@ -348,23 +350,27 @@ useEffect(() => {
             />
           </div>
         )}
+        <label htmlFor="nameInput">Description</label>
         <input
+          id="nameInput"
           type="text"
           placeholder="description"
           name="name"
           value={newImage.name || ""}
           onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
-          
         />
+        <label htmlFor="authorInput">Outil</label>
         <input
+          id="authorInput"
           type="text"
           placeholder="outil"
           name="author"
           value={newImage.author || ""}
           onChange={(e) => setNewImage({ ...newImage, author: e.target.value })}
-         
         />
+        <label htmlFor="exposureInput">Réglages</label>
         <input
+          id="exposureInput"
           type="text"
           placeholder="reglages"
           name="exposure"
@@ -372,7 +378,6 @@ useEffect(() => {
           onChange={(e) =>
             setNewImage({ ...newImage, exposure: e.target.value })
           }
-          
         />
         <button type="button" id="ajouterImg" onClick={handleAddImage}>
           Ajouter l'image
@@ -410,7 +415,7 @@ useEffect(() => {
       </div>
 
       <div className="exist2">
-        <h2 className ="title">Messages des utilisateurs</h2>
+        <h2 className="title">Messages des utilisateurs</h2>
         {messages.length > 0 ? (
   <ul>
     {messages.map((message) => (
@@ -433,13 +438,17 @@ useEffect(() => {
 
       <div className="ajoutImage2">
         <h2 className="title">Ajouter une image à une galerie</h2>
+        <label htmlFor="fileInputGallery">Sélectionner une image</label>
         <input
+          id="fileInputGallery"
           type="file"
           accept="image/*"
           onChange={handleFileChange}
           required
         />
+        <label htmlFor="nameInputGallery">Contexte de la photo</label>
         <input
+          id="nameInputGallery"
           type="text"
           placeholder="contexte de la photo"
           name="name"
@@ -447,7 +456,9 @@ useEffect(() => {
           onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
           required
         />
+        <label htmlFor="gallerySelect">Sélectionner une galerie</label>
         <select
+          id="gallerySelect"
           value={selectedGallery}
           onChange={(e) => setSelectedGallery(e.target.value)}
           required
