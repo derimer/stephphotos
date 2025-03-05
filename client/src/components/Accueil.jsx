@@ -61,7 +61,7 @@ function Accueil() {
         const chosenImage = images[Math.floor(Math.random() * images.length)];
         setRandomImage(chosenImage);
       }
-    }, 4000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [images]);
