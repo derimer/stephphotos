@@ -57,8 +57,9 @@ body.no-scroll {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  flex-direction: column;
+  gap:200px;
+ 
+  
 }
 
 img {
