@@ -57,9 +57,8 @@ body.no-scroll {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:200px;
- 
-  
+  gap: 20px;
+  flex-direction: column;
 }
 
 img {
@@ -111,15 +110,40 @@ img {
   background-color: #0e0101; /* Updated background color */
   color: white;
   padding: 10px 20px;
- 
+  gap: 30px;
 }
 
 #mainNav ul {
   list-style: none;
-  padding: 10px;
+  padding: 0;
   margin: 0;
   display: flex;
-  gap: 100px;
+  gap: 50px;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  #mainNav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  #mainNav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 445px) {
+  #mainNav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
 }
 
 #mainNav a {
@@ -1037,13 +1061,9 @@ footer p{
     transition: all 0.3s ease-in-out;
   }
 .accueil-links{
-  position:relative;
-  bottom:120px;
-  left: 220px;
   gap:50px;
 }
   #mainNav.open {
-
     margin-top:20px;
     display: flex; /* Affiche le menu quand la classe 'open' est ajoutée */
   }
