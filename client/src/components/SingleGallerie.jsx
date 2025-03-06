@@ -17,6 +17,7 @@ import Audray8 from "../assets/images/audray8.webp";
 export default function SingleGallery() {
   const [gallery, setGallery] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [randomImage, setRandomImage] = useState(null); // Ajouter l'état pour l'image aléatoire
   const [searchParams] = useSearchParams();
   const [images, setImages] = useState([]);
   const galId = searchParams.get("id");
@@ -212,6 +213,19 @@ export default function SingleGallery() {
       document.body.style.overflow = ""; // Réactiver le défilement lors du démontage
     };
   }, [selectedImage, showSinglePict, closeSinglePict]);
+
+  useEffect(() => {
+    const intervalDuration = window.innerWidth <= 445 ? 60000 : 8000;
+
+    const interval = setInterval(() => {
+      if (images.length > 0) {
+        const chosenImage = images[Math.floor(Math.random() * images.length)];
+        setRandomImage(chosenImage);
+      }
+    }, intervalDuration);
+
+    return () => clearInterval(interval);
+  }, [images]);
 
   if (!gallery) return <p>Chargement de la galerie...</p>;
 

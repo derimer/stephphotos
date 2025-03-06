@@ -56,12 +56,14 @@ function Accueil() {
   }, [location, images]);
 
   useEffect(() => {
+    const intervalDuration = window.innerWidth <= 445 ? 60000 : 8000;
+
     const interval = setInterval(() => {
       if (images.length > 0) {
         const chosenImage = images[Math.floor(Math.random() * images.length)];
         setRandomImage(chosenImage);
       }
-    }, 8000);
+    }, intervalDuration);
 
     return () => clearInterval(interval);
   }, [images]);
