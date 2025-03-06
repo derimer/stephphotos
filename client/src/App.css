@@ -110,15 +110,15 @@ img {
   background-color: #0e0101; /* Updated background color */
   color: white;
   padding: 10px 20px;
-  gap: 30px;
+ 
 }
 
 #mainNav ul {
   list-style: none;
-  padding: 0;
+  padding: 10px;
   margin: 0;
   display: flex;
-  gap: 50px;
+  gap: 100px;
 }
 
 #mainNav a {
@@ -1036,9 +1036,13 @@ footer p{
     transition: all 0.3s ease-in-out;
   }
 .accueil-links{
+  position:relative;
+  bottom:120px;
+  left: 220px;
   gap:50px;
 }
   #mainNav.open {
+
     margin-top:20px;
     display: flex; /* Affiche le menu quand la classe 'open' est ajoutée */
   }
