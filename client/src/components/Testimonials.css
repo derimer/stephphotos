@@ -1,0 +1,48 @@
+#Testimonials {
+  background-color: #1b1a1a;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 40px auto;
+  font-family: "Dancing Script", serif;
+  line-height: 1.8;
+  color: #faf6f6;
+}
+
+#Testimonials h2 {
+  text-align: center;
+  color: #f8f4f4;
+  margin-bottom: 25px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#Testimonials p {
+  color: #111; /* Even darker color for better visibility */
+  margin-bottom: 20px; /* Increased margin for better spacing */
+  font-size: 1.9em; /* Adjusted font size for better readability */
+}
+
+#Testimonials br {
+  margin-bottom: 20px; /* Increased margin for better spacing */
+}
+
+#Testimonials .author {
+  text-align: right;
+  font-style: italic;
+  color: #f7f3f3;
+  margin-top: 30px;
+  font-size: 2em;
+}
+
+#Testimonials blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 15px;
+  margin: 20px 0;
+  color: #666;
+  font-style: italic;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 15px;
+}

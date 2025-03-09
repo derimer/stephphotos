@@ -10,7 +10,8 @@ import App from "./App";
 import Admin from "./components/Admin";
 import Login from "./components/Login";
 import Accueil from "./components/Accueil";
-import MentionsLegales from "./components/MentionsLegales"; // Corrected import
+import MentionsLegales from "./components/MentionsLegales";
+import Testimonials from "./components/Testimonials"; // Corrected import
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,8 @@ const router = createBrowserRouter([
       { path: "/about", element: <About /> },
       { path: "admin", element: <Admin /> },
       { path: "/login", element: <Login /> },
-      { path: "/mentionsLegales", element: <MentionsLegales /> }, // Corrected path
+      { path: "/mentionsLegales", element: <MentionsLegales /> },
+      {path: "/testimonials",element:<Testimonials/>} // Corrected path
     ],
   },
 ]);

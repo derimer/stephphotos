@@ -2,6 +2,7 @@ import Steph from "../assets/images/image-85.webp";
 
 export default function About() {
   return (
+    
     <main id="About">
       <h1>STEPHANE VALENTIN</h1>
       <img src={Steph} alt="stephphoto" />
@@ -20,6 +21,11 @@ export default function About() {
         Mon matériel en argentique: CHAMBRE PHOTOGRAPHIQUE MOYEN FORMAT. en
         numérique: PENTAX 645Z,SIGMA QUATTRO,SONY RX0II,RICOH GR3 MONOCHROME.
       </p>
+   
+   
+    <p>Aussi si vous avez des projets photographiques , <br/> j ai créé une page de contact afin de vous permettre de me laisser un message. </p>
+    <p>Je ne manquerai pas de vous recontacter.</p>
     </main>
+    
   );
 }

@@ -40,8 +40,8 @@ function NavBar() {
           <li><Link to="/contact" onClick={toggleMenu} aria-label="Contact"><i className="fas fa-envelope" /></Link></li>
           <li><Link to="/mentionsLegales" onClick={toggleMenu} aria-label="Mentions légales"><i className="fas fa-gavel" /></Link></li>
           <li><Link to="/login" onClick={toggleMenu} aria-label="Login"><i className="fas fa-user" /></Link></li>
+          <li><Link to="/testimonials" onClick={toggleMenu} aria-label="Testimonials"><i className="fas fa-star" /></Link></li>
           <li><a href="https://www.instagram.com/stephanovalentinophoto/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram" /></a></li>
-         
         </ul>
       </nav>
 
