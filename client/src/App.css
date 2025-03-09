@@ -592,6 +592,7 @@ main#contact1 {
   font-size: 25px; 
   font-family: "Dancing Script", serif;
   font-weight: normal;
+  flex-direction: column;
     
   
 }

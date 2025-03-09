@@ -23,7 +23,7 @@ export default function About() {
       </p>
    
    
-    <p>Aussi si vous avez des projets photographiques , <br/> j ai créé une page de contact afin de vous permettre de me laisser un message. </p>
+    <p>Aussi , si vous avez des projets photographiques , <br/> j ai créé une page de contact afin de vous permettre de me laisser un message. </p>
     <p>Je ne manquerai pas de vous recontacter.</p>
     </main>
     
