@@ -8,6 +8,7 @@
   font-family: "Dancing Script", serif;
   line-height: 1.8;
   color: #faf6f6;
+  font-size: 1.5rem; 
 }
 
 #Testimonials h2 {
@@ -21,7 +22,8 @@
 #Testimonials p {
   color: #111; /* Even darker color for better visibility */
   margin-bottom: 20px; /* Increased margin for better spacing */
-  font-size: 1.9em; /* Adjusted font size for better readability */
+  font-size: 2.5rem; /* Adjusted font size for better readability */
+  font-weight: bold; /* Adjusted font size for better readability */
 }
 
 #Testimonials br {
