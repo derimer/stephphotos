@@ -979,7 +979,7 @@ footer {
 .accueil-links{
   font-size: 2rem;
     position: absolute;
-    bottom: 400px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     display: flex
@@ -1113,6 +1113,8 @@ footer p{
     transition: all 0.3s ease-in-out;
   }
 .accueil-links{
+  position:absolute;
+  bottom:100px;
   gap:50px;
 }
   #mainNav.open {
