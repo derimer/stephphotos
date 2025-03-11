@@ -906,7 +906,7 @@ footer {
   
   #mainNav {
     display: none; /* Cache le menu par défaut */
-    flex-direction: column;
+    
     
     top: 60px; /* Ajuste selon la hauteur de ton header */
     left: 0;
@@ -1011,8 +1011,8 @@ main ul{
   
   
   #mainNav {
-    display: none; /* Cache le menu par défaut */
-    flex-direction: column;
+    display: flex; /* Cache le menu par défaut */
+   
     position: absolute;
     top: 60px; /* Ajuste selon la hauteur de ton header */
     left: 0;
@@ -1101,8 +1101,8 @@ footer p{
     display:none;
 }
   #mainNav {
-    display: none; /* Cache le menu par défaut */
-    flex-direction: column;
+    display: flex; /* Cache le menu par défaut */
+    
     position: absolute;
     top: 60px; /* Ajuste selon la hauteur de ton header */
     left: 0;

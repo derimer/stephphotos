@@ -11,7 +11,7 @@
   font-weight: bold;
   line-height: 1.8;
   color: #f7f0f0;
-  font-size: 1.5rem; 
+  font-size: 1.8rem; 
 }
 
 #Testimonials h2 {
@@ -20,12 +20,13 @@
   margin-bottom: 25px;
   font-size: 2em;
   font-weight: bold;
+  font-family: "Arial", sans-serif;
 }
 
 #Testimonials p {
   color: #111; /* Even darker color for better visibility */
   margin-bottom: 20px; /* Increased margin for better spacing */
-  font-size: 2.5rem; /* Adjusted font size for better readability */
+  font-size: 16px; /* Adjusted font size for better readability */
   font-weight: bold; /* Adjusted font size for better readability */
 }
 
@@ -50,4 +51,41 @@
   background-color: #f9f9f9;
   border-radius: 5px;
   padding: 15px;
+}
+.voir{
+  font-family: "Arial", sans-serif;
+}
+@media (max-width: 768px) {
+  #Testimonials {
+    background-image: url(/src/assets/images/thierry.JPG);
+    background-size:auto;
+    background-repeat: no-repeat;
+    background-position: center; /* Center the image */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 20px auto;
+    font-family: "Dancing Script", serif;
+    font-weight: bold;
+    line-height: 1;
+    color: #fdf9f9;
+    font-size: 1.4rem;
+}
+#Testimonials .author {
+  text-align:center;
+  font-style: italic;
+  color: #f7f3f3;
+  margin-top: 20px;
+  font-size: 1.5em;
+}
+#Testimonials h2 {
+  text-align: center;
+  color: #f8f4f4;
+  margin-bottom: 25px;
+  font-size: 1em;
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+}
+
 }

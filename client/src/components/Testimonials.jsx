@@ -5,11 +5,12 @@ import "./Testimonials.css";
   return (
     <section id="Testimonials">
       <h2>Témoignage d'un ami  photographe </h2>
+      <article className="testimonials">
       Stephano, Athlete complet de la photo. La photographie est un art , qui se mue chez certains en art de vivre.
       <br />
       Stephano a fait d'elle la compagne familière de son existence,
       toujours disponible quand il s'agit de retenir la fuite des choses,<br/>
-      pour en faire des collections d'images arrétées. Parvenu à un certain degré d'assiduité,
+      pour en faire des collections d'images arrétées. Parvenue à un certain degré d'assiduité,
       la pratique de la phoyographie tourne en mode de vie.<br/><br/>
       Cartier-Bresson tatait parfois les poches à soufflet de ses camarades.
       Des professionnels il est vrai, et leur demandait:"Ou est ton leica?"<br/>
@@ -32,12 +33,12 @@ import "./Testimonials.css";
       en maintenant son regard sous tension(c'est le plus difficile), pour aller vite et bien.<br/>
       Le photographe de race ne voit pas le monde extèrieur comme vous et moi.<br/>
       Il est aussi un homme ordinaire, mais quand il est en mode photo, tout change, tout l'homme est mobilisé.<br/>
-      "Ca ne rigole plus". Stephanofortifie ses qualités d'opérateur, qu'il tient d'instinc: VOIR, CADRER JUSTE, ET DECLENCHER, le tout en anticipant le coup suivant.<br/>
+      "Ca ne rigole plus". Stephano fortifie ses qualités d'opérateur, qu'il tient d'instinc: <span className="voir">VOIR, CADRER JUSTE, ET DECLENCHER</span>, le tout en anticipant le coup suivant.<br/>
       Ce talent est rare, probable que vous ne l'avez pas, mais on ne le vous dira pas chez le marchand d'appareils.<br/><br/>
                                                            
 
                                                                       <p className ="author"> Thierry Devynck.</p>
-
+                                                                      </article>
       
           </section>
   );
