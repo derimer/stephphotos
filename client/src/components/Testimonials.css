@@ -1,5 +1,5 @@
 #Testimonials {
-  background-image: url("../assets/images/thierry.JPG");
+  
   background-size: cover; /* Ensure the image covers the entire section */
   background-position: center; /* Center the image */
   padding: 30px;
@@ -8,9 +8,9 @@
   max-width: 900px;
   margin: 40px auto;
   font-family: "Dancing Script", serif;
-  font-weight: bold;
+  font-weight: extra-bold;
   line-height: 1.8;
-  color: #f7f0f0;
+  color: #fdf9f9;
   font-size: 1.8rem; 
 }
 
@@ -52,13 +52,21 @@
   border-radius: 5px;
   padding: 15px;
 }
-.voir{
+
+.scrollable {
+  max-height: 400px; /* Adjust the height as needed */
+  overflow-y: auto;
+  padding-right: 15px; /* Add some padding to avoid scrollbar overlap */
+}
+
+.voir {
   font-family: "Arial", sans-serif;
 }
+
 @media (max-width: 768px) {
   #Testimonials {
     background-image: url(/src/assets/images/thierry.JPG);
-    background-size:auto;
+    background-size: auto;
     background-repeat: no-repeat;
     background-position: center; /* Center the image */
     padding: 20px;
@@ -71,21 +79,22 @@
     line-height: 1;
     color: #fdf9f9;
     font-size: 1.4rem;
-}
-#Testimonials .author {
-  text-align:center;
-  font-style: italic;
-  color: #f7f3f3;
-  margin-top: 20px;
-  font-size: 1.5em;
-}
-#Testimonials h2 {
-  text-align: center;
-  color: #f8f4f4;
-  margin-bottom: 25px;
-  font-size: 1em;
-  font-weight: bold;
-  font-family: "Arial", sans-serif;
-}
+  }
 
+  #Testimonials .author {
+    text-align: center;
+    font-style: italic;
+    color: #f7f3f3;
+    margin-top: 20px;
+    font-size: 1.5em;
+  }
+
+  #Testimonials h2 {
+    text-align: center;
+    color: #f8f4f4;
+    margin-bottom: 25px;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: "Arial", sans-serif;
+  }
 }
