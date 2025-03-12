@@ -479,41 +479,51 @@ useEffect(() => {
         </button>
       </div>
       {galleries.map((gallery) => (
-  <div key={gallery.id} className="exist">
-    <h2>{gallery.title}</h2>
-    <ul className="uldajout">
-      {gallery.images && gallery.images.length > 0 ? (
-        gallery.images.map((image) => (
-          <li key={image.id}>
-            <div>
-              {image.name||null} - {image.author||null} - {image.exposure||null}
-            </div>
-            {image.filename && (
-              <>
-                <img
-                  src={normalizeImageUrl(image.filename)}
-                  alt={image.name}
-                  style={{ maxWidth: "150px", marginTop: "10px" }}
-                />
-                {/* Ajout du descriptif du contexte de l'image */}
-                {image.context && (
-                  <p>{image.context||null}</p>
-                )}
-              </>
-            )}
-            <button
-              type="button"
-              onClick={() => handleDeleteImage(image.id, gallery.id)}
-            >
-              Supprimer
-            </button>
-          </li>
-        ))
-      ) : (
-        <p>Aucune image à afficher.</p>
-      )}
-    </ul>
+<div key={gallery.id} className="exist">
+  <h2>{gallery.title}</h2>
+  <ul className="uldajout">
+    {gallery.images && gallery.images.length > 0 ? (
+      gallery.images.map((image) => (
+        <li key={image.id}>
+          <div>
+            {image.name||null} - {image.author||null} - {image.exposure||null}
+          </div>
+          {image.filename && (
+            <>
+              <img
+                src={normalizeImageUrl(image.filename)}
+                alt={image.name}
+                style={{ maxWidth: "150px", marginTop: "10px" }}
+              />
+              {/* Ajout du descriptif du contexte de l'image */}
+              {image.context && (
+                <p>{image.context||null}</p>
+              )}
+            </>
+          )}
+          <button
+            type="button"
+            onClick={() => handleDeleteImage(image.id, gallery.id)}
+          >
+            Supprimer
+          </button>
+        </li>
+      ))
+    ) : (
+      <p>Aucune image à afficher.</p>
+    )}
+  </ul>
+  <div className="analytics-link">
+    <h2>Google Analytics</h2>
+    <a
+      href="https://analytics.google.com/analytics/web/?hl=fr#/p479970485/reports/intelligenthome"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Accéder à Google Analytics
+    </a>
   </div>
+</div>
 
 ))}
    

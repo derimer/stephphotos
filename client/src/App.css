@@ -864,7 +864,20 @@ footer {
   border-radius: 4px;
   margin-top: 10px;
 }
+.analytics-link {
+  margin-top: 20px;
+  text-align: center;
+}
 
+.analytics-link a {
+  color: #4285f4;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.analytics-link a:hover {
+  text-decoration: underline;
+}
 /* Responsive styles */
 @media (max-width: 900px) {
   .uldajout li {
