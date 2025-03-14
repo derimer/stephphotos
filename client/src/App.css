@@ -57,7 +57,7 @@ body.no-scroll {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+ height: 160px;
   flex-direction: column;
 }
 
@@ -122,29 +122,11 @@ img {
 }
 
 /* Responsive styles */
-@media (max-width: 900px) {
-  #mainNav ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-}
 
-@media (max-width: 600px) {
-  #mainNav ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-}
 
-@media (max-width: 445px) {
-  #mainNav ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-  }
-}
+ 
+
+
 
 #mainNav a {
   color:white;/* Updated color to be lighter */
@@ -492,57 +474,9 @@ main#contact1 {
  padding: 5px;
   
 }
-#Testimonials {
-  background-color: #272424;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  max-width: 900px;
-  margin: 40px auto;
-  font-family: "Dancing Script", serif;
-  line-height: 1.8;
-  color: #fcf7f7;
-  text-align:center;
-}
 
-#Testimonials h2 {
-  text-align: center;
-  color: #f3ebeb;
-  margin-bottom: 25px;
-  font-size: 2em;
-  font-weight: bold;
-}
 
-#Testimonials p {
-  color: #222; /* Darker color for better visibility */
-  margin-bottom: 15px;
-  font-size: 1.9em; /* Slightly smaller font size for better readability */
-}
 
-#Testimonials br {
-  margin-bottom: 15px;
-}
-
-#Testimonials .author {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-style: italic;
-  color: #fcf7f7;
-  margin-top: 30px;
-  font-size: 1em;
-}
-
-#Testimonials blockquote {
-  border-left: 4px solid #ddd;
-  padding-left: 15px;
-  margin: 20px 0;
-  color: #666;
-  font-style: italic;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  padding: 15px;
-}
 
 .login form {
   display: flex;
@@ -937,6 +871,7 @@ footer {
    ;/* Affiche le menu quand la classe 'open' est ajoutée */
   }
 #mainNav ul{
+  
   justify-content: center;  
   gap:5px;
 }
@@ -1022,7 +957,9 @@ main ul{
     font-size: 1.2em;
   }
   
-  
+  #logoImg {
+    display:none;
+}
   #mainNav {
     display: flex; /* Cache le menu par défaut */
    
