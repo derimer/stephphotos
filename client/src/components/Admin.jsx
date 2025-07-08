@@ -325,87 +325,111 @@ useEffect(() => {
   fetchImagesAccueil(); // Cette fonction est exécutée au montage initial
 }, []); // Le tableau vide [] indique qu'on charge les images une seule fois
 
-  return (
+   return (
     <div className="gestion">
       <h1>Gestion des Images</h1>
       {error && <p className="error">{error}</p>}
 
-      <div className="ajoutImage1">
-        <h2 className="title">Ajouter une nouvelle image à l'accueil</h2>
-        <label htmlFor="fileInput">Sélectionner une image</label>
-        <input
-          id="fileInput"
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          required
-        />
-        {preview && (
-          <div>
-            <h2>Prévisualisation:</h2>
-            <img
-              src={preview}
-              alt="Prévisualisation"
-              style={{ maxWidth: "300px" }}
-            />
-          </div>
+      {/* Messages utilisateurs */}
+      <div className="exist2">
+        <h2 className="title">Messages des utilisateurs</h2>
+        {messages.length > 0 ? (
+          <ul>
+            {messages.map((message) => (
+              <li key={message.id}>
+                <strong>
+                  {message.firstName} {message.lastName}
+                </strong>{" "}({message.email}):
+                <p>{message.message}</p>
+                <button type="button" onClick={() => handleDeleteMessage(message.id)}>
+                  supprimer
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Aucun message à afficher.</p>
         )}
-        <label htmlFor="nameInput">Description</label>
-        <input
-          id="nameInput"
-          type="text"
-          placeholder="description"
-          name="name"
-          value={newImage.name || ""}
-          onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
-        />
-        <label htmlFor="authorInput">Outil</label>
-        <input
-          id="authorInput"
-          type="text"
-          placeholder="outil"
-          name="author"
-          value={newImage.author || ""}
-          onChange={(e) => setNewImage({ ...newImage, author: e.target.value })}
-        />
-        <label htmlFor="exposureInput">Réglages</label>
-        <input
-          id="exposureInput"
-          type="text"
-          placeholder="reglages"
-          name="exposure"
-          value={newImage.exposure || ""}
-          onChange={(e) =>
-            setNewImage({ ...newImage, exposure: e.target.value })
-          }
-        />
-        <button type="button" id="ajouterImg" onClick={handleAddImage}>
-          Ajouter l'image
+      </div>
+
+      {/* Ajouter image à une galerie */}
+      <div className="ajoutImage2">
+        <h2 className="title">Ajouter une image à une galerie</h2>
+        <label htmlFor="fileInputGallery">Sélectionner une image</label>
+        <input id="fileInputGallery" type="file" accept="image/*" onChange={handleFileChange} required />
+        <label htmlFor="nameInputGallery">Contexte de la photo</label>
+        <input id="nameInputGallery" type="text" name="name" value={newImage.name} onChange={(e) => setNewImage({ ...newImage, name: e.target.value })} required />
+        <label htmlFor="gallerySelect">Sélectionner une galerie</label>
+        <select id="gallerySelect" value={selectedGallery} onChange={(e) => setSelectedGallery(e.target.value)} required>
+          <option value="">Sélectionner une galerie</option>
+          {galleries.map((gallery) => (
+            <option key={gallery.id} value={gallery.id}>{gallery.title}</option>
+          ))}
+        </select>
+        <button className="exist3" type="button" onClick={handleAddImageToGallery}>
+          Ajouter l'image à la galerie
         </button>
       </div>
 
+      {/* Galeries et leurs images */}
+      {galleries.map((gallery) => (
+        <div key={gallery.id} className="exist">
+          <h2>{gallery.title}</h2>
+          <ul className="uldajout">
+            {gallery.images && gallery.images.length > 0 ? (
+              gallery.images.map((image) => (
+                <li key={image.id}>
+                  <div>
+                    {image.name || null} - {image.author || null} - {image.exposure || null}
+                  </div>
+                  {image.filename && (
+                    <>
+                      <img src={normalizeImageUrl(image.filename)} alt={image.name} style={{ maxWidth: "150px", marginTop: "10px" }} />
+                      {image.context && <p>{image.context || null}</p>}
+                    </>
+                  )}
+                  <button type="button" onClick={() => handleDeleteImage(image.id, gallery.id)}>Supprimer</button>
+                </li>
+              ))
+            ) : (
+              <p>Aucune image à afficher.</p>
+            )}
+          </ul>
+        </div>
+      ))}
+
+      {/* Ajouter image à l'accueil */}
+      <div className="ajoutImage1">
+        <h2 className="title">Ajouter une nouvelle image à l'accueil</h2>
+        <label htmlFor="fileInput">Sélectionner une image</label>
+        <input id="fileInput" type="file" accept="image/*" onChange={handleFileChange} required />
+        {preview && (
+          <div>
+            <h2>Prévisualisation:</h2>
+            <img src={preview} alt="Prévisualisation" style={{ maxWidth: "300px" }} />
+          </div>
+        )}
+        <label htmlFor="nameInput">Description</label>
+        <input id="nameInput" type="text" name="name" placeholder="description" value={newImage.name || ""} onChange={(e) => setNewImage({ ...newImage, name: e.target.value })} />
+        <label htmlFor="authorInput">Outil</label>
+        <input id="authorInput" type="text" name="author" placeholder="outil" value={newImage.author || ""} onChange={(e) => setNewImage({ ...newImage, author: e.target.value })} />
+        <label htmlFor="exposureInput">Réglages</label>
+        <input id="exposureInput" type="text" name="exposure" placeholder="reglages" value={newImage.exposure || ""} onChange={(e) => setNewImage({ ...newImage, exposure: e.target.value })} />
+        <button type="button" id="ajouterImg" onClick={handleAddImage}>Ajouter l'image</button>
+      </div>
+
+      {/* Images accueil */}
       <div className="exist1">
         <h2 className="title">Images Accueil</h2>
         <ul className="uldajout">
           {Array.isArray(images) && images.length > 0 ? (
             images.map((image) => (
               <li key={image.id}>
-                <div>
-                  {image.name} - {image.author} - {image.exposure}
-                </div>
+                <div>{image.name} - {image.author} - {image.exposure}</div>
                 {image.filename && (
-                  <img
-                    src={normalizeImageUrl(image.filename)}
-                    alt={image.name}
-                    style={{ maxWidth: "150px", marginTop: "10px" }}
-                  />
+                  <img src={normalizeImageUrl(image.filename)} alt={image.name} style={{ maxWidth: "150px", marginTop: "10px" }} />
                 )}
-                <button
-                  type="button"
-                  onClick={() => handleDeleteImageAccueil(image.id)}
-                >
-                  Supprimer
-                </button>
+                <button type="button" onClick={() => handleDeleteImageAccueil(image.id)}>Supprimer</button>
               </li>
             ))
           ) : (
@@ -414,120 +438,13 @@ useEffect(() => {
         </ul>
       </div>
 
-      <div className="exist2">
-        <h2 className="title">Messages des utilisateurs</h2>
-        {messages.length > 0 ? (
-  <ul>
-    {messages.map((message) => (
-      <li key={message.id}>
-        <strong>
-          {message.firstName} {message.lastName}
-        </strong>{" "}
-        ({message.email}):
-        <p>{message.message}</p>
-        <button  type="button"onClick={() => handleDeleteMessage(message.id)}>
-          supprimer
-        </button>
-      </li>
-    ))}
-  </ul>
-) : (
-  <p>Aucun message à afficher.</p>
-)}
+      {/* Lien Analytics */}
+      <div className="analytics-link">
+        <h2>Google Analytics</h2>
+        <a href="https://analytics.google.com/analytics/web/?hl=fr#/p479970485/reports/intelligenthome" target="_blank" rel="noopener noreferrer">
+          Accéder à Google Analytics
+        </a>
       </div>
-
-      <div className="ajoutImage2">
-        <h2 className="title">Ajouter une image à une galerie</h2>
-        <label htmlFor="fileInputGallery">Sélectionner une image</label>
-        <input
-          id="fileInputGallery"
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          required
-        />
-        <label htmlFor="nameInputGallery">Contexte de la photo</label>
-        <input
-          id="nameInputGallery"
-          type="text"
-          placeholder="contexte de la photo"
-          name="name"
-          value={newImage.name}
-          onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
-          required
-        />
-        <label htmlFor="gallerySelect">Sélectionner une galerie</label>
-        <select
-          id="gallerySelect"
-          value={selectedGallery}
-          onChange={(e) => setSelectedGallery(e.target.value)}
-          required
-        >
-          <option value="">Sélectionner une galerie</option>
-          {galleries.map((gallery) => (
-            <option key={gallery.id} value={gallery.id}>
-              {gallery.title}
-            </option>
-          ))}
-        </select>
-        <button
-          className="exist3"
-          type="button"
-          onClick={handleAddImageToGallery}
-        >
-          Ajouter l'image à la galerie
-        </button>
-      </div>
-      {galleries.map((gallery) => (
-<div key={gallery.id} className="exist">
-  <h2>{gallery.title}</h2>
-  <ul className="uldajout">
-    {gallery.images && gallery.images.length > 0 ? (
-      gallery.images.map((image) => (
-        <li key={image.id}>
-          <div>
-            {image.name||null} - {image.author||null} - {image.exposure||null}
-          </div>
-          {image.filename && (
-            <>
-              <img
-                src={normalizeImageUrl(image.filename)}
-                alt={image.name}
-                style={{ maxWidth: "150px", marginTop: "10px" }}
-              />
-              {/* Ajout du descriptif du contexte de l'image */}
-              {image.context && (
-                <p>{image.context||null}</p>
-              )}
-            </>
-          )}
-          <button
-            type="button"
-            onClick={() => handleDeleteImage(image.id, gallery.id)}
-          >
-            Supprimer
-          </button>
-        </li>
-      ))
-    ) : (
-      <p>Aucune image à afficher.</p>
-    )}
-  </ul>
-  <div className="analytics-link">
-    <h2>Google Analytics</h2>
-    <a
-      href="https://analytics.google.com/analytics/web/?hl=fr#/p479970485/reports/intelligenthome"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Accéder à Google Analytics
-    </a>
-  </div>
-</div>
-
-))}
-   
-    
     </div>
   );
 }
