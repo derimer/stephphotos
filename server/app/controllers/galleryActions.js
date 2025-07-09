@@ -1,5 +1,8 @@
 const Gallery = require("../../database/models/GalleryRepository");
 const Image = require("../../database/models/ImageRepository");
+const path = require("path");
+const fs = require("fs");
+const sharp = require("sharp");
 
 exports.getAllGalleries = async (req, res) => {
   try {
@@ -30,17 +33,33 @@ exports.addImageToGallery = async (req, res) => {
     if (!gallery)
       return res.status(404).json({ message: "Galerie non trouvée" });
 
+    // Traitement de l'image via sharp → conversion en .webp
+    const inputPath = req.file.path;
+    const originalName = path.parse(req.file.originalname).name;
+    const webpFilename = `${Date.now()}-${originalName}.webp`;
+    const outputPath = path.join(path.dirname(inputPath), webpFilename);
+
+    await sharp(inputPath)
+      .webp({ quality: 80 }) // Tu peux ajuster la qualité ici
+      .toFile(outputPath);
+
+    // Supprimer l'ancienne image (jpeg, png, etc.)
+    fs.unlinkSync(inputPath);
+
+    // Enregistrement en base avec le nouveau nom .webp
     const image = await Gallery.addImageToGallery(
       gallery.id,
-      req.file.filename,
+      webpFilename,
       req.body.name
     );
+
     return res.status(201).json(image);
   } catch (error) {
     console.error("Erreur lors de l'ajout de l'image à la galerie :", error);
     return res.status(500).json({ message: error.message });
   }
 };
+
 
 exports.getGalleryImages = async (req, res) => {
   try {

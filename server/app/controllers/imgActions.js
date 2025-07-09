@@ -112,34 +112,39 @@ exports.addImage = async (req, res) => {
   const author = req.body.author || null;
   const exposure = req.body.exposure || null;
 
-  // Vérifiez si un fichier a été téléchargé
   if (!req.file) {
     return res.status(400).json({ message: "Aucun fichier téléchargé" });
   }
 
-  const { filename } = req.file; // Multer fournit le nom du fichier
-
-  // La validation ne vérifie plus si name, author, exposure sont vides
-  if (!filename) {
-    return res.status(400).json({ message: "Aucun fichier téléchargé" });
-  }
-
   try {
-    // Crée une entrée dans la base de données
+    const inputPath = req.file.path;
+    const originalName = path.parse(req.file.originalname).name;
+    const webpFilename = `${Date.now()}-${originalName}.webp`;
+    const outputPath = path.join(path.dirname(inputPath), webpFilename);
+
+    // Convertir l’image en .webp
+    await sharp(inputPath)
+      .webp({ quality: 80 })
+      .toFile(outputPath);
+
+    // Supprimer l’image originale (JPEG/PNG) après conversion
+    fs.unlinkSync(inputPath);
+
+    // Enregistrer l’image .webp dans la base de données
     const id = await imageRepository.create({
-      filename,
-      name,    // `name` peut être null
-      author,  // `author` peut être null
-      exposure // `exposure` peut être null
+      filename: webpFilename,
+      name,
+      author,
+      exposure,
     });
 
-    // Récupère la nouvelle image créée
     const newImage = await imageRepository.read(id);
 
-    // Envoie une seule réponse avec l'image ajoutée
-    return res
-      .status(201)
-      .json({ message: "Image ajoutée avec succès", image: newImage });
+    return res.status(201).json({
+      message: "Image ajoutée avec succès",
+      image: newImage,
+    });
+
   } catch (error) {
     console.error("Erreur lors de l'ajout de l'image:", error.message);
     return res.status(500).json({
