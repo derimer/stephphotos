@@ -1,8 +1,9 @@
-const Gallery = require("../../database/models/GalleryRepository");
-const Image = require("../../database/models/ImageRepository");
+
 const path = require("path");
 const fs = require("fs");
 const sharp = require("sharp");
+const Gallery = require("../../database/models/GalleryRepository");
+const Image = require("../../database/models/ImageRepository");
 
 exports.getAllGalleries = async (req, res) => {
   try {

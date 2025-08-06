@@ -1,12 +1,14 @@
 import "./Testimonials.css";
 import thierry from "../assets/images/thierry.webp";
+import stephAmi from "../assets/images/ami.jpg";
 
 function Testimonials() {
   return (
+    <div className="testimonial-entry">
     <section id="Testimonials">
       <h2>Témoignage d'un ami photographe</h2>
       <img src={thierry} alt="t.devynck" />
-
+<h2>Ce que disent ses amis...</h2>
       <article className="testimonials scrollable">
         Stephano, Athlète complet de la photo. La photographie est un art, qui se mue chez certains en art de vivre.
         <br />
@@ -38,8 +40,21 @@ function Testimonials() {
         "Ça ne rigole plus". Stephano fortifie ses qualités d'opérateur, qu'il tient d'instinct: <span className="voir">VOIR, CADRER JUSTE, ET DÉCLENCHER</span>, le tout en anticipant le coup suivant.<br/>
         Ce talent est rare, probable que vous ne l'avez pas, mais on ne vous le dira pas chez le marchand d'appareils.<br/><br/>
         <p className="author">Thierry Devynck.</p>
+       
       </article>
+       <div className="testimonial-entry2">
+        <img src={stephAmi} alt="Didier Scudéroni" className="photo" />
+        <article className="testimonials scrollable">
+          <p>
+            Une de mes photos (en noir et blanc sur l'affiche) fait le tour du monde !!! 🌍<br />
+            Superbe expo en Chine de mon ami DiDou ! (alias Didier Scuderoni), grand artiste, je suis fier de lui… Merci !
+          </p>
+          <p className="author">Stephano</p>
+        </article>
+      </div>
+      
     </section>
+     </div>
   );
 }
 

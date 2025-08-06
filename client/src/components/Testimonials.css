@@ -1,100 +1,78 @@
 #Testimonials {
-  
-  background-size: cover; /* Ensure the image covers the entire section */
-  background-position: center; /* Center the image */
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  max-width: 900px;
-  margin: 40px auto;
+  padding: 40px 20px;
+  background-color: #111;
+  color: #fdfdfd;
   font-family: "Dancing Script", serif;
-  font-weight: extra-bold;
-  line-height: 1.8;
-  color: #fdf9f9;
-  font-size: 1.8rem; 
+  max-width: 1100px;
+  margin: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  gap:100px;
 }
 
 #Testimonials h2 {
   text-align: center;
-  color: #f8f4f4;
-  margin-bottom: 25px;
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 2rem;
   font-family: "Arial", sans-serif;
+  margin-bottom: 30px;
+  color: #fff;
 }
 
-#Testimonials p {
-  color: #111; /* Even darker color for better visibility */
-  margin-bottom: 20px; /* Increased margin for better spacing */
-  font-size: 16px; /* Adjusted font size for better readability */
-  font-weight: bold; /* Adjusted font size for better readability */
+.testimonial-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  gap: 20px;
 }
 
-#Testimonials br {
-  margin-bottom: 20px; /* Increased margin for better spacing */
+.testimonial-entry2 .photo {
+  margin-top: 50px;
+  width:200px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
 }
 
-#Testimonials .author {
+.testimonials {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.testimonials p {
+  margin-bottom: 15px;
+  color: #f0f0f0;
+}
+
+.testimonials .author {
   text-align: right;
   font-style: italic;
-  color: #f7f3f3;
-  margin-top: 30px;
-  font-size: 2em;
+  font-size: 1.3rem;
+  color: #f8b400;
 }
 
-#Testimonials blockquote {
-  border-left: 4px solid #ddd;
-  padding-left: 15px;
-  margin: 20px 0;
-  color: #666;
-  font-style: italic;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  padding: 15px;
-}
-
-.scrollable {
-  max-height: 400px; /* Adjust the height as needed */
-  overflow-y: auto;
-  padding-right: 15px; /* Add some padding to avoid scrollbar overlap */
-}
-
-.voir {
-  font-family: "Arial", sans-serif;
-}
-
+/* Responsive */
 @media (max-width: 768px) {
-  #Testimonials {
-    background-image: url(/src/assets/images/thierry.JPG);
-    background-size: auto;
-    background-repeat: no-repeat;
-    background-position: center; /* Center the image */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    max-width: 1000px;
-    margin: 20px auto;
-    font-family: "Dancing Script", serif;
-    font-weight: bold;
-    line-height: 1;
-    color: #fdf9f9;
-    font-size: 1.4rem;
+  .testimonial-entry {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap:50px;
   }
 
-  #Testimonials .author {
-    text-align: center;
-    font-style: italic;
-    color: #f7f3f3;
-    margin-top: 20px;
-    font-size: 1.5em;
+  .testimonial-entry .photo {
+    width: 100%;
+    max-width: 300px;
   }
 
-  #Testimonials h2 {
-    text-align: center;
-    color: #f8f4f4;
-    margin-bottom: 25px;
-    font-size: 1em;
-    font-weight: bold;
-    font-family: "Arial", sans-serif;
+  .testimonials {
+    max-height: 400px;
+    font-size: 1rem;
   }
 }
