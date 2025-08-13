@@ -20,19 +20,23 @@
 
 .testimonial-entry {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 60px;
+  gap: 30px;
+  align-items: center;
   margin-bottom: 40px;
   gap: 20px;
 }
 
 .testimonial-entry2 .photo {
   margin-top: 50px;
-  width:600px;
-  height: 600px;
+  
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ 
   border-radius: 10px;
 }
 
