@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import Gerbier from "../assets/images/image-103.webp";
@@ -17,190 +17,58 @@ import Audray8 from "../assets/images/audray8.webp";
 export default function SingleGallery() {
   const [gallery, setGallery] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [randomImage, setRandomImage] = useState(null); // Ajouter l'état pour l'image aléatoire
   const [searchParams] = useSearchParams();
-  const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const galId = searchParams.get("id");
 
-  const staticGalleries = useMemo(
-    () => ({
-      gal1: {
-        title: "Voyages N & B",
-        images: [
-          Gerbier,          
-          
-        ],
-      },
-      gal2: {
-        title: "Voyages Couleur",
-        images: [
-                
-        Hotel,
+  const staticGalleries = useMemo(() => ({
+    gal1: { title: "Voyages N & B", images: [Gerbier] },
+    gal2: { title: "Voyages Couleur", images: [Hotel] },
+    gal3: { title: "Sublime N & B", images: [Regards] },
+    gal4: { title: "Sublime Couleur", images: [Bouteilles] },
+    gal5: { title: "Portait N & B", images: [Acteur] },
+    gal6: { title: "Portait Couleur", images: [Audray8] },
+    gal7: { title: "Charme N & B", images: [lilly8] },
+    gal8: { title: "Charme Couleur", images: [Julie] },
+    gal9: { title: "Evenements N & B", images: [Lyon] },
+    gal10: { title: "Evenements Couleur", images: [Autorose] },
+    gal11: { title: "Au Quotidien N & B", images: [Vintage] },
+    gal12: { title: "Au Quotidien Couleur", images: [Coiffeur] },
+  }), []);
 
-                   
-                 
-          
-          
-          
-          
-        ],
-      },
-      gal3: {
-        title: "Sublime N & B",
-        images: [        
-          Regards,
-         
-          
-          
-                 
-          
-          
-          
-          
-        ],
-      },
-      gal4: {
-        title: "Sublime Couleur",
-        images: [    
-           
-          Bouteilles,
-         
-          
-        ],
-      },
-      gal5: {
-        title: "Portait N & B ",
-        images: [     
-          Acteur,
-        ],
-      },
-      gal6: {
-        title: "Portait Couleur",
-        images: [   
-         Audray8,
-        ],
-      },
-      gal7: {
-        title: "Charme N & B",
-        images: [     
-          lilly8 ,
-          
-        ],
-      },
-      gal8: {
-        title: "Charme Couleur",
-        images: [     
-          Julie,          
-          
-         
-        ],
-      },
-      gal9: {
-        title: "Evenements N & B",
-        images: [     
-          Lyon,
-         
-        ],
-      },
-      gal10: {
-        title: "Evenements Couleur",
-        images: [    
-        Autorose,
-          
-        ],
-      },
-      gal11: {
-        title: "Au Quotidien N & B ",
-        images: [    
-       Vintage,
-          
-        ],
-      },
-      gal12: {
-        title: "Au Quotidien Couleur ",
-        images: [    
-        Coiffeur,
-          
-        ],
-      },
-    }),
-    []
-  ); // Aucune dépendance, car ces données sont statiques
-
+  // Chargement de la galerie avec timeout de sécurité
   useEffect(() => {
     if (galId && staticGalleries[`gal${galId}`]) {
       setGallery(staticGalleries[`gal${galId}`]);
-    } else {
-      console.error("Invalid gallery ID or gallery not found");
-      window.location.pathname = "/gallerie";
+      setIsLoading(true);
+
+      // Simuler le chargement pendant 1.5 secondes
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+
+      return () => clearTimeout(timer);
     }
+    console.error("Galerie non trouvée");
+    window.location.pathname = "/gallerie";
+    // Explicitly return undefined to satisfy linting/compile requirements
+    return undefined;
   }, [galId, staticGalleries]);
 
-  const normalizeImageUrl = (filename) => {
-    if (!filename) return "";
-    return `${import.meta.env.VITE_API_URL}/uploads/${filename}`;
-  };
-
-  const fetchImages = useCallback(async () => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/galeries/${galId}/images`
-      );
-      if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`);
-
-      const data = await response.json();
-
-      const normalizedImages = Array.isArray(data)
-        ? data.map((image) => ({
-            ...image,
-            filename: normalizeImageUrl(image.filename),
-          }))
-        : [];
-
-      const allImages = [
-        ...(staticGalleries[`gal${galId}`]?.images || []),
-        ...normalizedImages,
-      ];
-
-      setImages(allImages);
-    } catch (error) {
-      console.error("Erreur lors de la récupération des images :", error);
-      setImages(staticGalleries[`gal${galId}`]?.images || []);
-    }
-  }, [staticGalleries, galId]);
-
-  useEffect(() => {
-    if (galId) {
-      fetchImages();
-    }
-  }, [galId, fetchImages]);
-
-  const showSinglePict = useCallback(
-    (imageSrc) => setSelectedImage(imageSrc),
-    []
-  );
-  const closeSinglePict = useCallback(() => setSelectedImage(null), []);
-
+  // Gestion de la navigation au clavier
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape" && selectedImage) {
-        closeSinglePict();
-      }
-    };
-
-    const handleImageClick = (e) => {
-      const clickedImage = e.target.closest("img");
-      if (clickedImage && clickedImage.classList.contains("clickable-image")) {
-        showSinglePict(clickedImage.src);
-      } else if (selectedImage) {
-        closeSinglePict();
+        setSelectedImage(null);
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("click", handleImageClick);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage]);
 
-    // Désactiver le défilement lorsque l'image en grand est affichée
+  // Désactiver le scroll quand une image est sélectionnée
+  useEffect(() => {
     if (selectedImage) {
       document.body.style.overflow = "hidden";
     } else {
@@ -208,58 +76,93 @@ export default function SingleGallery() {
     }
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("click", handleImageClick);
-      document.body.style.overflow = ""; // Réactiver le défilement lors du démontage
+      document.body.style.overflow = "";
     };
-  }, [selectedImage, showSinglePict, closeSinglePict]);
+  }, [selectedImage]);
 
-  useEffect(() => {
-    const intervalDuration = window.innerWidth <= 445 ? 60000 : 8000;
-
-    const interval = setInterval(() => {
-      if (images.length > 0) {
-        const chosenImage = images[Math.floor(Math.random() * images.length)];
-        setRandomImage(chosenImage);
-      }
-    }, intervalDuration);
-
-    return () => clearInterval(interval);
-  }, [images]);
-
-  if (!gallery) return <p>Chargement de la galerie...</p>;
+  if (!gallery) {
+    return (
+      <div className="loading-overlay-gallery">
+        <div className="loading-message-gallery">
+          <div className="loading-spinner-gallery"/>
+          <p>Chargement de la galerie...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
+      {/* Message de chargement pour toutes les galeries */}
+      {isLoading && (
+        <div className="loading-overlay-gallery">
+          <div className="loading-message-gallery">
+            <div className="loading-spinner-gallery"/>
+            <p>Chargement de "{gallery.title}"...</p>
+            <p className="loading-subtext">Veuillez patienter</p>
+          </div>
+        </div>
+      )}
+
       <main id="singleGallery">
         <h1>{gallery.title}</h1>
         <ul>
-          {images.map((image, index) => (
-            <li key={image.id || `image-${index}`}>
-              <img
-                src={typeof image === "string" ? image : image.filename}
-                alt={`${gallery.title} ${index + 1}`}
-                className="clickable-image"
-              />
-                <div className="image-info">
-              <p>{image.name || null}</p>
-             
-             
-              {image.context && <p>Contexte : {image.context}</p>}
-            </div>
+          {gallery.images.map((image) => (
+            <li key={image}>
+              <button
+                type="button"
+                className="clickable-image-button"
+                onClick={() => setSelectedImage(image)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setSelectedImage(image);
+                  }
+                }}
+                aria-label={`Agrandir l'image de ${gallery.title}`}
+                style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+              >
+                <img
+                  src={image}
+                  alt={`${gallery.title}`}
+                  className="clickable-image"
+                  loading="lazy"
+                />
+              </button>
             </li>
           ))}
         </ul>
       </main>
+
+      {/* Overlay pour l'image en grand */}
       {selectedImage && (
-        <div
-          id="galleryContainer"
-          className="visible fade-in"
-          role="dialog"
-          aria-modal="true"
-         
+        <div 
+          id="galleryContainer" 
+          className="visible"
+          role="button"
+          tabIndex={0}
+          onClick={() => setSelectedImage(null)}
+          onKeyDown={(e) => {
+            if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
+              setSelectedImage(null);
+            }
+          }}
+          aria-label="Fermer l'image agrandie"
         >
-          <img src={selectedImage} alt="" />
+          <button
+            type="button"
+            className="gallery-image-modal-button"
+            tabIndex={0}
+            aria-label="Image agrandie, cliquer pour ne pas fermer"
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => e.stopPropagation()}
+            style={{ background: "none", border: "none", padding: 0 }}
+          >
+            <img 
+              src={selectedImage} 
+              alt="Vue agrandie"
+              style={{ display: "block", maxWidth: "100%", maxHeight: "100vh" }}
+            />
+          </button>
         </div>
       )}
     </>

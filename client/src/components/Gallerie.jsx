@@ -1,4 +1,5 @@
-import { Link ,useLocation} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import Gerbier from "../assets/images/image-103.webp";
 import Regards from "../assets/images/image-102.webp";
@@ -18,18 +19,22 @@ const galleriesConfig = [
   { id: 1, type: 'nb', image: Gerbier, title: 'Voyages N&B' },
   { id: 3, type: 'nb', image: Regards, title: 'Sublime N&B' },
   { id: 5, type: 'nb', image: Acteur, title: 'Portrait N&B ' },
-  { id: 7, type: 'nb', image: lilly8, title: 'Charme N&B',logo:logo18 },
+  { id: 7, type: 'nb', image: lilly8, title: 'Charme N&B', logo: logo18 },
   { id: 9, type: 'nb', image: Lyon, title: 'Evenements N&B' },
   { id: 11, type: 'nb', image: Vintage, title: 'Au Quotidien N&B ' },
   { id: 2, type: 'color', image: Hotel, title: 'Voyages Couleur' },
   { id: 4, type: 'color', image: Bouteilles, title: 'Sublime Couleur' },
   { id: 6, type: 'color', image: Audray8, title: 'Portrait Couleur' },
-  { id: 8, type: 'color', image: Julie, title: 'Charme Couleur',logo:logo18 },
-  { id: 10, type: 'color', image:Autorose , title: 'Evenements Couleur' },
+  { id: 8, type: 'color', image: Julie, title: 'Charme Couleur', logo: logo18 },
+  { id: 10, type: 'color', image: Autorose, title: 'Evenements Couleur' },
   { id: 12, type: 'color', image: Coiffeur, title: 'Au quotidien Couleur' },
 ];
+
 export default function Gallerie() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
   const location = useLocation();
+
   const filteredGalleries = galleriesConfig.filter(gallery => {
     if (location.pathname === '/galleries/nb') {
       return gallery.type === 'nb';
@@ -37,11 +42,42 @@ export default function Gallerie() {
     if (location.pathname === '/galleries/color') {
       return gallery.type === 'color';
     }
-    return true; // Affiche tout si pas de filtre
+    return true;
   });
+
+  // Simuler un temps de chargement pour les images
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500); // 1.5 secondes de chargement simulé
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Gestion du chargement réel des images
+  const handleImageLoad = () => {
+    setImagesLoaded(prev => prev + 1);
+  };
+
+  useEffect(() => {
+    if (imagesLoaded === filteredGalleries.length && filteredGalleries.length > 0) {
+      setIsLoading(false);
+    }
+  }, [imagesLoaded, filteredGalleries.length]);
 
   return (
     <section id="pageContentG">
+      {/* Overlay de chargement */}
+      {isLoading && (
+        <div className="loading-overlay-gallery">
+          <div className="loading-message-gallery">
+            <div className="loading-spinner-gallery"/>
+            <p>Chargement des galeries...</p>
+            <p className="loading-subtext">Veuillez patienter</p>
+          </div>
+        </div>
+      )}
+
       <main id="gallerie1">
         <h1>Galeries</h1>
         <ul id="galeries">
@@ -53,6 +89,8 @@ export default function Gallerie() {
                   alt={gallery.title} 
                   loading="lazy"
                   decoding="async"
+                  onLoad={handleImageLoad}
+                  onError={() => handleImageLoad()} // En cas d'erreur de chargement
                 />
                 <h2>{gallery.title}</h2>
                 {gallery.logo && (
@@ -60,6 +98,8 @@ export default function Gallerie() {
                     src={gallery.logo} 
                     alt="Logo" 
                     className="gallery-logo" 
+                    onLoad={handleImageLoad}
+                    onError={() => handleImageLoad()}
                   />
                 )}
               </Link>
