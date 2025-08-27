@@ -138,31 +138,50 @@ export default function SingleGallery() {
         <div 
           id="galleryContainer" 
           className="visible"
-          role="button"
-          tabIndex={0}
-          onClick={() => setSelectedImage(null)}
-          onKeyDown={(e) => {
-            if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
-              setSelectedImage(null);
-            }
-          }}
-          aria-label="Fermer l'image agrandie"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image agrandie, appuyez sur Échap ou cliquez sur le bouton pour fermer"
         >
-          <button
-            type="button"
-            className="gallery-image-modal-button"
-            tabIndex={0}
-            aria-label="Image agrandie, cliquer pour ne pas fermer"
-            onClick={(e) => e.stopPropagation()}
-            onKeyDown={(e) => e.stopPropagation()}
-            style={{ background: "none", border: "none", padding: 0 }}
+          <div
+            className="gallery-image-modal-content"
+            role="presentation"
+            aria-hidden="true"
+            style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%", position: "relative" }}
           >
             <img 
               src={selectedImage} 
               alt="Vue agrandie"
               style={{ display: "block", maxWidth: "100%", maxHeight: "100vh" }}
             />
-          </button>
+            <button
+              type="button"
+              className="close-modal-btn"
+              aria-label="Fermer l'image agrandie"
+              style={{
+                position: "absolute",
+                top: 20,
+                right: 20,
+                background: "rgba(0,0,0,0.6)",
+                color: "#fff",
+                border: "none",
+                borderRadius: "50%",
+                width: "40px",
+                height: "40px",
+                fontSize: "1.5em",
+                cursor: "pointer",
+                zIndex: 2
+              }}
+              onClick={() => setSelectedImage(null)}
+              onKeyDown={(e) => {
+                if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
+                  setSelectedImage(null);
+                }
+              }}
+              onTouchStart={() => setSelectedImage(null)}
+            >
+              &times;
+            </button>
+          </div>
         </div>
       )}
     </>
