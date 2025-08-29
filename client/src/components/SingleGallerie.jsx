@@ -45,7 +45,7 @@ export default function SingleGallery() {
       // Simuler le chargement pendant 1.5 secondes
       const timer = setTimeout(() => {
         setIsLoading(false);
-      }, 1500);
+      }, 1000);
 
       return () => clearTimeout(timer);
     }
