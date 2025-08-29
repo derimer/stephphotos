@@ -140,7 +140,7 @@ export default function SingleGallery() {
           className="visible"
           role="dialog"
           aria-modal="true"
-          aria-label="Image agrandie, appuyez sur Échap ou cliquez sur le bouton pour fermer"
+          aria-label="Image agrandie, cliquez sur l'image ou appuyez sur Échap pour fermer"
         >
           <div
             className="gallery-image-modal-content"
@@ -148,38 +148,23 @@ export default function SingleGallery() {
             aria-hidden="true"
             style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%", position: "relative" }}
           >
-            <img 
-              src={selectedImage} 
-              alt="Vue agrandie"
-              style={{ display: "block", maxWidth: "100%", maxHeight: "100vh" }}
-            />
             <button
               type="button"
-              className="close-modal-btn"
-              aria-label="Fermer l'image agrandie"
-              style={{
-                position: "absolute",
-                top: 20,
-                right: 20,
-                background: "rgba(0,0,0,0.6)",
-                color: "#fff",
-                border: "none",
-                borderRadius: "50%",
-                width: "40px",
-                height: "40px",
-                fontSize: "1.5em",
-                cursor: "pointer",
-                zIndex: 2
-              }}
+              style={{ background: "none", border: "none", padding: 0, cursor: "pointer", display: "block", maxWidth: "100%", maxHeight: "100vh" }}
               onClick={() => setSelectedImage(null)}
               onKeyDown={(e) => {
                 if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
                   setSelectedImage(null);
                 }
               }}
-              onTouchStart={() => setSelectedImage(null)}
+              tabIndex={0}
+              aria-label="Fermer l'image agrandie"
             >
-              &times;
+              <img 
+                src={selectedImage} 
+                alt="Vue agrandie"
+                style={{ display: "block", maxWidth: "100%", maxHeight: "100vh", cursor: "pointer" }}
+              />
             </button>
           </div>
         </div>
