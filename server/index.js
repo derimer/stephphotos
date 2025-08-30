@@ -1,49 +1,31 @@
 require("dotenv").config();
-
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
-
-// Assurez-vous que le fichier router exporte un objet express.Router()
 const router = require("./app/routers/api/router");
-
 const db = require("./database/client");
 
-// Initialisation de l'application Express
 const app = express();
 const port = process.env.APP_PORT || 3001;
 
-// Configuration des chemins
-const publicPath = path.join(__dirname, "public");
-const uploadsPath = path.join(publicPath, "uploads");
-
-// Middleware CORS avec gestion dynamique des origines (version simplifiée)
-app.use(express.json({ limit: "200mb" }));
-app.use(express.urlencoded({ limit: "200mb", extended: true }));
-
+// Middleware CORS
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://127.0.0.1:3000","http://vps-40561016.vps.ovh.net:3000"], // Autoriser ces origines
-    methods: ["GET", "POST", "PUT", "DELETE"], // Méthodes HTTP autorisées
-    credentials: true, // Si vous gérez des cookies/sessions
+    origin: [
+      "http://localhost:3000",
+      "http://127.0.0.1:3000",
+      "http://vps-40561016.vps.ovh.net:3000",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
 
-// Middleware JSON
-app.use(express.json());
+// Middleware JSON et urlencoded
+app.use(express.json({ limit: "200mb" }));
+app.use(express.urlencoded({ limit: "200mb", extended: true }));
 
-// Servir les fichiers statiques
-app.use(express.static(publicPath));
-app.use("/api/uploads", express.static(uploadsPath));
-app.get('/api/hello', (req, res) => {
-  res.status(200).send('Hello from Vercel!');
-});
-// Test de la connexion à la base de données
-app.get("/api/test", (req, res) => {
-  res.json({ message:"backend fonctionne!" });
-});
-
-// Ajout des en-têtes de sécurité
+// Sécurité (CSP)
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
@@ -52,30 +34,50 @@ app.use((req, res, next) => {
   next();
 });
 
-// Vérifiez si le router est valide avant de l'utiliser
+// --------------------------------------
+// SERVIR LE CLIENT VITE (React build)
+// --------------------------------------
+const clientDistPath = path.join(__dirname, "../client/dist");
+app.use(express.static(clientDistPath));
+
+// Toutes les autres routes renvoient index.html pour React Router
+app.get("*", (req, res, next) => {
+  // Ignorer les routes API
+  if (req.path.startsWith("/api")) return next();
+  res.sendFile(path.join(clientDistPath, "index.html"));
+});
+
+// --------------------------------------
+// Routes API
+// --------------------------------------
 if (router && typeof router === "function") {
   app.use("/api", router);
 } else {
-  console.error(
-    "Le router importé n'est pas valide. Vérifiez son exportation."
-  );
+  console.error("Le router importé n'est pas valide.");
 }
 
-// Middleware pour gérer les routes inexistantes
+// Routes test et uploads statiques
+const publicPath = path.join(__dirname, "public");
+const uploadsPath = path.join(publicPath, "uploads");
+app.use(express.static(publicPath));
+app.use("/api/uploads", express.static(uploadsPath));
+
+app.get("/api/hello", (req, res) => res.send("Hello from Vercel!"));
+app.get("/api/test", (req, res) => res.json({ message: "backend fonctionne!" }));
+
+// 404 pour API
 app.use((req, res) => {
   res.status(404).send("Route non trouvée");
 });
 
-// Si vous exécutez ce fichier directement, démarrez le serveur
+// Démarrage serveur
 if (require.main === module) {
   app
     .listen(port, () => {
       console.info(`Server is listening on port ${port}`);
-      db.checkConnection(); // Vérifiez la connexion à la base de données au démarrage
+      db.checkConnection();
     })
-    .on("error", (err) => {
-      console.error("Error:", err.message);
-    });
+    .on("error", (err) => console.error("Error:", err.message));
 }
 
 module.exports = app;
