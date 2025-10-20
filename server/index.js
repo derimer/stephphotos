@@ -34,6 +34,10 @@ app.use(
     credentials: true,
   })
 );
+app.listen(port, "0.0.0.0", () => {
+  console.info(`Server is listening on port ${port}`);
+  db.checkConnection();
+});
 
 // Middleware JSON
 app.use(express.json());
