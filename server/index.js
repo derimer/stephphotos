@@ -23,9 +23,15 @@ app.use(express.urlencoded({ limit: "200mb", extended: true }));
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://127.0.0.1:3000","http://vps-40561016.vps.ovh.net:3000"], // Autoriser ces origines
-    methods: ["GET", "POST", "PUT", "DELETE"], // Méthodes HTTP autorisées
-    credentials: true, // Si vous gérez des cookies/sessions
+    origin: [
+      "http://localhost:3000", 
+      "http://localhost:3001",  // ✅ Ajoutez le port 3001
+      "http://127.0.0.1:3000",
+      "http://127.0.0.1:3001",  // ✅ Ajoutez aussi pour 127.0.0.1
+      "http://vps-40561016.vps.ovh.net:3000"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
 
