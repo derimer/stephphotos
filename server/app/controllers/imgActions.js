@@ -36,7 +36,7 @@ exports.processTiffImage = async (req, res) => {
     const inputPath = req.file.path; // Chemin du fichier téléchargé
     const outputPath = `optimized/${req.file.filename}.jpeg`;
 
-    await sharp(inputPath)
+  await sharp(inputPath)
       .jpeg({ quality: 80 })
       .toFile(outputPath);
 
@@ -123,7 +123,7 @@ exports.addImage = async (req, res) => {
     const outputPath = path.join(path.dirname(inputPath), webpFilename);
 
     // Convertir l’image en .webp
-    await sharp(inputPath)
+await sharp(inputPath)
       .webp({ quality: 80 })
       .toFile(outputPath);
 

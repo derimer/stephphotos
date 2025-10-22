@@ -10,7 +10,7 @@ const db = require("./database/client");
 
 // Initialisation de l'application Express
 const app = express();
-const port = process.env.PORT || 3310; // ✅ Utilisation de PORT pour être cohérent avec systemd
+const port = process.env.PORT || 3311; // ✅ Utilisation de PORT pour être cohérent avec systemd
 
 // Configuration des chemins
 const publicPath = path.join(__dirname, "public");
